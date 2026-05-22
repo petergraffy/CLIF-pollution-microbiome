@@ -1,46 +1,51 @@
- ## Code directory
+## Code directory
 
-Update this README with the specific project workflow instructions.
-This directory contains scripts for the project workflow. The general workflow consists of three main steps: cohort identification, quality control, and analysis. Scripts can be implemented in R or Python, depending on project requirements. Please note that this workflow is just a suggestion, and you may change the structure to suit your project needs.
+This directory contains the executable R workflow for the CLIF pollution-microbiome project. The current implementation is exploratory and aggregate-based: it builds a local adult ICU respiratory culture cohort, links county-year PM2.5 and NO2, computes crude organism-pollution correlations, and creates a tile plot.
 
-### General Workflow
+## Scripts
 
-1. Run the cohort_identification script
-   This script should:
-   - Apply inclusion and exclusion criteria
-   - Select required fields from each table
-   - Filter tables to include only required observations
+1. `01_microbiome_cohort_export.R`
+   Builds the adult ICU cohort, identifies early respiratory cultures, summarizes organism groups and organism categories, links optional susceptibility data, links county-year exposures, and writes aggregate CSVs.
 
-   Expected outputs:
-   - cohort_ids: a list of unique identifiers for the study cohort
-   - cohort_data: the filtered study cohort data
-   - cohort_summary: a summary table describing the study cohort
+   Main outputs:
+   - `microbe_site_county_year_<site>_<stamp>.csv`
+   - `microbe_organism_group_<site>_<stamp>.csv`
+   - `microbe_organism_category_<site>_<stamp>.csv`
+   - `microbe_qc_summary_<site>_<stamp>.csv`
 
-   Examples of cohort identification scripts:
-   - [`code/templates/Python/01_cohort_identification_template.py`](templates/Python/01_cohort_identification_template.py)
-   - [`code/templates/R/01_cohort_identification_template.R`](templates/R/01_cohort_identification_template.R)
+2. `02_pollution_microbe_correlation.R`
+   Reads the latest export files, completes the organism-by-county-year grid so absent organisms are treated as zero counts, and computes Pearson and Spearman correlations for PM2.5 and NO2.
 
-2. Run the quality_control script
-   This script should:
-   - Perform project-specific quality control checks on the filtered cohort data
-   - Handle outliers using predefined thresholds as given in `outlier-thresholds` directory. 
-   - Clean and preprocess the data for analysis
+   Main output:
+   - `pollution_microbe_correlations_<stamp>.csv`
 
-   Script: [`code/templates/R/02_project_quality_checks_template.R`](templates/R/02_project_quality_checks_template.R) & [`code/templates/R/03_outlier_handling_template.R`](templates/R/03_outlier_handling_template.R) 
+3. `03_plot_pollution_microbe_correlations.R`
+   Reads the latest correlation output and creates a tile plot of organism-category correlations with pollution.
 
-   Input: cohort_data 
+   Main outputs:
+   - `pollution_microbe_correlation_tile_<stamp>.png`
+   - `pollution_microbe_correlation_tile_<stamp>.pdf`
 
-   Output: cleaned_cohort_data 
+## Run Order
 
-3. Run the analysis script(s)
-   This script (or set of scripts) should contain the main analysis code for the project.
-   It may be broken down into multiple scripts if necessary.
-   
-   Script: [`code/templates/R/04_project_analysis_template.R`](templates/R/04_project_analysis_template.R) 
+From the repository root:
 
-   Input: cleaned_cohort_data 
+```bash
+Rscript code/01_microbiome_cohort_export.R
+Rscript code/02_pollution_microbe_correlation.R
+Rscript code/03_plot_pollution_microbe_correlations.R
+```
 
-   Output: [List of expected result files, e.g., statistical_results, figures, tables saved in the [`output/final`](../output/README.md) directory] 
+## Current Analytic Definitions
 
+1. Base cohort: adult ICU hospitalizations with ICU length of stay at least 24 hours and a valid CONUS county FIPS.
+2. Culture window: 48 hours before through 72 hours after first ICU admission.
+3. Primary respiratory specimens: `respiratory_tract` and `respiratory_tract_lower`.
+4. Organism group analysis uses `organism_group`.
+5. Genus/species analysis uses `organism_category`.
+6. Severity proxy uses early HFNC, NIV/NIPPV/CPAP, or IMV in `respiratory_support`.
 
+## Development Notes
+
+The current code intentionally keeps the exploratory outputs unsuppressed for local signal-finding. Before sharing outside an approved environment, add minimum-cell suppression or review aggregate release rules. The next major code step is to replace the respiratory support proxy with the fuller physiologic ARF phenotype using SpO2/FiO2, PaO2/FiO2, and PaCO2/pH logic.
 

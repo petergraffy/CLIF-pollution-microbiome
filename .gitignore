@@ -30,3 +30,8 @@ initialize_renv.R
 # ignore pdf reports and rendered html
 *.pdf
 *.html
+
+# ignore generated local analysis outputs
+output/final/*.csv
+output/figures/*
+!output/README.md
