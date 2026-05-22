@@ -17,6 +17,12 @@ Current scripts may create:
 4. `microbe_qc_summary_<site>_<stamp>.csv`
 5. `pollution_microbe_correlations_<stamp>.csv`
 6. `pollution_microbe_correlation_tile_<stamp>.png`
+7. `pollution_microbe_risk_models_<stamp>.csv`
+8. `hierarchical_pollution_microbe_phenotype_models_<site>_<stamp>.csv`
+9. `hierarchical_pollution_microbe_forest_<stamp>.png`
+10. `hierarchical_pollution_microbe_heatmap_<stamp>.png`
+11. `hierarchical_pollution_microbe_interactions_<stamp>.png`
+12. `hierarchical_sensitivity_summary_<stamp>.csv`
 
 ## Governance
 

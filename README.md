@@ -70,6 +70,9 @@ Primary respiratory culture window:
 1. Run `code/01_microbiome_cohort_export.R` to build adult ICU respiratory culture aggregates and link county-year pollution.
 2. Run `code/02_pollution_microbe_correlation.R` to compute crude county-year correlations between PM2.5/NO2 and organism-category prevalence.
 3. Run `code/03_plot_pollution_microbe_correlations.R` to create a correlation tile plot.
+4. Run `code/04_pollution_microbe_risk_models.R` to fit aggregate binomial models estimating organism detection odds per IQR increase in PM2.5 or NO2.
+5. Run `code/05_hierarchical_microbe_phenotype_models.R` to fit patient-level mixed-effects logistic models with county random intercepts and pneumonia, sepsis, or severe respiratory support phenotype interactions.
+6. Run `code/06_plot_hierarchical_findings.R` and `code/07_summarize_hierarchical_sensitivities.R` to create figures and compare sensitivity runs.
 
 The first-pass outputs are exploratory. They are intended to help assess signal and feasibility before adding adjusted models, ARF physiology, pneumonia/sepsis definitions, and multi-site pooling.
 
@@ -86,6 +89,11 @@ The correlation and plotting scripts produce:
 
 1. `pollution_microbe_correlations_<stamp>.csv`
 2. `pollution_microbe_correlation_tile_<stamp>.png`
+3. `pollution_microbe_risk_models_<stamp>.csv`
+4. `hierarchical_pollution_microbe_phenotype_models_<site>_<stamp>.csv`
+5. `hierarchical_pollution_microbe_forest_<stamp>.png`
+6. `hierarchical_pollution_microbe_heatmap_<stamp>.png`
+7. `hierarchical_sensitivity_summary_<stamp>.csv`
 
 See [`docs/project_spec.md`](docs/project_spec.md) for the full working analysis plan.
 
@@ -111,6 +119,17 @@ If you already have the required packages installed, the scripts can be run dire
 Rscript code/01_microbiome_cohort_export.R
 Rscript code/02_pollution_microbe_correlation.R
 Rscript code/03_plot_pollution_microbe_correlations.R
+Rscript code/04_pollution_microbe_risk_models.R
+Rscript code/05_hierarchical_microbe_phenotype_models.R
+Rscript code/06_plot_hierarchical_findings.R
+Rscript code/07_summarize_hierarchical_sensitivities.R
+```
+
+Sensitivity examples:
+
+```bash
+ANALYSIS_LABEL=no_cook_county EXCLUDE_COUNTY_FIPS=17031 Rscript code/05_hierarchical_microbe_phenotype_models.R
+ANALYSIS_LABEL=lower_resp_only RESP_FLUID_MODE=lower_only MIN_ORGANISM_DETECTIONS=25 Rscript code/05_hierarchical_microbe_phenotype_models.R
 ```
 
 Detailed workflow instructions are provided in the [code directory](code/README.md).
@@ -123,5 +142,5 @@ Do not commit patient-level CLIF tables, site configs, or unsuppressed site-deri
 
 1. Port the physiologic ARF phenotype from prior CLIF ARF pollution work.
 2. Add pneumonia/sepsis subcohort definitions using `hospital_diagnosis` and optional medication/lab criteria.
-3. Fit adjusted organism-pollution models with year, county/catchment, demographics, culture denominator, and site effects.
-4. Add sensitivity analyses for lower respiratory specimens only, positive cultures only, and Cook County versus non-Cook County catchments.
+3. Add sensitivity analyses for lower respiratory specimens only, positive cultures only, and Cook County versus non-Cook County catchments.
+4. Extend the hierarchical models to multi-site pooled analysis with site random effects.
