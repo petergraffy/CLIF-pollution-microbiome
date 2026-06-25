@@ -1,6 +1,8 @@
 {
     "site_name": "Your_Site_Name",
+    "repo": "/path/to/CLIF-pollution-microbiome",
     "tables_path": "/path/to/tables/",
-    "file_type": "csv/parquet/fst",
-    "exposome_path": "/path/to/exposome/"
+    "file_type": "parquet",
+    "exposome_path": "/path/to/county_year_exposome/",
+    "zcta_exposure_dir": "data/exposome_zcta"
 }

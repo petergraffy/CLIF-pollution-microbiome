@@ -29,7 +29,6 @@ suppressPackageStartupMessages({
   library(glmmTMB)
   library(glue)
   library(janitor)
-  library(jsonlite)
   library(lubridate)
   library(purrr)
   library(readr)
@@ -37,27 +36,14 @@ suppressPackageStartupMessages({
   library(tidyr)
 })
 
-config_path <- file.path("config", "config.json")
-config <- if (file.exists(config_path)) jsonlite::fromJSON(config_path) else list()
+source("utils/clif_io.R")
 
-candidate_paths <- c(
-  Sys.getenv("CLIF_TABLES_PATH", unset = NA_character_),
-  config$tables_path,
-  "/Users/saborpete/Desktop/Peter/Postdoc/CLIF v2.1/2.1.0",
-  "/Users/saborpete/Desktop/Peter/Postdoc/CLIF v2.1",
-  "/Users/saborpete/Library/CloudStorage/Box-Box/03-CLIF-2.1/2.1.0"
-)
-
-tables_path <- candidate_paths[!is.na(candidate_paths) & dir.exists(candidate_paths)][1]
-if (is.na(tables_path)) stop("Could not locate a CLIF table directory.")
-
-zcta_dir <- Sys.getenv("ZCTA_EXPOSURE_DIR", unset = "data/exposome_zcta")
-pm25_path <- file.path(zcta_dir, "air_pollution_zcta_pm25_monthly_2005_2023.parquet")
-o3_path <- file.path(zcta_dir, "air_pollution_zcta_o3_monthly_2005_2023.parquet")
-no2_path <- file.path(zcta_dir, "air_pollution_zcta_no2_annual_2005_2025.parquet")
-if (!file.exists(pm25_path)) stop("Missing PM2.5 exposure file: ", pm25_path)
-if (!file.exists(o3_path)) stop("Missing ozone exposure file: ", o3_path)
-if (!file.exists(no2_path)) stop("Missing NO2 exposure file: ", no2_path)
+site_name <- clif_site_name
+tables_path <- clif_tables_path
+zcta_dir <- clif_zcta_exposure_dir
+pm25_path <- find_zcta_exposure_path("air_pollution_zcta_pm25_monthly_2005_2023.parquet")
+o3_path <- find_zcta_exposure_path("air_pollution_zcta_o3_monthly_2005_2023.parquet")
+no2_path <- find_zcta_exposure_path("air_pollution_zcta_no2_annual_2005_2025.parquet")
 
 safe_ts <- function(x, tz = "UTC") {
   if (inherits(x, "POSIXt")) return(as.POSIXct(x, tz = tz))
@@ -71,12 +57,6 @@ safe_ts <- function(x, tz = "UTC") {
     tz = tz,
     quiet = TRUE
   ))
-}
-
-read_tbl <- function(name) {
-  path <- file.path(tables_path, paste0("clif_", name, ".parquet"))
-  if (!file.exists(path)) stop("Missing table: ", path)
-  arrow::read_parquet(path) %>% janitor::clean_names()
 }
 
 normalize_fio2 <- function(x) {
@@ -432,8 +412,8 @@ coverage_summary <- tibble(
 out_dir <- file.path("output", "final")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
-model_path <- file.path(out_dir, glue("shrf_zcta_pollution_any_pulmonary_culture_models_UCMC_{stamp}.csv"))
-coverage_path <- file.path(out_dir, glue("shrf_zcta_pollution_any_pulmonary_culture_coverage_UCMC_{stamp}.csv"))
+model_path <- file.path(out_dir, glue("shrf_zcta_pollution_any_pulmonary_culture_models_{site_name}_{stamp}.csv"))
+coverage_path <- file.path(out_dir, glue("shrf_zcta_pollution_any_pulmonary_culture_coverage_{site_name}_{stamp}.csv"))
 
 readr::write_csv(model_results, model_path)
 readr::write_csv(coverage_summary, coverage_path)

@@ -16,25 +16,15 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(glue)
   library(janitor)
-  library(jsonlite)
   library(lubridate)
   library(readr)
   library(stringr)
 })
 
-config_path <- file.path("config", "config.json")
-config <- if (file.exists(config_path)) jsonlite::fromJSON(config_path) else list()
+source("utils/clif_io.R")
 
-candidate_paths <- c(
-  Sys.getenv("CLIF_TABLES_PATH", unset = NA_character_),
-  config$tables_path,
-  "/Users/saborpete/Desktop/Peter/Postdoc/CLIF v2.1/2.1.0",
-  "/Users/saborpete/Desktop/Peter/Postdoc/CLIF v2.1",
-  "/Users/saborpete/Library/CloudStorage/Box-Box/03-CLIF-2.1/2.1.0"
-)
-
-tables_path <- candidate_paths[!is.na(candidate_paths) & dir.exists(candidate_paths)][1]
-if (is.na(tables_path)) stop("Could not locate a CLIF table directory.")
+site_name <- clif_site_name
+tables_path <- clif_tables_path
 
 safe_ts <- function(x, tz = "UTC") {
   if (inherits(x, "POSIXt")) return(as.POSIXct(x, tz = tz))
@@ -48,12 +38,6 @@ safe_ts <- function(x, tz = "UTC") {
     tz = tz,
     quiet = TRUE
   ))
-}
-
-read_tbl <- function(name) {
-  path <- file.path(tables_path, paste0("clif_", name, ".parquet"))
-  if (!file.exists(path)) stop("Missing table: ", path)
-  arrow::read_parquet(path) %>% janitor::clean_names()
 }
 
 normalize_fio2 <- function(x) {
@@ -281,8 +265,8 @@ organism_summary <- micro %>%
 out_dir <- file.path("output", "final")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
-summary_path <- file.path(out_dir, glue("shrf_positive_pulmonary_culture_count_UCMC_{stamp}.csv"))
-organism_path <- file.path(out_dir, glue("shrf_positive_pulmonary_culture_top_organisms_UCMC_{stamp}.csv"))
+summary_path <- file.path(out_dir, glue("shrf_positive_pulmonary_culture_count_{site_name}_{stamp}.csv"))
+organism_path <- file.path(out_dir, glue("shrf_positive_pulmonary_culture_top_organisms_{site_name}_{stamp}.csv"))
 
 readr::write_csv(summary_tbl, summary_path)
 readr::write_csv(organism_summary, organism_path)

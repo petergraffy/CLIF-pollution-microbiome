@@ -1,6 +1,6 @@
 ## Code directory
 
-This directory contains the executable R workflow for the CLIF pollution-microbiome project. The current implementation is exploratory and aggregate-based: it builds a local adult ICU respiratory culture cohort, links county-year PM2.5 and NO2, computes crude organism-pollution correlations, and creates a tile plot.
+This directory contains the executable R workflow for the CLIF pollution-microbiome project. The implementation includes the original aggregate county-year workflow and a severe hypoxemic respiratory failure (SHRF) ZCTA workflow. Scripts read site-specific paths from `config/config.json` through `utils/config.R` and `utils/clif_io.R`.
 
 ## Scripts
 
@@ -50,6 +50,43 @@ This directory contains the executable R workflow for the CLIF pollution-microbi
 7. `07_summarize_hierarchical_sensitivities.R`
    Summarizes all hierarchical model outputs in `output/final` and writes sensitivity comparison tables.
 
+8. `08_count_severe_hypoxemic_rf.R`
+   Counts adult ED-to-ICU hospitalizations with invasive mechanical ventilation and PaO2/FiO2 `<300` in the first 24 hours after ICU admission.
+
+   Main output:
+   - `severe_hypoxemic_rf_count_<site>_<stamp>.csv`
+
+9. `09_count_pulmonary_cultures_in_shrf.R`
+   Counts positive pulmonary cultures among SHRF hospitalizations. The current primary window is ICU admission through 48 hours after ICU admission.
+
+   Main outputs:
+   - `shrf_positive_pulmonary_culture_count_<site>_<stamp>.csv`
+   - `shrf_positive_pulmonary_culture_top_organisms_<site>_<stamp>.csv`
+
+10. `10_shrf_zcta_pollution_pulmonary_culture_models.R`
+    Fits first-48h any-positive-pulmonary-culture mixed-effects logistic models against annualized PM2.5, annualized ozone, and annual NO2.
+
+    Main outputs:
+    - `shrf_zcta_pollution_any_pulmonary_culture_models_<site>_<stamp>.csv`
+    - `shrf_zcta_pollution_any_pulmonary_culture_coverage_<site>_<stamp>.csv`
+
+11. `11_shrf_zcta_pollution_organism_models.R`
+    Fits first-48h organism-specific mixed-effects logistic models against annualized PM2.5, annualized ozone, and annual NO2.
+
+    Main outputs:
+    - `shrf_zcta_pollution_organism_models_<site>_<stamp>.csv`
+    - `shrf_zcta_pollution_organism_model_counts_<site>_<stamp>.csv`
+
+    Optional environment variables:
+    - `MIN_ORGANISM_DETECTIONS`: minimum any-hospitalization pulmonary organism detections required for screening; default `25`.
+    - `CULTURE_WINDOWS`: culture windows to model; default `first_48h`.
+
+12. `12_plot_shrf_organism_forest.R`
+    Creates a forest plot from the latest SHRF organism model output, with separate panels for PM2.5, ozone, and NO2.
+
+    Optional environment variable:
+    - `SHRF_ORGANISM_MODEL_PATH`: explicit organism-model CSV to plot.
+
 ## Run Order
 
 From the repository root:
@@ -62,6 +99,11 @@ Rscript code/04_pollution_microbe_risk_models.R
 Rscript code/05_hierarchical_microbe_phenotype_models.R
 Rscript code/06_plot_hierarchical_findings.R
 Rscript code/07_summarize_hierarchical_sensitivities.R
+Rscript code/08_count_severe_hypoxemic_rf.R
+Rscript code/09_count_pulmonary_cultures_in_shrf.R
+Rscript code/10_shrf_zcta_pollution_pulmonary_culture_models.R
+Rscript code/11_shrf_zcta_pollution_organism_models.R
+Rscript code/12_plot_shrf_organism_forest.R
 ```
 
 Sensitivity examples:
@@ -70,7 +112,20 @@ Sensitivity examples:
 ANALYSIS_LABEL=no_cook_county EXCLUDE_COUNTY_FIPS=17031 Rscript code/05_hierarchical_microbe_phenotype_models.R
 ANALYSIS_LABEL=no_cook_county_min25 EXCLUDE_COUNTY_FIPS=17031 MIN_ORGANISM_DETECTIONS=25 Rscript code/05_hierarchical_microbe_phenotype_models.R
 ANALYSIS_LABEL=lower_resp_only RESP_FLUID_MODE=lower_only MIN_ORGANISM_DETECTIONS=25 Rscript code/05_hierarchical_microbe_phenotype_models.R
+MIN_ORGANISM_DETECTIONS=25 Rscript code/11_shrf_zcta_pollution_organism_models.R
+SHRF_ORGANISM_MODEL_PATH=output/final/shrf_zcta_pollution_organism_models_YOUR_SITE_YYYYMMDD_HHMMSS.csv Rscript code/12_plot_shrf_organism_forest.R
 ```
+
+## Configuration
+
+Copy `config/config_template.json` to `config/config.json` and set:
+
+1. `site_name`: short label for output filenames.
+2. `tables_path`: directory containing CLIF tables.
+3. `file_type`: `parquet`, `csv`, `fst`, or `auto`.
+4. `zcta_exposure_dir`: directory containing the ZCTA PM2.5, ozone, and NO2 parquet release files.
+
+The SHRF scripts locate CLIF tables recursively under `tables_path` and accept filenames with or without the `clif_` prefix.
 
 ## Current Analytic Definitions
 
@@ -80,6 +135,8 @@ ANALYSIS_LABEL=lower_resp_only RESP_FLUID_MODE=lower_only MIN_ORGANISM_DETECTION
 4. Organism group analysis uses `organism_group`.
 5. Genus/species analysis uses `organism_category`.
 6. Severity proxy uses early HFNC, NIV/NIPPV/CPAP, or IMV in `respiratory_support`.
+7. SHRF cohort uses ED-to-ICU hospitalizations with IMV and P/F `<300` in the first ICU 24 hours.
+8. SHRF/ZCTA models use cultures collected from ICU admission through 48 hours after ICU admission.
 
 ## Development Notes
 

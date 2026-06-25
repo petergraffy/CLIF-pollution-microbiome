@@ -28,7 +28,7 @@ pretty_organism <- function(x) {
 
 model_path <- Sys.getenv(
   "SHRF_ORGANISM_MODEL_PATH",
-  unset = latest_file("output/final/shrf_zcta_pollution_organism_models_UCMC_*.csv")
+  unset = latest_file("output/final/shrf_zcta_pollution_organism_models_*.csv")
 )
 out_dir <- file.path("output", "figures")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)

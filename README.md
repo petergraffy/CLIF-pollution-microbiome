@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project studies whether ambient air pollution is associated with geographic variation in respiratory microbial ecology among adult ICU patients in CLIF. The core idea is that exposures such as PM2.5 and NO2 may shape which respiratory organisms are recovered from clinical cultures, and those culture-detected microbial profiles may relate to acute respiratory failure (ARF), pneumonia, sepsis, and respiratory support severity.
+This project studies whether ambient air pollution is associated with geographic variation in respiratory microbial ecology among adult ICU patients in CLIF. The core idea is that exposures such as PM2.5, ozone, and NO2 may shape which respiratory organisms are recovered from clinical cultures, and those culture-detected microbial profiles may relate to acute respiratory failure (ARF), pneumonia, sepsis, and respiratory support severity.
 
 CLIF contains clinical microbiology culture and susceptibility data rather than sequencing-based microbiome assays. For that reason, this repository uses the phrase **respiratory microbial ecology** or **culture-detected organisms** rather than claiming to measure the full lung microbiome.
 
@@ -12,7 +12,7 @@ This project targets CLIF 2.1.
 
 ## Scientific Aims
 
-1. Estimate whether county-year PM2.5 and NO2 exposures are associated with respiratory culture organism composition among adult ICU hospitalizations.
+1. Estimate whether PM2.5, ozone, and NO2 exposures are associated with respiratory culture organism composition among adult ICU hospitalizations.
 2. Test whether pollution-associated organism profiles are associated with ARF vulnerability, ARF severity, and respiratory support escalation.
 3. Explore pneumonia- and sepsis-enriched subcohorts for distinct microbial-respiratory failure phenotypes.
 
@@ -36,23 +36,39 @@ Recommended tables for the full analysis:
 
 ## Exposure Data
 
-The current workflow expects county-year exposure files with county FIPS and year columns. It can read these filenames when present in `config$exposome_path`:
+The original aggregate workflow expects county-year exposure files with county FIPS and year columns. It can read these filenames when present in `config$exposome_path`:
 
 1. `conus_county_pm25_2005_2024.csv` or `pm25_county_year.csv`
 2. `conus_county_no2_2005_2024.csv` or `no2_county_year.csv`
 
-The default linkage is `hospitalization.county_code` by admission year. Future analyses can add monthly exposure windows, lagged annual exposures, weather, SVI, and other county-level covariates.
+The severe hypoxemic respiratory failure workflow uses ZCTA-level exposure parquet files linked by `hospitalization.zipcode_five_digit` and admission year. Set `zcta_exposure_dir` in `config/config.json` to a directory containing:
+
+1. `air_pollution_zcta_pm25_monthly_2005_2023.parquet`
+2. `air_pollution_zcta_o3_monthly_2005_2023.parquet`
+3. `air_pollution_zcta_no2_annual_2005_2025.parquet`
+
+Monthly PM2.5 and ozone are annualized by ZIP/year in the analysis scripts. NO2 is already annual. Future analyses can add monthly exposure windows, lagged annual exposures, weather, SVI, and other covariates.
 
 ## Cohort identification
 
-Primary cohort:
+Original broad cohort:
 1. Adult hospitalizations, age >= 18.
 2. ICU admission identified through `adt.location_category == "icu"`.
 3. ICU length of stay >= 24 hours.
 4. Valid CONUS county FIPS in `hospitalization.county_code`.
 5. Admission/ICU year covered by county-year PM2.5 and NO2 files.
 
-Primary respiratory culture window:
+Severe hypoxemic respiratory failure cohort:
+1. Adult hospitalization with care pathway `ED -> ICU`.
+2. Invasive mechanical ventilation documented in the first 24 hours after first ICU admission.
+3. PaO2/FiO2 ratio `<300` in the first 24 hours after first ICU admission.
+4. ED intubations are eligible.
+
+Current respiratory culture window for SHRF/ZCTA models:
+1. ICU admission through 48 hours after ICU admission.
+2. Respiratory specimens: `respiratory_tract` and `respiratory_tract_lower`.
+
+Original respiratory culture window:
 1. 48 hours before through 72 hours after first ICU admission.
 2. Respiratory specimens: `respiratory_tract` and `respiratory_tract_lower`.
 3. Sensitivity specimens: add upper airway/oropharynx and pleural fluid.
@@ -73,6 +89,11 @@ Primary respiratory culture window:
 4. Run `code/04_pollution_microbe_risk_models.R` to fit aggregate binomial models estimating organism detection odds per IQR increase in PM2.5 or NO2.
 5. Run `code/05_hierarchical_microbe_phenotype_models.R` to fit patient-level mixed-effects logistic models with county random intercepts and pneumonia, sepsis, or severe respiratory support phenotype interactions.
 6. Run `code/06_plot_hierarchical_findings.R` and `code/07_summarize_hierarchical_sensitivities.R` to create figures and compare sensitivity runs.
+7. Run `code/08_count_severe_hypoxemic_rf.R` to count the ED-to-ICU severe hypoxemic respiratory failure cohort.
+8. Run `code/09_count_pulmonary_cultures_in_shrf.R` to count positive pulmonary cultures in that cohort.
+9. Run `code/10_shrf_zcta_pollution_pulmonary_culture_models.R` to fit first-48h any-positive-pulmonary-culture models against PM2.5, ozone, and NO2.
+10. Run `code/11_shrf_zcta_pollution_organism_models.R` to fit first-48h organism-specific models.
+11. Run `code/12_plot_shrf_organism_forest.R` to create the organism forest plot.
 
 The first-pass outputs are exploratory. They are intended to help assess signal and feasibility before adding adjusted models, ARF physiology, pneumonia/sepsis definitions, and multi-site pooling.
 
@@ -123,6 +144,11 @@ Rscript code/04_pollution_microbe_risk_models.R
 Rscript code/05_hierarchical_microbe_phenotype_models.R
 Rscript code/06_plot_hierarchical_findings.R
 Rscript code/07_summarize_hierarchical_sensitivities.R
+Rscript code/08_count_severe_hypoxemic_rf.R
+Rscript code/09_count_pulmonary_cultures_in_shrf.R
+Rscript code/10_shrf_zcta_pollution_pulmonary_culture_models.R
+Rscript code/11_shrf_zcta_pollution_organism_models.R
+Rscript code/12_plot_shrf_organism_forest.R
 ```
 
 Sensitivity examples:
