@@ -1,0 +1,6 @@
+step,n_hospitalizations,n_patients
+adult_ed_to_icu,18443,15461
+resp_culture_first_48h_admission,3116,2875
+positive_resp_culture_first_48h_admission,1337,1241
+positive_resp_culture_plus_o2_ge2l_or_advanced_support_first_48h,1320,1226
+positive_resp_culture_plus_o2_plus_antibacterial_antibiotic_first_48h,1184,1100
