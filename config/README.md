@@ -8,8 +8,7 @@ Required fields:
 2. `repo`: absolute path to this repository.
 3. `tables_path`: absolute path to the CLIF table directory.
 4. `file_type`: CLIF table file type, usually `parquet`, `csv`, or `fst`.
-5. `exposome_path`: absolute path to county-year pollution exposure files used by the original county-level workflow.
-6. `zcta_exposure_dir`: path to the ZCTA air-pollution parquet release used by the severe hypoxemic respiratory failure workflow.
+5. `zcta_exposure_dir`: path to the ZCTA air-pollution parquet release used by the severe hypoxemic respiratory failure workflow.
 
 Example:
 
@@ -19,7 +18,6 @@ Example:
     "repo": "/path/to/CLIF-pollution-microbiome",
     "tables_path": "/path/to/CLIF/2.1.0",
     "file_type": "parquet",
-    "exposome_path": "/path/to/exposome",
     "zcta_exposure_dir": "/path/to/air_pollution_zcta_parquet"
 }
 ```
@@ -39,5 +37,9 @@ Common environment variable overrides:
 3. `CLIF_TABLES_PATH`: override `tables_path`.
 4. `CLIF_FILE_TYPE`: override `file_type`; use `auto` to scan `csv`, `parquet`, and `fst`.
 5. `ZCTA_EXPOSURE_DIR`: override `zcta_exposure_dir`.
+
+Optional legacy field:
+
+- `exposome_path`: county-year exposure directory used only by the older aggregate county-level scripts (`01` and `05`). It is not needed for the current SHRF/ZCTA workflow.
 
 The `.gitignore` file in this directory prevents `config.json` from being pushed to GitHub. Keep site-specific paths and credentials local.

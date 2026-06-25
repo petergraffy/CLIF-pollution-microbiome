@@ -36,18 +36,15 @@ Recommended tables for the full analysis:
 
 ## Exposure Data
 
-The original aggregate workflow expects county-year exposure files with county FIPS and year columns. It can read these filenames when present in `config$exposome_path`:
-
-1. `conus_county_pm25_2005_2024.csv` or `pm25_county_year.csv`
-2. `conus_county_no2_2005_2024.csv` or `no2_county_year.csv`
-
-The severe hypoxemic respiratory failure workflow uses ZCTA-level exposure parquet files linked by `hospitalization.zipcode_five_digit` and admission year. Set `zcta_exposure_dir` in `config/config.json` to a directory containing:
+The current severe hypoxemic respiratory failure workflow uses ZCTA-level exposure parquet files linked by `hospitalization.zipcode_five_digit` and admission year. Set `zcta_exposure_dir` in `config/config.json` to a directory containing:
 
 1. `air_pollution_zcta_pm25_monthly_2005_2023.parquet`
 2. `air_pollution_zcta_o3_monthly_2005_2023.parquet`
 3. `air_pollution_zcta_no2_annual_2005_2025.parquet`
 
 Monthly PM2.5 and ozone are annualized by ZIP/year in the analysis scripts. NO2 is already annual. Future analyses can add monthly exposure windows, lagged annual exposures, weather, SVI, and other covariates.
+
+The older aggregate county-level workflow can still use `exposome_path` with county-year PM2.5/NO2 files, but that field is optional and not required for the SHRF/ZCTA analysis.
 
 ## Cohort identification
 

@@ -6,7 +6,6 @@ clif_site_name <- config_value(config, "site_name", env = "CLIF_SITE_NAME", defa
 clif_repo_path <- config_value(config, "repo", env = "CLIF_REPO", default = getwd())
 clif_tables_path <- config_value(config, "tables_path", env = "CLIF_TABLES_PATH", required = TRUE)
 clif_file_type <- tolower(config_value(config, "file_type", env = "CLIF_FILE_TYPE", default = "parquet"))
-clif_exposome_path <- config_value(config, "exposome_path", env = "CLIF_EXPOSOME_PATH", default = file.path(clif_repo_path, "exposome"))
 clif_zcta_exposure_dir <- config_value(
   config,
   c("zcta_exposure_dir", "zcta_exposure_path", "exposome_zcta_path"),
