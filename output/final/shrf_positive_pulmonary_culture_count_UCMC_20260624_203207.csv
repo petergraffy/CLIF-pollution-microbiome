@@ -1,0 +1,9 @@
+definition,n_shrf_hospitalizations,n_shrf_patients,n_positive_pulmonary_culture_hospitalizations,n_positive_pulmonary_culture_patients,pct_hospitalizations,pct_patients
+pulmonary_primary__any_time_during_hospitalization,3070,2962,1132,1117,36.872964169381106,37.71100607697502
+pulmonary_primary__first_icu_24h,3070,2962,496,488,16.156351791530945,16.47535449020932
+pulmonary_primary__first_icu_48h,3070,2962,612,604,19.93485342019544,20.39162727886563
+pulmonary_primary__early_icu_minus48_plus72h,3070,2962,727,717,23.680781758957654,24.206617150573937
+pulmonary_with_pleural__any_time_during_hospitalization,3070,2962,1138,1123,37.068403908794785,37.913571910871035
+pulmonary_with_pleural__first_icu_24h,3070,2962,500,492,16.286644951140065,16.610398379473327
+pulmonary_with_pleural__first_icu_48h,3070,2962,616,608,20.06514657980456,20.526671168129642
+pulmonary_with_pleural__early_icu_minus48_plus72h,3070,2962,732,722,23.843648208469055,24.37542201215395
