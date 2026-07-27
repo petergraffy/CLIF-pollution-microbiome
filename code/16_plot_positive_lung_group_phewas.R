@@ -6,7 +6,9 @@
 #
 # Models:
 #   For each organism_group, fit present vs absent among positive pulmonary culture
-#   hospitalizations. Exposures are prior-year ZCTA PM2.5 and NO2, scaled per IQR.
+#   hospitalizations. Exposures are prior-year ZCTA PM2.5 and NO2, scaled as:
+#     - PM2.5: 5 ug/m3
+#     - NO2: 10 ppb
 #
 # Plot:
 #   One lollipop-style PheWAS plot per exposure.
@@ -119,7 +121,6 @@ make_phewas_plot <- function(model_results, exposure_name, exposure_label, out_p
       organism_group_label = str_replace_all(organism_group, "_", " "),
       organism_group_label = fct_reorder(organism_group_label, signed_log10_p)
     )
-
   p <- ggplot(plot_dat, aes(x = organism_group_label, y = signed_log10_p, color = direction)) +
     geom_hline(yintercept = 0, linewidth = 0.35, color = "grey45") +
     geom_hline(yintercept = c(-log10(0.05), log10(0.05)), linewidth = 0.3, linetype = "dashed", color = "grey65") +
@@ -132,7 +133,8 @@ make_phewas_plot <- function(model_results, exposure_name, exposure_label, out_p
       x = "Organism group",
       y = "Signed -log10(p)",
       color = NULL,
-      title = glue("Positive lung culture organism groups vs prior-year {exposure_label}")
+      title = glue("Positive lung culture organism groups vs prior-year {exposure_label}"),
+      subtitle = "Reference lines: solid gray = OR 1; dashed gray = nominal p 0.05"
     ) +
     theme_minimal(base_size = 11) +
     theme(
@@ -146,6 +148,7 @@ make_phewas_plot <- function(model_results, exposure_name, exposure_label, out_p
     )
 
   ggsave(glue("{out_path_base}.png"), p, width = 9, height = 8.5, dpi = 300)
+  ggsave(glue("{out_path_base}.jpg"), p, width = 9, height = 8.5, dpi = 300)
   ggsave(glue("{out_path_base}.pdf"), p, width = 9, height = 8.5)
   invisible(p)
 }
@@ -196,6 +199,17 @@ top_groups <- analysis_dat %>%
 
 message("Modeling ", length(top_groups), " organism groups")
 
+modeled_group_counts <- analysis_dat %>%
+  distinct(hospitalization_id, patient_id, organism_group) %>%
+  filter(organism_group %in% top_groups) %>%
+  group_by(organism_group) %>%
+  summarise(
+    n_hospitalizations = n_distinct(hospitalization_id),
+    n_patients = n_distinct(patient_id),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(n_hospitalizations), organism_group)
+
 model_grid <- tidyr::expand_grid(
   organism_group = top_groups,
   exposure = c("pm25_prior_year", "no2_prior_year")
@@ -220,7 +234,25 @@ dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
 
 stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
 model_path <- file.path(out_dir, glue("positive_lung_culture_group_prior_year_pollution_models_{stamp}.csv"))
+summary_path <- file.path(out_dir, glue("positive_lung_culture_group_phewas_site_summary_{stamp}.csv"))
+modeled_counts_path <- file.path(out_dir, glue("positive_lung_culture_group_phewas_modeled_groups_{stamp}.csv"))
 readr::write_csv(model_results, model_path)
+
+site_summary <- tibble(
+  input_path = input_path,
+  minimum_group_detections = MIN_GROUP_DETECTIONS,
+  n_positive_lung_culture_rows = nrow(culture_exposure),
+  n_positive_lung_culture_hospitalizations = n_distinct(culture_exposure$hospitalization_id),
+  n_positive_lung_culture_patients = n_distinct(culture_exposure$patient_id),
+  n_total_organism_groups = n_distinct(culture_exposure$organism_group),
+  n_modeled_organism_groups = length(top_groups),
+  n_model_rows = nrow(model_results),
+  n_pm25_models = sum(model_results$exposure == "pm25_prior_year", na.rm = TRUE),
+  n_no2_models = sum(model_results$exposure == "no2_prior_year", na.rm = TRUE)
+)
+
+readr::write_csv(site_summary, summary_path)
+readr::write_csv(modeled_group_counts, modeled_counts_path)
 
 pm25_plot_base <- file.path(fig_dir, glue("positive_lung_culture_group_phewas_pm25_prior_year_{stamp}"))
 no2_plot_base <- file.path(fig_dir, glue("positive_lung_culture_group_phewas_no2_prior_year_{stamp}"))
@@ -237,5 +269,9 @@ print(
   n = 20
 )
 message("Wrote model results: ", model_path)
+message("Wrote site summary: ", summary_path)
+message("Wrote modeled group counts: ", modeled_counts_path)
 message("Wrote PM2.5 plot: ", pm25_plot_base, ".png")
 message("Wrote NO2 plot: ", no2_plot_base, ".png")
+message("Wrote PM2.5 JPG: ", pm25_plot_base, ".jpg")
+message("Wrote NO2 JPG: ", no2_plot_base, ".jpg")

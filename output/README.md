@@ -22,14 +22,18 @@ The active positive-lung-culture PheWAS workflow may create:
 3. `positive_lung_cultures_prior_year_pollution_organism_summary_<site>_<stamp>.csv`
 4. `positive_lung_cultures_prior_year_pollution_year_summary_<site>_<stamp>.csv`
 5. `positive_lung_culture_organism_prior_year_pollution_models_<stamp>.csv`
-6. `positive_lung_culture_organism_phewas_pm25_prior_year_<stamp>.png`
-7. `positive_lung_culture_organism_phewas_no2_prior_year_<stamp>.png`
+6. `positive_lung_culture_organism_phewas_site_summary_<stamp>.csv`
+7. `positive_lung_culture_organism_phewas_modeled_organisms_<stamp>.csv`
+8. `positive_lung_culture_organism_phewas_pm25_prior_year_<stamp>.png`
+9. `positive_lung_culture_organism_phewas_no2_prior_year_<stamp>.png`
 
 Optional group-level companion outputs:
 
 1. `positive_lung_culture_group_prior_year_pollution_models_<stamp>.csv`
-2. `positive_lung_culture_group_phewas_pm25_prior_year_<stamp>.png`
-3. `positive_lung_culture_group_phewas_no2_prior_year_<stamp>.png`
+2. `positive_lung_culture_group_phewas_site_summary_<stamp>.csv`
+3. `positive_lung_culture_group_phewas_modeled_groups_<stamp>.csv`
+4. `positive_lung_culture_group_phewas_pm25_prior_year_<stamp>.png`
+5. `positive_lung_culture_group_phewas_no2_prior_year_<stamp>.png`
 
 ## Legacy Outputs
 

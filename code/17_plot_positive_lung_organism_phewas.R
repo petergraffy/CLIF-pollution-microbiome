@@ -138,6 +138,8 @@ make_phewas_plot <- function(model_results, exposure_name, exposure_label, out_p
     summarise(y = min(neg_log10_p, na.rm = TRUE)) %>%
     pull(y)
   threshold_fdr <- ifelse(length(threshold_fdr) == 0 || !is.finite(threshold_fdr), NA_real_, threshold_fdr)
+  x_label <- max(plot_dat$x_pos, na.rm = TRUE)
+  y_max <- max(plot_dat$neg_log10_p, threshold_p05, threshold_fdr, na.rm = TRUE)
 
   p <- ggplot(plot_dat, aes(x = x_pos, y = neg_log10_p)) +
     geom_rect(
@@ -149,6 +151,26 @@ make_phewas_plot <- function(model_results, exposure_name, exposure_label, out_p
     ) +
     geom_hline(yintercept = threshold_p05, linewidth = 0.35, color = "#d95f5f", alpha = 0.75) +
     {if (!is.na(threshold_fdr)) geom_hline(yintercept = threshold_fdr, linewidth = 0.35, linetype = "dashed", color = "#8b1e3f", alpha = 0.75)} +
+    annotate(
+      "text",
+      x = x_label,
+      y = threshold_p05,
+      label = "Nominal p = 0.05",
+      hjust = 1,
+      vjust = -0.45,
+      size = 3,
+      color = "#d95f5f"
+    ) +
+    {if (!is.na(threshold_fdr)) annotate(
+      "text",
+      x = x_label,
+      y = threshold_fdr,
+      label = "FDR < 0.10 threshold",
+      hjust = 1,
+      vjust = -0.45,
+      size = 3,
+      color = "#8b1e3f"
+    )} +
     geom_point(aes(color = organism_group, shape = direction, size = n_events), alpha = 0.9) +
     geom_text(
       data = plot_dat %>% filter(label_hit),
@@ -165,6 +187,7 @@ make_phewas_plot <- function(model_results, exposure_name, exposure_label, out_p
       labels = group_bounds$group_label,
       expand = expansion(mult = c(0.015, 0.025))
     ) +
+    scale_y_continuous(limits = c(0, y_max * 1.08), expand = expansion(mult = c(0.02, 0.04))) +
     scale_shape_manual(values = c("Higher odds" = 24, "Lower odds" = 25)) +
     scale_size_continuous(range = c(1.4, 5.2), breaks = c(25, 100, 500, 1000, 2000), name = "Detections") +
     guides(color = "none", shape = guide_legend(title = NULL), size = guide_legend(title = "Detections")) +
@@ -185,6 +208,7 @@ make_phewas_plot <- function(model_results, exposure_name, exposure_label, out_p
     )
 
   ggsave(glue("{out_path_base}.png"), p, width = 13.5, height = 8.2, dpi = 300)
+  ggsave(glue("{out_path_base}.jpg"), p, width = 13.5, height = 8.2, dpi = 300)
   ggsave(glue("{out_path_base}.pdf"), p, width = 13.5, height = 8.2)
   invisible(p)
 }
@@ -244,6 +268,19 @@ top_organisms <- analysis_dat %>%
 
 message("Modeling ", length(top_organisms), " organisms")
 
+modeled_organism_counts <- analysis_dat %>%
+  distinct(hospitalization_id, patient_id, organism_category) %>%
+  filter(organism_category %in% top_organisms) %>%
+  left_join(organism_group_map, by = "organism_category") %>%
+  mutate(organism_group = coalesce(organism_group, "ungrouped")) %>%
+  group_by(organism_category, organism_group) %>%
+  summarise(
+    n_hospitalizations = n_distinct(hospitalization_id),
+    n_patients = n_distinct(patient_id),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(n_hospitalizations), organism_group, organism_category)
+
 model_grid <- tidyr::expand_grid(
   organism_category = top_organisms,
   exposure = c("pm25_prior_year", "no2_prior_year")
@@ -270,7 +307,27 @@ dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
 
 stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
 model_path <- file.path(out_dir, glue("positive_lung_culture_organism_prior_year_pollution_models_{stamp}.csv"))
+summary_path <- file.path(out_dir, glue("positive_lung_culture_organism_phewas_site_summary_{stamp}.csv"))
+modeled_counts_path <- file.path(out_dir, glue("positive_lung_culture_organism_phewas_modeled_organisms_{stamp}.csv"))
 readr::write_csv(model_results, model_path)
+
+site_summary <- tibble(
+  input_path = input_path,
+  minimum_organism_detections = MIN_ORGANISM_DETECTIONS,
+  n_positive_lung_culture_rows = nrow(culture_exposure),
+  n_positive_lung_culture_hospitalizations = n_distinct(culture_exposure$hospitalization_id),
+  n_positive_lung_culture_patients = n_distinct(culture_exposure$patient_id),
+  n_total_organism_categories = n_distinct(culture_exposure$organism_category),
+  n_total_organism_groups = n_distinct(culture_exposure$organism_group),
+  n_modeled_organisms = length(top_organisms),
+  n_modeled_organism_groups = n_distinct(modeled_organism_counts$organism_group),
+  n_model_rows = nrow(model_results),
+  n_pm25_models = sum(model_results$exposure == "pm25_prior_year", na.rm = TRUE),
+  n_no2_models = sum(model_results$exposure == "no2_prior_year", na.rm = TRUE)
+)
+
+readr::write_csv(site_summary, summary_path)
+readr::write_csv(modeled_organism_counts, modeled_counts_path)
 
 pm25_plot_base <- file.path(fig_dir, glue("positive_lung_culture_organism_phewas_pm25_prior_year_{stamp}"))
 no2_plot_base <- file.path(fig_dir, glue("positive_lung_culture_organism_phewas_no2_prior_year_{stamp}"))
@@ -287,5 +344,9 @@ print(
   n = 25
 )
 message("Wrote model results: ", model_path)
+message("Wrote site summary: ", summary_path)
+message("Wrote modeled organism counts: ", modeled_counts_path)
 message("Wrote PM2.5 plot: ", pm25_plot_base, ".png")
 message("Wrote NO2 plot: ", no2_plot_base, ".png")
+message("Wrote PM2.5 JPG: ", pm25_plot_base, ".jpg")
+message("Wrote NO2 JPG: ", no2_plot_base, ".jpg")

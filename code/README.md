@@ -52,6 +52,8 @@ want to edit a local config file.
 
    Main outputs:
    - `positive_lung_culture_organism_prior_year_pollution_models_<stamp>.csv`
+   - `positive_lung_culture_organism_phewas_site_summary_<stamp>.csv`
+   - `positive_lung_culture_organism_phewas_modeled_organisms_<stamp>.csv`
    - `positive_lung_culture_organism_phewas_pm25_prior_year_<stamp>.png`
    - `positive_lung_culture_organism_phewas_no2_prior_year_<stamp>.png`
 
@@ -63,6 +65,11 @@ want to edit a local config file.
 
    Default minimum detections:
    - `MIN_GROUP_DETECTIONS=10`
+
+   Main outputs:
+   - `positive_lung_culture_group_prior_year_pollution_models_<stamp>.csv`
+   - `positive_lung_culture_group_phewas_site_summary_<stamp>.csv`
+   - `positive_lung_culture_group_phewas_modeled_groups_<stamp>.csv`
 
 ## Run Order
 
