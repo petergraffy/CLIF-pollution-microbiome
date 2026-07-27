@@ -8,7 +8,7 @@ Required fields:
 2. `repo`: absolute path to this repository.
 3. `tables_path`: absolute path to the CLIF table directory.
 4. `file_type`: CLIF table file type, usually `parquet`, `csv`, or `fst`.
-5. `zcta_exposure_dir`: path to the ZCTA air-pollution parquet release used by the severe hypoxemic respiratory failure workflow.
+5. `zcta_exposure_dir`: path to the ZCTA air-pollution parquet release used by the current PheWAS workflow.
 
 Example:
 
@@ -22,11 +22,13 @@ Example:
 }
 ```
 
-The SHRF/ZCTA scripts expect these files in `zcta_exposure_dir`:
+The current PheWAS scripts expect these files in `zcta_exposure_dir`:
 
 1. `air_pollution_zcta_pm25_monthly_2005_2023.parquet`
-2. `air_pollution_zcta_o3_monthly_2005_2023.parquet`
-3. `air_pollution_zcta_no2_annual_2005_2025.parquet`
+2. `air_pollution_zcta_no2_annual_2005_2025.parquet`
+
+The committed `data/exposome_zcta` directory already contains these files and
+is the default if `zcta_exposure_dir` is omitted.
 
 The code locates CLIF tables recursively under `tables_path` and accepts filenames with or without the `clif_` prefix, as long as the base table name is unique. For example, `clif_hospitalization.parquet` and `hospitalization.parquet` are both valid.
 
@@ -40,6 +42,6 @@ Common environment variable overrides:
 
 Optional legacy field:
 
-- `exposome_path`: county-year exposure directory used only by the older aggregate county-level scripts (`01` and `05`). It is not needed for the current SHRF/ZCTA workflow.
+- `exposome_path`: county-year exposure directory used only by the older aggregate county-level scripts. It is not needed for the current PheWAS workflow.
 
 The `.gitignore` file in this directory prevents `config.json` from being pushed to GitHub. Keep site-specific paths and credentials local.
