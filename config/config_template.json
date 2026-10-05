@@ -2,5 +2,17 @@
     "site_name": "Your_Site_Name",
     "tables_path": "/path/to/tables/",
     "file_type": "parquet",
-    "site_timezone": "America/Chicago"
+    "site_timezone": "America/Chicago",
+    "_site_timezone_help": {
+        "instructions": "Set site_timezone to the IANA time zone of the hospital/data timestamps. City names alone (Boston, Seattle) and abbreviations (CST, EST) are not valid. These examples are not an exhaustive list. This help field is informational; leave it unchanged.",
+        "examples": {
+            "Central (Chicago)": "America/Chicago",
+            "Eastern (New York, Boston)": "America/New_York",
+            "Mountain (Denver)": "America/Denver",
+            "Pacific (Los Angeles, Seattle)": "America/Los_Angeles",
+            "Arizona (Phoenix)": "America/Phoenix",
+            "Alaska (Anchorage)": "America/Anchorage",
+            "Hawaii (Honolulu)": "Pacific/Honolulu"
+        }
+    }
 }

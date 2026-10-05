@@ -10,6 +10,8 @@ Copy `config_template.json` to `config.json`, which is ignored by Git. Only thre
 
 `site_timezone` defaults to `America/Chicago` (Central time). If your hospital is elsewhere, use its IANA time zone: `America/New_York` (Eastern), `America/Denver` (Mountain), `America/Los_Angeles` (Pacific), or `America/Phoenix` (Arizona). Use the hospital/data timestamp time zone, not your computer’s location; do not use abbreviations such as CST or EST. These names account for applicable daylight saving time.
 
+The template includes an informational `_site_timezone_help` field with examples. Leave that field unchanged; only `site_timezone` controls the time zone. City names alone, such as `Boston` or `Seattle`, are not valid.
+
 Actual calendar dates and correctly interpreted timestamp offsets are required.
 
 Study dates, exposure windows, models, bundled public-data paths and ACS variables use the shared protocol defaults. Sites do not need to add these settings to their configuration. Standard first-pilot runs leave optional SOFA derivation disabled; Charlson remains part of the workflow. Enabling SOFA is a coordinated protocol choice requiring additional physiology tables, not a routine site setup step. Missing/skipped SOFA totals remain missing.
