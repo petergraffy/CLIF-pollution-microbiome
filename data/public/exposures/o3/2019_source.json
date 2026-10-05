@@ -1,0 +1,136 @@
+{
+  "product": "o3",
+  "year": 2019,
+  "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2019.parquet",
+  "asset_digest": "sha256:f3598b79069eb982d9e0947dd23173ad26ae16da7ae8b29f13eb7bea9cfb3dd8",
+  "verified_source_sha256": "sha256:f3598b79069eb982d9e0947dd23173ad26ae16da7ae8b29f13eb7bea9cfb3dd8",
+  "columns": [
+    "zip",
+    "date",
+    "o3_ppb",
+    "value_source",
+    "fill_distance_m"
+  ],
+  "files": [
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 1,
+      "path": "o3/o3_2019_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8320275,
+      "sha256": "a517b3ae2fb81c73e33accd2083f616d6eb3c9069af98e78ad5a86b7ef4619a3"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 2,
+      "path": "o3/o3_2019_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7574228,
+      "sha256": "82063a4b22e852204cf1f671baea90418d3356a171d1ccd859e9357d4f3e8a23"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 3,
+      "path": "o3/o3_2019_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8360286,
+      "sha256": "df4eea9009e61b1ab20583ea91f0870efc881dbdbdd81010d7c23e8aaf337efc"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 4,
+      "path": "o3/o3_2019_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8124752,
+      "sha256": "02f13b4d17633a1f4c3206f031d13cb9424e6954600c1280aaab65056ace6772"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 5,
+      "path": "o3/o3_2019_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8493498,
+      "sha256": "b0bd431a675274d80135694eeaae1c868e9ac517f569c8d1403948d31e619be7"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 6,
+      "path": "o3/o3_2019_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8308938,
+      "sha256": "f53e436c2513bd1a1eb58e754eb82689491335ae5bfa1bfbb3acffd7af28cb15"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 7,
+      "path": "o3/o3_2019_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8593855,
+      "sha256": "901ec3feb4d4af51f558d979a4d082a68bfc8ad1f53628a0a04647f273199370"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 8,
+      "path": "o3/o3_2019_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8566154,
+      "sha256": "1eefff81df14613cbf4c041f116b314d9f7cf762f095d1bdb35e231927614131"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 9,
+      "path": "o3/o3_2019_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8286863,
+      "sha256": "5fe4cb9b4ddb1fbbf6dfa60bd63bbb6b224de0a137c27a9b825e118561169a48"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 10,
+      "path": "o3/o3_2019_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8468463,
+      "sha256": "e94df15c9e0d41066d41c730918d03ffe4e03d6c75c03455d2762fcd60b3b9ee"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 11,
+      "path": "o3/o3_2019_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8055763,
+      "sha256": "33c79bb6177a347438f56015bf68a5881b38e9d70b4423f0f36be5007c0a49fc"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 12,
+      "path": "o3/o3_2019_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8317531,
+      "sha256": "c490c6bd29fa54de08f4c11e82fbbcbabf01d7cba66cca06435637d1bfbe2302"
+    }
+  ]
+}

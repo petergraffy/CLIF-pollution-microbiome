@@ -1,0 +1,5490 @@
+{
+  "format": "clif_mwas_national_exposures_v1",
+  "scope": "national_public_no_clinical_filter",
+  "admission_years": [
+    2018,
+    2024
+  ],
+  "lookback_days": 28,
+  "transformations": "Required columns only, five-digit ZIP strings, date32, monthly ZIP/date sorted lossless ZSTD parquet; no value rounding/imputation",
+  "sources": [
+    {
+      "product": "pm25",
+      "year": 2017,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2017.parquet",
+      "asset_digest": "sha256:f33022fef9b401320ac2972e423094d0ab2749473be9c4effde716d4b0b29248",
+      "verified_source_sha256": "sha256:f33022fef9b401320ac2972e423094d0ab2749473be9c4effde716d4b0b29248",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2017,
+          "month": 12,
+          "path": "pm25/pm25_2017_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4728380,
+          "sha256": "0212d808ea202174733284ad81ee1cca65f2bea6d7fdd47668f60a1c693f6042"
+        }
+      ]
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2018.parquet",
+      "asset_digest": "sha256:cf44d418f1df4879feda485e020fc179fd01b24a45704d8ae05e8badf8b0e91a",
+      "verified_source_sha256": "sha256:cf44d418f1df4879feda485e020fc179fd01b24a45704d8ae05e8badf8b0e91a",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 1,
+          "path": "pm25/pm25_2018_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4632825,
+          "sha256": "5468e3aa5078e544f17b6a4482230f06506e2381cc634ee3ed16cf9f0f2859da"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 2,
+          "path": "pm25/pm25_2018_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 4113481,
+          "sha256": "b81141d8bfad36b4dfcdd6a4731f9a6193f4ebc85eedb2679fe1e760ee19a998"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 3,
+          "path": "pm25/pm25_2018_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4520992,
+          "sha256": "dab61309f95ef0c5fc7d8c397d856b7f07b6a0a90082909f0b28a70a2dc5e89e"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 4,
+          "path": "pm25/pm25_2018_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4328437,
+          "sha256": "a26f3587a463c47021dc155c068f11526d2fd42de7958736f838f8f4f9a2cc4d"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 5,
+          "path": "pm25/pm25_2018_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4564499,
+          "sha256": "1fce9004dbe54525b6a7a8a20c6d26fe926aab903c5b10645c830c556016bcdf"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 6,
+          "path": "pm25/pm25_2018_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4512122,
+          "sha256": "df45199633c7adb54e1c64654d845c1f5f455c4c43d45b1cf221936ba7efc89b"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 7,
+          "path": "pm25/pm25_2018_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4756959,
+          "sha256": "818021b96df3394ceb27d9ca2b6d472bb74e418b693bede12c2db5385d84871c"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 8,
+          "path": "pm25/pm25_2018_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4808986,
+          "sha256": "63691074e39e11f73b11652c2012b7e9968334005292e866ee7d37853fd95811"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 9,
+          "path": "pm25/pm25_2018_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4366475,
+          "sha256": "345669c90f0e70bc4e7ccc0dd42ff23e75a612455ffc2f5f8537d2c7f7a0c6da"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 10,
+          "path": "pm25/pm25_2018_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4400804,
+          "sha256": "31c1e71b8fd675075ba6aae9fbc2e7c75e2c3c871d94c0987524edc90b432368"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 11,
+          "path": "pm25/pm25_2018_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4318493,
+          "sha256": "67238aa1330d2a864ae20028358ad40ccb248077bf6907d5eb6565cbad991d68"
+        },
+        {
+          "product": "pm25",
+          "year": 2018,
+          "month": 12,
+          "path": "pm25/pm25_2018_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4561143,
+          "sha256": "c5b8e6d1354f72d1a2661ad9274dd3bfabf6d483e1db344a8c37393748979376"
+        }
+      ]
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2019.parquet",
+      "asset_digest": "sha256:b2239313ca5ba37586c4a255d51af7ee1d2f27b2940defd34f7571575fb83b62",
+      "verified_source_sha256": "sha256:b2239313ca5ba37586c4a255d51af7ee1d2f27b2940defd34f7571575fb83b62",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 1,
+          "path": "pm25/pm25_2019_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4518028,
+          "sha256": "87ef3a09b53f39efcf574f3ad64a6218271196e58f81f0f7bd53f9ae408edce6"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 2,
+          "path": "pm25/pm25_2019_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 4087702,
+          "sha256": "620a3cc755b3fb262d839e13d30ad8c70b9ea666d3f9c97d37aa353f95c2f1b8"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 3,
+          "path": "pm25/pm25_2019_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4538384,
+          "sha256": "5e0e3e051aa66c2765d30ce6dd0681f8515728cb4820d1680271af9e5de421f6"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 4,
+          "path": "pm25/pm25_2019_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4244813,
+          "sha256": "0d0db3b88025ccea84dc5f68dfd98146631869132ca9f3b36c5d5499a85f9d19"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 5,
+          "path": "pm25/pm25_2019_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4521216,
+          "sha256": "35edeee4078d4b81270723db48bb0305049551a8e1380786b782620a8f83d9c8"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 6,
+          "path": "pm25/pm25_2019_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4485908,
+          "sha256": "379566441d6e37c44dd8b912a660d715a36aabecb344442ba968fec3b5c9ae35"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 7,
+          "path": "pm25/pm25_2019_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4709178,
+          "sha256": "8a228ee77b8f11041e02e86edc7ec00dc1f35617400b71b90df18cbeb89b2dcc"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 8,
+          "path": "pm25/pm25_2019_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4518511,
+          "sha256": "8db28473be708463e1ab0e25ce34d140c1433e8a5c13031f0511b1d6ebec75b7"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 9,
+          "path": "pm25/pm25_2019_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4482287,
+          "sha256": "560ea28757adf54bb483f7e706a04459c74389eaeb1145b1738cbe25726155f2"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 10,
+          "path": "pm25/pm25_2019_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4499069,
+          "sha256": "6ddab4427067796da491b9cd162a9b01a44dfbd9214d79d434ab56e74563da48"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 11,
+          "path": "pm25/pm25_2019_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4422087,
+          "sha256": "cc021585b87f816e50acdd3c38931c2b6c17ecc8bcfd59b32e8045d538ceff54"
+        },
+        {
+          "product": "pm25",
+          "year": 2019,
+          "month": 12,
+          "path": "pm25/pm25_2019_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4596067,
+          "sha256": "fc2ab7d6718220450b71acd62451db31cc9fa4cbd23ccf2766e901dab0a7377c"
+        }
+      ]
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2020.parquet",
+      "asset_digest": "sha256:3b274b6f6d6d132005e783217699f06edd5655822d6224dad20778d86e351a78",
+      "verified_source_sha256": "sha256:3b274b6f6d6d132005e783217699f06edd5655822d6224dad20778d86e351a78",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 1,
+          "path": "pm25/pm25_2020_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4528659,
+          "sha256": "db928dff3f277ea5cbeb1d733687bd06379fcef3471dbebe66a6cf29bab89119"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 2,
+          "path": "pm25/pm25_2020_02.parquet",
+          "rows": 965700,
+          "n_zctas": 33300,
+          "size_bytes": 4107295,
+          "sha256": "dbf0c21b1747d3b3a6ddd1f6f17c511e0ba2b25a9ccb5c24db18b3c94e74a7f2"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 3,
+          "path": "pm25/pm25_2020_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4497311,
+          "sha256": "03a10d2b7069758d666e2ac0ec0ef52f37cb0f8840e0e7538499046af1569620"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 4,
+          "path": "pm25/pm25_2020_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4250372,
+          "sha256": "594d432cc28818a1ea90b31b1f3e5b2adb371cb500d431b08b39325edf3c5939"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 5,
+          "path": "pm25/pm25_2020_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4320115,
+          "sha256": "0ec422f88c668dcc7ae78e311357cffa4a01e5268d5fd5b38fb63666e097db2c"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 6,
+          "path": "pm25/pm25_2020_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4406557,
+          "sha256": "1ca7e0c9f326d00f8ec931b70348aa935555b64404c3a34558587ca3232dc907"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 7,
+          "path": "pm25/pm25_2020_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4765776,
+          "sha256": "035ff121897d06e04d3251d7fb4c11a74c378cd44cd59fa0ab9727d704db30c9"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 8,
+          "path": "pm25/pm25_2020_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4631752,
+          "sha256": "6e049b4c5840fca850460d8912d4a29e16074b8bfceff4b2258e1ef3d2bf6f5f"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 9,
+          "path": "pm25/pm25_2020_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4569466,
+          "sha256": "10e2ae991eec70c1613eb6583f89b9b10a74d564521a187f09ab89a9c999e5f7"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 10,
+          "path": "pm25/pm25_2020_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4557414,
+          "sha256": "df9fc47188e552bc20d0fbb9853076f39fdfb5509d9348cd2e80a7de6b216a8e"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 11,
+          "path": "pm25/pm25_2020_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4475402,
+          "sha256": "10eae540803b008fee876930fcc6d19325935951e50095920e65bfdfb0ccdd8f"
+        },
+        {
+          "product": "pm25",
+          "year": 2020,
+          "month": 12,
+          "path": "pm25/pm25_2020_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4723988,
+          "sha256": "2ad87928698a8bb70494cc230b7b3ef57fe17ce3cfe6b23b5db05a5ae649fbf9"
+        }
+      ]
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2021.parquet",
+      "asset_digest": "sha256:363bcc4af94c0b8e73c5c106084fbb60717d120bf83513e449a1e62aa5f850ac",
+      "verified_source_sha256": "sha256:363bcc4af94c0b8e73c5c106084fbb60717d120bf83513e449a1e62aa5f850ac",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 1,
+          "path": "pm25/pm25_2021_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4556437,
+          "sha256": "bf90c19476a991bc151fb7c380a4525e13c44bf97733a5fd151e14018d0b55a0"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 2,
+          "path": "pm25/pm25_2021_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 4100033,
+          "sha256": "d4adff15d5e01699a174514da2ba29af355e51260bd36ab64e30307773837686"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 3,
+          "path": "pm25/pm25_2021_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4548741,
+          "sha256": "c625d6c27f8de960b72833a9c76a984a3b68862572bdc68dd9fe4c1444ad6bb0"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 4,
+          "path": "pm25/pm25_2021_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4330422,
+          "sha256": "66b4285a00e48bff2eb4ade98c032af1455c54da851808eaeea8daf3ae78ad99"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 5,
+          "path": "pm25/pm25_2021_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4463570,
+          "sha256": "62fe7aae7aa55011a15d73e01460c64dfdf2c84baaf62c10c0befe4f71c47bb9"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 6,
+          "path": "pm25/pm25_2021_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4342169,
+          "sha256": "5c723f6e33a32be4ea91dfa8e91d062a912133411014c6cc0654891efbb321fe"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 7,
+          "path": "pm25/pm25_2021_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4901729,
+          "sha256": "801c299e59e2f062dda2fb102b15126b4b4c3274b8aaf3abd4afcb17631b55fc"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 8,
+          "path": "pm25/pm25_2021_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4871765,
+          "sha256": "ab996a028bb2621ef305666fe62c174a2bf0f72bd023542cef4aad278bf0d8d4"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 9,
+          "path": "pm25/pm25_2021_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4425594,
+          "sha256": "4df76f5a1d6806978c396410b41e5b8600bf5a376b17ba8ba8eae41c5f3122c8"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 10,
+          "path": "pm25/pm25_2021_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4348542,
+          "sha256": "d25613d8fcc21ca58602f2548dd2bc48283e8eda3abfad56a8877de06a6be183"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 11,
+          "path": "pm25/pm25_2021_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4325566,
+          "sha256": "dc0831a2022946e45fae53414991a77b9a8c8f89f29e25225f58300fbfa5dd99"
+        },
+        {
+          "product": "pm25",
+          "year": 2021,
+          "month": 12,
+          "path": "pm25/pm25_2021_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4454973,
+          "sha256": "9796e15f0fbe711aaae00aabe6a9ef8c3d7b3050c363806a41725041e1f777a1"
+        }
+      ]
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2022.parquet",
+      "asset_digest": "sha256:78c20cc1df325585faf4398ad37dedf289d94df49c4f4d2ce89c54d6012f1073",
+      "verified_source_sha256": "sha256:78c20cc1df325585faf4398ad37dedf289d94df49c4f4d2ce89c54d6012f1073",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 1,
+          "path": "pm25/pm25_2022_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4595230,
+          "sha256": "ca370eeb4bda476dec4d83d70c29e17f67de6919e0586dabde3eafcf13029b92"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 2,
+          "path": "pm25/pm25_2022_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 4096969,
+          "sha256": "5c3b723cfc51a4bee64552ea03e06f8c2535b525cb5b4ec1002e082ae4cc3e22"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 3,
+          "path": "pm25/pm25_2022_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4438281,
+          "sha256": "e667123a80a8c6e03f8d98382092e93542c8630392b64b774bdef8ac23e76921"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 4,
+          "path": "pm25/pm25_2022_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4147429,
+          "sha256": "5d838e1d32ff662012f259b7be33daa913f955d9308fe1098c85c1b99686684e"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 5,
+          "path": "pm25/pm25_2022_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4454396,
+          "sha256": "7349bcd4a559dd081bee5d3a6a9d191a0e4254602ec4d0b1113d60e08646ae06"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 6,
+          "path": "pm25/pm25_2022_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4302653,
+          "sha256": "3cdab97e245cf3a20fafa5ff24d44935ca0b024332f7d42b0d72b98177d04a16"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 7,
+          "path": "pm25/pm25_2022_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4369247,
+          "sha256": "a4b873413fc4666e44a776c8b7c1a53a47be9f3a99d6f1d30c55d613278e870d"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 8,
+          "path": "pm25/pm25_2022_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4209072,
+          "sha256": "00395fb31cf4c4f99ac7d6d436d7f6d81645c5a6a955723d3850a7bd384bb4d7"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 9,
+          "path": "pm25/pm25_2022_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4197129,
+          "sha256": "3f5720f58017321dda1134bfb25cf9daa9ea2c0ff5ff0950c0db4e9c6712e6ff"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 10,
+          "path": "pm25/pm25_2022_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4447830,
+          "sha256": "79ba038143a3feb15dc14a0e15fa861d3fb4f110a36538e1f5e9a6bc6b9fcba5"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 11,
+          "path": "pm25/pm25_2022_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4371345,
+          "sha256": "7442edc635814b0a724562de45060be43c427953015c30e522972e2e8ea85aad"
+        },
+        {
+          "product": "pm25",
+          "year": 2022,
+          "month": 12,
+          "path": "pm25/pm25_2022_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4622874,
+          "sha256": "c7b9d837a96c010b553012f3d4b117b5e52507619a10ece5cce57650fe23bc01"
+        }
+      ]
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2023.parquet",
+      "asset_digest": "sha256:8a6267dc8f9682743bdd0a0cb3e53614809100462910e3c52a427bedc397a7ca",
+      "verified_source_sha256": "sha256:8a6267dc8f9682743bdd0a0cb3e53614809100462910e3c52a427bedc397a7ca",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 1,
+          "path": "pm25/pm25_2023_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4632591,
+          "sha256": "f7eafee4dc435fd867c4e6d5962e221689d1ba9d989fa56683f61c3412c134f9"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 2,
+          "path": "pm25/pm25_2023_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 4088556,
+          "sha256": "fca1de6e7f70bab5018756e2858f378a160799de682d2c9c0e50706f43536466"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 3,
+          "path": "pm25/pm25_2023_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4442635,
+          "sha256": "065bc440b3503b4d702425b3f2129a108e4e6221736a3add3dcdeae4dabc716f"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 4,
+          "path": "pm25/pm25_2023_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4279719,
+          "sha256": "e841a40238ba59ab407b3e7668a6ff8adcdcdb9565edcb9f9bd8d7a78a57ab3a"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 5,
+          "path": "pm25/pm25_2023_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4602730,
+          "sha256": "73916fd7f4b59ba8e47825416a48c8185ba4b6b1cf2d900aa02d950ad5a92f2d"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 6,
+          "path": "pm25/pm25_2023_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4984827,
+          "sha256": "c7c889196d3489e2b1921041175db5ce0d62a719df18709201abb531bef51ed8"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 7,
+          "path": "pm25/pm25_2023_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4831656,
+          "sha256": "fc75d86697f7a034780b6c89efca60e89798c1d3ff5cc5c27a1c41f379087936"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 8,
+          "path": "pm25/pm25_2023_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4657728,
+          "sha256": "980f08c7c9f85cd52bb699ba98b647e7cba59c14ec0d9edd1ed914a24e5cf74c"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 9,
+          "path": "pm25/pm25_2023_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4350352,
+          "sha256": "9bb266a1944cff74aae3140b5f2fc5b218fd7ed17e5abe1297c70c00327991ac"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 10,
+          "path": "pm25/pm25_2023_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4380998,
+          "sha256": "0793408dc8333e899174b95a04d8f95fe441f48b469f625ffb26ed0dde43c9d8"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 11,
+          "path": "pm25/pm25_2023_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4327132,
+          "sha256": "fee725c6ce2a7b9edec3cf3d93b1199e116fc070b799fc11f9d13f2c25eaaf62"
+        },
+        {
+          "product": "pm25",
+          "year": 2023,
+          "month": 12,
+          "path": "pm25/pm25_2023_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4590492,
+          "sha256": "a725ae37f595b0ebc7c658c45047288c1c6c6008e139efa4db622b4139f0d88f"
+        }
+      ]
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2024.parquet",
+      "asset_digest": "sha256:9e15fea7ea6997d480343af5b7fe3bc81b82054749a35f4ff5f82c63462c17f2",
+      "verified_source_sha256": "sha256:9e15fea7ea6997d480343af5b7fe3bc81b82054749a35f4ff5f82c63462c17f2",
+      "columns": [
+        "zip",
+        "date",
+        "pm25_ug_m3",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 1,
+          "path": "pm25/pm25_2024_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4491917,
+          "sha256": "dc154dad6ff3399b42875ba784457887a9dd23c6b94f730a3e3e5c31ea2133c1"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 2,
+          "path": "pm25/pm25_2024_02.parquet",
+          "rows": 965700,
+          "n_zctas": 33300,
+          "size_bytes": 4243919,
+          "sha256": "5a9cf4c6c084dcf700dd40749cce5535fe843d41169b8af61843489b1b51247e"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 3,
+          "path": "pm25/pm25_2024_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4351133,
+          "sha256": "5c4d8957bbf629beb90c6953e7334c939d178a89e997188151436aa75486c64c"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 4,
+          "path": "pm25/pm25_2024_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4214131,
+          "sha256": "e12037b1969933dbd34e24033ff2eacf71e949572184d153ab5ffd57112719f6"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 5,
+          "path": "pm25/pm25_2024_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4383743,
+          "sha256": "2a657db77e020c9191e4527cff2b457d6ffc62b47dc8bbaf029c602ae9f39611"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 6,
+          "path": "pm25/pm25_2024_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4227757,
+          "sha256": "2a6470140ebc5f3da71a805a17110d5daf08d5eda21c65035a3401b5462c4a89"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 7,
+          "path": "pm25/pm25_2024_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4576838,
+          "sha256": "b939438711fce7000d9ebb400af8d467fa01864eeca04a7531778f1aca471313"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 8,
+          "path": "pm25/pm25_2024_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4637753,
+          "sha256": "07ceb0c752bcf492fc096959e159d42c92d80eff3908508557665158c173315c"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 9,
+          "path": "pm25/pm25_2024_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4170281,
+          "sha256": "1d408caba28ad61d29112694d21297d33d7e2a1a1c42a0c5564c0ba486cb3455"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 10,
+          "path": "pm25/pm25_2024_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4465263,
+          "sha256": "a6396c3bc78ff3c9b09cd3f979811d937e583902692f5179f616ba6b855b072e"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 11,
+          "path": "pm25/pm25_2024_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 4199015,
+          "sha256": "aae0873d5a2739ed9a12944583b4b2bc3a913508761d5971f36bdf9b9306b3ce"
+        },
+        {
+          "product": "pm25",
+          "year": 2024,
+          "month": 12,
+          "path": "pm25/pm25_2024_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 4553425,
+          "sha256": "f3fd19002377b38f221fbda7246520ec8f3e0ae82d7e1c75d3b498dff3952b3f"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2017,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2017.parquet",
+      "asset_digest": "sha256:c1e3a1c9b87766ad3f79f505c0ec4a4ca5fada9d9a0f78e95edc6224eb04af75",
+      "verified_source_sha256": "sha256:c1e3a1c9b87766ad3f79f505c0ec4a4ca5fada9d9a0f78e95edc6224eb04af75",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2017,
+          "month": 12,
+          "path": "o3/o3_2017_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8309053,
+          "sha256": "c26c05b74a3e8c1eb02f62e1d6f676b6076225eeff4e8d818283c9a6f8f45373"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2018.parquet",
+      "asset_digest": "sha256:30fdd1b307c328abe98dedaad4d187f5b65021864e35c718dec3dad555b75dde",
+      "verified_source_sha256": "sha256:30fdd1b307c328abe98dedaad4d187f5b65021864e35c718dec3dad555b75dde",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 1,
+          "path": "o3/o3_2018_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8268173,
+          "sha256": "ddf6373897d8e8c57bc8318832d0a5e6636e746cacbcb388304e779008b10f7a"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 2,
+          "path": "o3/o3_2018_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7604906,
+          "sha256": "2eb583ed5afd323740dfcc285e8571efe32d3834024a3860fbc7f8a19ef41256"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 3,
+          "path": "o3/o3_2018_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8266658,
+          "sha256": "51d12d9e7f1e932c6adb04d74e7b6ac37a8737e81d5a534e794a8371d2e2ccbc"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 4,
+          "path": "o3/o3_2018_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8162629,
+          "sha256": "0c3f2f9797e8e9ad194dfd00bbe2758caa30e1b45452df539e1cb9f1fe52abaf"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 5,
+          "path": "o3/o3_2018_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8637709,
+          "sha256": "a38bcad68be6f777ba81365f93d08ef6dc2b0208b4639d0ee60fc9a1df00d6a7"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 6,
+          "path": "o3/o3_2018_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8341210,
+          "sha256": "8ca1a0c3d5d5bdbd12c8543423901193d07c7476d22e7d719f32d3513a065ba4"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 7,
+          "path": "o3/o3_2018_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8605746,
+          "sha256": "e46e1a04d2236713ecee0109a7f441b904a14764a8d8e9d3f3d24c2bd7dd47d7"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 8,
+          "path": "o3/o3_2018_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8568883,
+          "sha256": "f55acb84617a920719edb422a6b753e01b69800b8d1cf84535eab764d18eb338"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 9,
+          "path": "o3/o3_2018_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8284315,
+          "sha256": "88fb6e2184dca5e964a631238dc48b2516f04fe301b032ad8be3290c45805d15"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 10,
+          "path": "o3/o3_2018_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8397117,
+          "sha256": "51ec72863dc68889d4533c5b981cce00a55c39874c7d82ee3b130b92b59ac871"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 11,
+          "path": "o3/o3_2018_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8085123,
+          "sha256": "78f63d1ff986bfc8f7ddc9db1a034706e34c88de919041394cfaed49ccf08b38"
+        },
+        {
+          "product": "o3",
+          "year": 2018,
+          "month": 12,
+          "path": "o3/o3_2018_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8314682,
+          "sha256": "1be2151bf3636370cd447aa02042512470321dea9932436309663a44cbe6d882"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2019.parquet",
+      "asset_digest": "sha256:f3598b79069eb982d9e0947dd23173ad26ae16da7ae8b29f13eb7bea9cfb3dd8",
+      "verified_source_sha256": "sha256:f3598b79069eb982d9e0947dd23173ad26ae16da7ae8b29f13eb7bea9cfb3dd8",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 1,
+          "path": "o3/o3_2019_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8320275,
+          "sha256": "a517b3ae2fb81c73e33accd2083f616d6eb3c9069af98e78ad5a86b7ef4619a3"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 2,
+          "path": "o3/o3_2019_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7574228,
+          "sha256": "82063a4b22e852204cf1f671baea90418d3356a171d1ccd859e9357d4f3e8a23"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 3,
+          "path": "o3/o3_2019_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8360286,
+          "sha256": "df4eea9009e61b1ab20583ea91f0870efc881dbdbdd81010d7c23e8aaf337efc"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 4,
+          "path": "o3/o3_2019_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8124752,
+          "sha256": "02f13b4d17633a1f4c3206f031d13cb9424e6954600c1280aaab65056ace6772"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 5,
+          "path": "o3/o3_2019_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8493498,
+          "sha256": "b0bd431a675274d80135694eeaae1c868e9ac517f569c8d1403948d31e619be7"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 6,
+          "path": "o3/o3_2019_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8308938,
+          "sha256": "f53e436c2513bd1a1eb58e754eb82689491335ae5bfa1bfbb3acffd7af28cb15"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 7,
+          "path": "o3/o3_2019_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8593855,
+          "sha256": "901ec3feb4d4af51f558d979a4d082a68bfc8ad1f53628a0a04647f273199370"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 8,
+          "path": "o3/o3_2019_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8566154,
+          "sha256": "1eefff81df14613cbf4c041f116b314d9f7cf762f095d1bdb35e231927614131"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 9,
+          "path": "o3/o3_2019_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8286863,
+          "sha256": "5fe4cb9b4ddb1fbbf6dfa60bd63bbb6b224de0a137c27a9b825e118561169a48"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 10,
+          "path": "o3/o3_2019_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8468463,
+          "sha256": "e94df15c9e0d41066d41c730918d03ffe4e03d6c75c03455d2762fcd60b3b9ee"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 11,
+          "path": "o3/o3_2019_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8055763,
+          "sha256": "33c79bb6177a347438f56015bf68a5881b38e9d70b4423f0f36be5007c0a49fc"
+        },
+        {
+          "product": "o3",
+          "year": 2019,
+          "month": 12,
+          "path": "o3/o3_2019_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8317531,
+          "sha256": "c490c6bd29fa54de08f4c11e82fbbcbabf01d7cba66cca06435637d1bfbe2302"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2020.parquet",
+      "asset_digest": "sha256:8b5c9fa3de8133ce0412159b169648173c8905f240a3e2c53f44aed8cbdf8994",
+      "verified_source_sha256": "sha256:8b5c9fa3de8133ce0412159b169648173c8905f240a3e2c53f44aed8cbdf8994",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 1,
+          "path": "o3/o3_2020_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8360473,
+          "sha256": "55f6f7e072b88a14b40cf31156cc91b68f9c65e504c3ef90bf7bb9fd5dd94845"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 2,
+          "path": "o3/o3_2020_02.parquet",
+          "rows": 965700,
+          "n_zctas": 33300,
+          "size_bytes": 7768708,
+          "sha256": "320e31dd3abca8689715102be7c6bb55dffeb81af9947eff11f52f944308f5a4"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 3,
+          "path": "o3/o3_2020_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8308941,
+          "sha256": "893bf5e0e2a251d70b89f25d5c0504e0c6b0ff3742d545a5ff604be26a37f5ee"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 4,
+          "path": "o3/o3_2020_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8024183,
+          "sha256": "65742468ec42ea6c2ca998f060c47455ce719aca7429f131eeb09771a1388c5b"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 5,
+          "path": "o3/o3_2020_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8457485,
+          "sha256": "329e383edcd2a743b74e7a7023c11d21f8b7f234b2efc2cd07121f4ac27a8d93"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 6,
+          "path": "o3/o3_2020_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8326531,
+          "sha256": "dab44b38e155ca4a705926d8fcc41261c2b6b2cfd99c4e9bd53280aab77c59ea"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 7,
+          "path": "o3/o3_2020_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8590327,
+          "sha256": "952864344cef2bf517fb6dfd28708c81ffd427d1c21094c1e4744dd0ccb9412f"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 8,
+          "path": "o3/o3_2020_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8589551,
+          "sha256": "7a464f92b186cba3352eb9d1e9675f2d32a6dc01419b1c599bdb108acbae5109"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 9,
+          "path": "o3/o3_2020_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8258805,
+          "sha256": "244a5b6027f2bfd5831b016b219cda6415a642a752f4e1df73f67adcaa6feda4"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 10,
+          "path": "o3/o3_2020_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8508195,
+          "sha256": "04a47b5a89fc09f9d59a461301a655b7f06c6608959d27a3acf790fe8b29be86"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 11,
+          "path": "o3/o3_2020_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8105908,
+          "sha256": "a1bb00cca256eb67f2a6bf85ac8ca2cc9f6e0cbaf035485a9bb4ab20360114cf"
+        },
+        {
+          "product": "o3",
+          "year": 2020,
+          "month": 12,
+          "path": "o3/o3_2020_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8342492,
+          "sha256": "1020980da6a4a660db475897bbb4835b110f39f0141eb259b2f87469d13823c1"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2021.parquet",
+      "asset_digest": "sha256:67c0de0eea34c3529f4833020cfb12bad0805f706f5046be2e6cd7d23d663b0b",
+      "verified_source_sha256": "sha256:67c0de0eea34c3529f4833020cfb12bad0805f706f5046be2e6cd7d23d663b0b",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 1,
+          "path": "o3/o3_2021_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8238555,
+          "sha256": "f4922fe37dff440a2b0de268113b0d2e7c844a3a126617d95fb816ab89fc8b16"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 2,
+          "path": "o3/o3_2021_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7460254,
+          "sha256": "d9842c387181e65f68b3b6b04d58a5454f7a21c13e2d0b2be5a2689c4798b832"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 3,
+          "path": "o3/o3_2021_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8252095,
+          "sha256": "9e22ff10d441b7b71910a168caafccf63bd9aed3e4ede1dcb5d85a564a46f818"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 4,
+          "path": "o3/o3_2021_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8103705,
+          "sha256": "b7ec30887ffcca6fb2daf298a7c65b4d7ef94cbfca40d9cec37c89196c3b0f24"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 5,
+          "path": "o3/o3_2021_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8479487,
+          "sha256": "5d3c274d34374382cb0d2905a5a73cb6fc3d20ac89a3864cebf3aa161fe6a9ea"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 6,
+          "path": "o3/o3_2021_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8317377,
+          "sha256": "f1e819e0fe962bc803d35ed82d55b01295af1d9594d4699f92a00db39285dc20"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 7,
+          "path": "o3/o3_2021_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8554119,
+          "sha256": "0d7355a831ea408feea9c4efe612f29cf609bc856962c54dfe57c70c7f6c1243"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 8,
+          "path": "o3/o3_2021_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8527400,
+          "sha256": "7caa5e583fa8776268eb2659739cfc291e792b93d974aeab0ea8e4c8ffa5e19c"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 9,
+          "path": "o3/o3_2021_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8180443,
+          "sha256": "da36737748999214f71b322d778d05f0202bec36602e077671239d5b2c159266"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 10,
+          "path": "o3/o3_2021_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8404288,
+          "sha256": "aae6b151dbad93d7da14bf945390fc2ef83ec4f81011357a9ca3b7afa2a03422"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 11,
+          "path": "o3/o3_2021_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7958433,
+          "sha256": "1f8de9cb2bf29b2b4af226bdc4f9b117e958d2c6a659e15b71ed715bba6cc723"
+        },
+        {
+          "product": "o3",
+          "year": 2021,
+          "month": 12,
+          "path": "o3/o3_2021_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8228586,
+          "sha256": "c667a59d3f81a7d9ea8167b43315d0ce15b3cc7919e46a7917ad2639dc4be23f"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2022.parquet",
+      "asset_digest": "sha256:c133cc886a11af0b8acb17ea0c8b20d0b8a2d81dbfb216625887b9cc6d1ec337",
+      "verified_source_sha256": "sha256:c133cc886a11af0b8acb17ea0c8b20d0b8a2d81dbfb216625887b9cc6d1ec337",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 1,
+          "path": "o3/o3_2022_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8240610,
+          "sha256": "7f7ed3ca2fa0714d4e846abecd8374c8397e3295f4b662e28654dbb4906e4d9e"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 2,
+          "path": "o3/o3_2022_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7522370,
+          "sha256": "3012b5255750acd582c5eb98522d8eccf567f9f348fa165fe90cf62dfb67cdeb"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 3,
+          "path": "o3/o3_2022_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8372484,
+          "sha256": "e76ced090db663eaa6af564e076473d76d90aa23d815b5c7be767c3635f60f44"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 4,
+          "path": "o3/o3_2022_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8104127,
+          "sha256": "821d4392da00171c9e18cfe74111dcb0f79466339df7a0ca52a5e86d13cba394"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 5,
+          "path": "o3/o3_2022_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8567725,
+          "sha256": "15bb0260fe3fccc338a70903b764e2a81613842582fc27d9c5115802fa6e44b6"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 6,
+          "path": "o3/o3_2022_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8318648,
+          "sha256": "55848a68208fd3a562d3bdea724d7a531f95f2b3f3df9e6d3e6e2378afd2468a"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 7,
+          "path": "o3/o3_2022_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8572566,
+          "sha256": "a1706a64a58b561295a7ca949deb15fbf0e53218ca91b2888e1297c98132f8f8"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 8,
+          "path": "o3/o3_2022_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8551381,
+          "sha256": "6686a150484f3e894b0c6656397bf965c0d1f51ab6597fc83b08d19626d1f572"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 9,
+          "path": "o3/o3_2022_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8299236,
+          "sha256": "a5eca66e6fe367ef96e84e1bcdf1bb5c9316e402c2026a8dcbd6f3a5a845171f"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 10,
+          "path": "o3/o3_2022_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8543239,
+          "sha256": "4df19f1be62cd3a32516129547a18f290a1d27ac9c1634f5afd280c8ddb3180f"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 11,
+          "path": "o3/o3_2022_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8084431,
+          "sha256": "27239836a84f3b268e6e35ed4f1026dc12c2b7efdc8775a397b2e0654fa586b0"
+        },
+        {
+          "product": "o3",
+          "year": 2022,
+          "month": 12,
+          "path": "o3/o3_2022_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8388405,
+          "sha256": "784daddbceaaf5a3a89049ef8cbc2825c54c9f6784174aca8ee4830d999621e3"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2023.parquet",
+      "asset_digest": "sha256:fbe08a634717504b399c41ff9ead6327e7521d76c11a7ed2ae8dbd77f7a2da15",
+      "verified_source_sha256": "sha256:fbe08a634717504b399c41ff9ead6327e7521d76c11a7ed2ae8dbd77f7a2da15",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 1,
+          "path": "o3/o3_2023_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8327443,
+          "sha256": "a8fb6097c9ec47acd0cd293d54e5ea468ef4c06f9059e37b5c0023b1a2b93f35"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 2,
+          "path": "o3/o3_2023_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7462637,
+          "sha256": "36ee419f315e1cb447ba8342760107f7519b15e7cc3938247912ff12d32dfd4a"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 3,
+          "path": "o3/o3_2023_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8334473,
+          "sha256": "52a2e10a465f4fffdd1c867fe893bc8432cc222769d0c86e9bfb2e7a29c5bc95"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 4,
+          "path": "o3/o3_2023_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8216957,
+          "sha256": "31bb75471992190a0abb525146856582ee66ae63fe85b50698dac393d3e606f1"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 5,
+          "path": "o3/o3_2023_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8548320,
+          "sha256": "7309ab525fb8e49189ae0a1383756698cc56415aefd8846923644ba0f150f733"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 6,
+          "path": "o3/o3_2023_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8376656,
+          "sha256": "f2a0317243905f1e2442a7d8d8ee386f0ea5c2514ccbb2e7034f6be94cc5ba8d"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 7,
+          "path": "o3/o3_2023_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8570239,
+          "sha256": "bbddaf1e314ad8a01a7756e6ac300583ca99f7828bd5db02c69f3b779e941c58"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 8,
+          "path": "o3/o3_2023_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8532158,
+          "sha256": "594d79a4625d3e1eda7616070fff3e445ad0bfc5bbb21dc3fb55362187be2c3b"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 9,
+          "path": "o3/o3_2023_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8293683,
+          "sha256": "b5f59eaf113fc36ebc9020ffef27f0ee62691fc1d2c896f94aaef0d20b1a4b7b"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 10,
+          "path": "o3/o3_2023_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8550630,
+          "sha256": "3c79f50e9d87879bd2b3cc51effdc25bf30ae24ed0cefff6b9646685078cc0e6"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 11,
+          "path": "o3/o3_2023_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8102775,
+          "sha256": "12dd9dabbc1b8f07e4aae92c0272d025c5f8050d99f83917d43da757d70cbd3e"
+        },
+        {
+          "product": "o3",
+          "year": 2023,
+          "month": 12,
+          "path": "o3/o3_2023_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8341699,
+          "sha256": "278aeeb6ab76db0f6bef5c6ee002b3f871394b46988d48fec2f604faa0552c91"
+        }
+      ]
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2024.parquet",
+      "asset_digest": "sha256:eaf33e3d189489bcecef5b022ed5f0b4618e12373c50c0605a06411b6868c296",
+      "verified_source_sha256": "sha256:eaf33e3d189489bcecef5b022ed5f0b4618e12373c50c0605a06411b6868c296",
+      "columns": [
+        "zip",
+        "date",
+        "o3_ppb",
+        "value_source",
+        "fill_distance_m"
+      ],
+      "files": [
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 1,
+          "path": "o3/o3_2024_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8346632,
+          "sha256": "1f152dd9142e4333c77132d530a97b04438d1612d6195ae2d5c5d69f57bdae5e"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 2,
+          "path": "o3/o3_2024_02.parquet",
+          "rows": 965700,
+          "n_zctas": 33300,
+          "size_bytes": 7840823,
+          "sha256": "8a812db0f6c2b072fec06caac4d998de30c471d75764f50b0ad082f210d66cb0"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 3,
+          "path": "o3/o3_2024_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8376178,
+          "sha256": "1baf78a31369b9ad7ccaae2ffee708bdc772b2e70e5c3aa58c5b6aff25be7ef3"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 4,
+          "path": "o3/o3_2024_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8140331,
+          "sha256": "fa4b9bf065f3cfd38bab4133a8e8f4c00f4f10349ca03986ddd8f2dfefcf9c81"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 5,
+          "path": "o3/o3_2024_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8523054,
+          "sha256": "332a08bcf41cc116f7cf6176b9cdb17d2c3e911a6d82fa58f346350a5e10ed32"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 6,
+          "path": "o3/o3_2024_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8329581,
+          "sha256": "85aa00ba273fe776007deb167fa136494a4bbecfc296ad3d71927ce38523b5e4"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 7,
+          "path": "o3/o3_2024_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8587433,
+          "sha256": "9a0d22921cbfdaad8e36faf74000b99f2cfdc17b539e3ede484ab6ebdaabe268"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 8,
+          "path": "o3/o3_2024_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8609579,
+          "sha256": "b860de02e7ddfc4687c79bf358f2cbbee5453c94d20b8306ed185f77476c3e6e"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 9,
+          "path": "o3/o3_2024_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8319320,
+          "sha256": "be5c9491960160dea329a18a02929712a3a7b1eee1fa8e04d8d2c16b82a2ff9a"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 10,
+          "path": "o3/o3_2024_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8531892,
+          "sha256": "cdaed03d600a1372ee9bcb1044ee6345bd53df0d82d0c7042894b2b7064735e2"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 11,
+          "path": "o3/o3_2024_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 8084766,
+          "sha256": "137ebe48e0cc44a0a8d3f7b95af02f9091f756d5b44639e7a15f85473831a128"
+        },
+        {
+          "product": "o3",
+          "year": 2024,
+          "month": 12,
+          "path": "o3/o3_2024_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 8367246,
+          "sha256": "c0c433668d49d60f3b63ffafa5a5cf934d0b4a057b02e850ffff7d99ae07392b"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2017,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2017.parquet",
+      "asset_digest": "sha256:ab52ea0f0cb31412df00307491b6d31bafcf3eabf714cc886fda84200042cf6c",
+      "verified_source_sha256": "sha256:ab52ea0f0cb31412df00307491b6d31bafcf3eabf714cc886fda84200042cf6c",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2017,
+          "month": 12,
+          "path": "weather/weather_2017_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7967233,
+          "sha256": "3d1f8f13bdf1f42157cad56fcd9eea6c2d0b1006fbad8e1b10d4107a8d32b6b7"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2018.parquet",
+      "asset_digest": "sha256:628c751a1780486ece055f2412af4bb03bc1a1579e647d016749ff8c9ffaee54",
+      "verified_source_sha256": "sha256:628c751a1780486ece055f2412af4bb03bc1a1579e647d016749ff8c9ffaee54",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 1,
+          "path": "weather/weather_2018_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7957136,
+          "sha256": "7a48c9d36fce56a25a99bc245248aac743a7abfe7227d82e13d84fdbcda3b1bf"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 2,
+          "path": "weather/weather_2018_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7053102,
+          "sha256": "8aded0f5e068afc0b2adcaae688236ebaf9a2fc1cf7fc7be198b4af8d45f0e43"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 3,
+          "path": "weather/weather_2018_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7717877,
+          "sha256": "d9acf0d11dea01b3165727dae790ebbd361f4f8455093bc2b39695554c790fbc"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 4,
+          "path": "weather/weather_2018_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7401960,
+          "sha256": "495402dcf919aa2574498e4399240f119db27d728d497e82c534d0f11f57dd54"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 5,
+          "path": "weather/weather_2018_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7097859,
+          "sha256": "79bd5f3cf424b6be5401a4f1594867d94b1bf94c83095b1a43377787ea5ecb39"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 6,
+          "path": "weather/weather_2018_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6661753,
+          "sha256": "cc796ce5491dad9a1ac4ea9bbe3edd8c8bb9fe833e94649e455caaf3cb0c25ee"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 7,
+          "path": "weather/weather_2018_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6780524,
+          "sha256": "d05201943fb310b2d045b1cf8c91a367c1f07971efdb6ee47e51aefa31c3eb10"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 8,
+          "path": "weather/weather_2018_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6790809,
+          "sha256": "194e09e8a19d578a9613c59bd01699c94e3da75e8f0e5081b412c0412f64f754"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 9,
+          "path": "weather/weather_2018_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6719600,
+          "sha256": "002d14b9caa7ce2c002dfee936616c9a7035bfe7cb159ee60e47b9015a969fd0"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 10,
+          "path": "weather/weather_2018_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7430679,
+          "sha256": "7ce09f82d5a6076cc8f2dedd125cbb891aa66b6fdfe4b79ef900387a90f34bab"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 11,
+          "path": "weather/weather_2018_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7478303,
+          "sha256": "195d07680ccef8638639735311a5b523b098027d78931fdaa52a54cc92eb54bd"
+        },
+        {
+          "product": "weather",
+          "year": 2018,
+          "month": 12,
+          "path": "weather/weather_2018_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7685357,
+          "sha256": "1a6aa702b0aa1bc808bef9952cebb05fb2678837d38bed1aa3518a9548a6aaab"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2019.parquet",
+      "asset_digest": "sha256:6e074b3d6585ead833f34015542f413512113e1032044c6bc4a90103cfb67a1d",
+      "verified_source_sha256": "sha256:6e074b3d6585ead833f34015542f413512113e1032044c6bc4a90103cfb67a1d",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 1,
+          "path": "weather/weather_2019_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7866113,
+          "sha256": "3afb2129f7f0f20fe2b8a88e6bb07f34e6b63344223d47b9ff57e42039f3596d"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 2,
+          "path": "weather/weather_2019_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7004285,
+          "sha256": "e8bb3a77c287eeefcb6494b57c02704b3f5057d1d197797e989e0058c183c91b"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 3,
+          "path": "weather/weather_2019_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7821714,
+          "sha256": "23231de38148a51fe14a58b2dfba5c4f413a61c05cdbb21966a6315605bba426"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 4,
+          "path": "weather/weather_2019_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7202710,
+          "sha256": "8eae2a081fa7327072dcfb6ad5b89643a5711a58761bf01c231f4377a931b5f1"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 5,
+          "path": "weather/weather_2019_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7236096,
+          "sha256": "8f8315a311dabfa3d1bdda695d18f0735b7558d65257adf19cad0d1d46b78803"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 6,
+          "path": "weather/weather_2019_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6687297,
+          "sha256": "2f88009d401beb9b222903012a39c10095016d37bc123e5edb7250a08bb5a2d1"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 7,
+          "path": "weather/weather_2019_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6729826,
+          "sha256": "077d7080dd0f3a21e2d2fd4ab8c298ea4319310954f3ba2e5b555fdb40b5761f"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 8,
+          "path": "weather/weather_2019_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6781277,
+          "sha256": "3b821495fdc873d1301743ec9a00f833a0ea74f76535223aa8d88fbd97abf3d4"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 9,
+          "path": "weather/weather_2019_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6647975,
+          "sha256": "bed02d97a070aa9e50c0ed479f8e779f26d4ac81814df7d9de2582028f7e2c11"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 10,
+          "path": "weather/weather_2019_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7513234,
+          "sha256": "576f77bd87b1ac92a8b45165872409cdce04f470a0940e6e912b3bae66d283c2"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 11,
+          "path": "weather/weather_2019_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7435405,
+          "sha256": "840190236467ebabd25ab9a86727b4dd1b875b8a2425ab3527abd961efde6d00"
+        },
+        {
+          "product": "weather",
+          "year": 2019,
+          "month": 12,
+          "path": "weather/weather_2019_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7749750,
+          "sha256": "31f6cf9dd24edeaadf0e3eff850ae9695e4fef43eb37187e48bd51f6e8adab2f"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2020.parquet",
+      "asset_digest": "sha256:d943e0f9106e63d437e03828661220fe48a3976893dd56ab34911cfa57547448",
+      "verified_source_sha256": "sha256:d943e0f9106e63d437e03828661220fe48a3976893dd56ab34911cfa57547448",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 1,
+          "path": "weather/weather_2020_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7783361,
+          "sha256": "45233845c83978b15f115ca2fede75bd1eb81dbc5ce902e122b0f2ae493f3577"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 2,
+          "path": "weather/weather_2020_02.parquet",
+          "rows": 965700,
+          "n_zctas": 33300,
+          "size_bytes": 7315766,
+          "sha256": "fc3f7462f2ee4f93a8943800d76126d9d1ce1262e530704891e80a2584c8c8f6"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 3,
+          "path": "weather/weather_2020_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7618367,
+          "sha256": "977ce663d4ef499159f7bee29c0530243aa810386b1012a9b17a8ab78deb0f5f"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 4,
+          "path": "weather/weather_2020_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7265547,
+          "sha256": "9138c07da96fb1dfddce3a265514a95357d0002905b58901b42a5f6ad47e121b"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 5,
+          "path": "weather/weather_2020_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7342718,
+          "sha256": "036717f937a06e2b73c39c22d5a22d65a9bc38922c22d7b51e900f7fc3b25cc5"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 6,
+          "path": "weather/weather_2020_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6685749,
+          "sha256": "897c29523eccc77f32fb8ecfd45fc019d8fe550a41cba4ef9da39a3fdf321997"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 7,
+          "path": "weather/weather_2020_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6691774,
+          "sha256": "d876e099bb52bf7254072664ef3b0450fa0ddc4b805717c023fb0874c259cad5"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 8,
+          "path": "weather/weather_2020_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6837408,
+          "sha256": "98167aa31514fe37c2eb853231843733f610c10d3d8fd1a3dcc53619767f2678"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 9,
+          "path": "weather/weather_2020_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6895135,
+          "sha256": "216575e7ab7ede22a2fc24156365dca479b437261c34a00d7f5736c4cb63414d"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 10,
+          "path": "weather/weather_2020_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7550832,
+          "sha256": "660ee4af24dd109b7d7b07302b5d9a6b99fdc9d3f0cf6a1bd15a5ae398f30fea"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 11,
+          "path": "weather/weather_2020_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7410222,
+          "sha256": "a758733006edb2a685294d388429f37a354f04f5f8e59d6169c05db42cf63ada"
+        },
+        {
+          "product": "weather",
+          "year": 2020,
+          "month": 12,
+          "path": "weather/weather_2020_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7796163,
+          "sha256": "41f47a01fbe716ff883cd10eec422b67b1dffa3f680dba8c0dd8e4aeb27b7b2d"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2021.parquet",
+      "asset_digest": "sha256:ba35e3a78303eb0ae78127f337379cedbbb1090f85f266496070367198c1da89",
+      "verified_source_sha256": "sha256:ba35e3a78303eb0ae78127f337379cedbbb1090f85f266496070367198c1da89",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 1,
+          "path": "weather/weather_2021_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7695675,
+          "sha256": "8be3039916f3679c87f992fc7aaae240b6c0f562cd8c08235b1a9ccb78713337"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 2,
+          "path": "weather/weather_2021_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7013607,
+          "sha256": "5f07307a1b2e54383f796a602349524072113a1f6f2f9be84b8e453c70386b55"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 3,
+          "path": "weather/weather_2021_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7691395,
+          "sha256": "ffc2b0a92de85a761bfc5a91f00434f9fab06cc5d45b76df12d89844179a1ddc"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 4,
+          "path": "weather/weather_2021_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7313410,
+          "sha256": "1162657843f8bbd5091ba681eb7481d96957a1a65a8532fa226c9bc9afc2b477"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 5,
+          "path": "weather/weather_2021_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7317083,
+          "sha256": "6256a5cdfc69d70a7d6aaadb36aa5810347dd0bd2e1709e285a6dff67bcacd04"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 6,
+          "path": "weather/weather_2021_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6684589,
+          "sha256": "d14eb319e8097249bee3e3058bada051bbaff7a3832e2a464b9515f308e26bbb"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 7,
+          "path": "weather/weather_2021_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6789588,
+          "sha256": "8578b5f244a8c15ac3be30d1451a62c26868c891b750af5d3c441efc48755729"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 8,
+          "path": "weather/weather_2021_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6781224,
+          "sha256": "6e6616bc654269a859ef5eb0a1e1544852c1e240c52a4daf4a6a00193978c935"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 9,
+          "path": "weather/weather_2021_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6719884,
+          "sha256": "101e5dd6df124e70ea78779bfc61703546dde89bdbe54c63615324f8a663e816"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 10,
+          "path": "weather/weather_2021_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7274315,
+          "sha256": "f46fff0b46efa3a3116b604ea7a0e23a4ddb0b8a57b4df68ff8e01735ecee54a"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 11,
+          "path": "weather/weather_2021_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7327210,
+          "sha256": "5a1a258543f8900235c09a3ee1757254a6f6b01a148d9bb492d6b7bb5729a5b4"
+        },
+        {
+          "product": "weather",
+          "year": 2021,
+          "month": 12,
+          "path": "weather/weather_2021_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7727859,
+          "sha256": "c32b23e8f437a8a9d93677fc7df26e0942b6fe525ef10da666771b88a6ca8dbe"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2022.parquet",
+      "asset_digest": "sha256:281546816395cec4cc07c7af1c86151710c2fce4d2bd37e48e3b91198bc9fde1",
+      "verified_source_sha256": "sha256:281546816395cec4cc07c7af1c86151710c2fce4d2bd37e48e3b91198bc9fde1",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 1,
+          "path": "weather/weather_2022_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7828380,
+          "sha256": "15b8286ab23a6723c118abc299c4532aaefc9f36dcf1a939b43340d113b35b1a"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 2,
+          "path": "weather/weather_2022_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7110292,
+          "sha256": "839f3e52af4cf6b19c635df313556c9231b82696082051a4e81afeecc9b77bc8"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 3,
+          "path": "weather/weather_2022_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7828831,
+          "sha256": "c2083c08cacc2dd0f517a38a515187e30a151a64de59496010d4a248bb9676f2"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 4,
+          "path": "weather/weather_2022_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7296549,
+          "sha256": "1072ea7221fd4892a6895697801a85c36c5a18210b1b58976f2d0f8f813e33db"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 5,
+          "path": "weather/weather_2022_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7276499,
+          "sha256": "68447a6643a86e607c71c6903809093c628bc73f00ec77520e08e8a5bb586b4d"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 6,
+          "path": "weather/weather_2022_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6758055,
+          "sha256": "f1e8c48b574c6c6281715c4e33be360a50b8b3ae178114a9f27fe1127bac9772"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 7,
+          "path": "weather/weather_2022_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6828594,
+          "sha256": "91f94e4dcc541ebc17163ffdca9ad00f62a7b093f9a83e5a7ea170319d148c4a"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 8,
+          "path": "weather/weather_2022_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6831536,
+          "sha256": "33fa7b0f8ab918cd119de0dfb6568e5966ed366c35eea8110e0318057514f8c1"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 9,
+          "path": "weather/weather_2022_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6841805,
+          "sha256": "82daa4bf79fc682232b89f33df16766d7651ca885b493be55fe233fd6faf4c02"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 10,
+          "path": "weather/weather_2022_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7440110,
+          "sha256": "a4a07191e64056480ad0e6aca31abc86d34be062c26a75a4cffdce9b70d226f7"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 11,
+          "path": "weather/weather_2022_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7556271,
+          "sha256": "1af2969247efa3c9cf9784bdc379bd0a9e28d0dde3b5c771e71ec6da224405bc"
+        },
+        {
+          "product": "weather",
+          "year": 2022,
+          "month": 12,
+          "path": "weather/weather_2022_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7952910,
+          "sha256": "153f44d9f700294f624c1a7e53704f4553604002f3cbd069cad9e339b8311e54"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2023.parquet",
+      "asset_digest": "sha256:8f2dbfda235dcd13743ec1eec73dca33976aec426457aa91750004668824002f",
+      "verified_source_sha256": "sha256:8f2dbfda235dcd13743ec1eec73dca33976aec426457aa91750004668824002f",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 1,
+          "path": "weather/weather_2023_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7792284,
+          "sha256": "8f9e785400d37730feda90be2b14fc461ccfb938ce8b0bdb5864d93ea46e3685"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 2,
+          "path": "weather/weather_2023_02.parquet",
+          "rows": 932400,
+          "n_zctas": 33300,
+          "size_bytes": 7148900,
+          "sha256": "b062767c4d27b39c9fd75c920405a96ebf629a0f1491963943372aed69a54ad7"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 3,
+          "path": "weather/weather_2023_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7786810,
+          "sha256": "c6c6ea528c773377a917ddf7d66fde969267a5bef8525c69cfaea5c00e42b0ce"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 4,
+          "path": "weather/weather_2023_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7289933,
+          "sha256": "00b0205a3aecfcda7dc18bc3edc8516ac575ed9cf220a8da82a92b72457a9272"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 5,
+          "path": "weather/weather_2023_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7178066,
+          "sha256": "5ea0a6f518b96523c3f2c1a817b9d933b8b84bde9bc541c2d940bd7fb1284c05"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 6,
+          "path": "weather/weather_2023_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6703734,
+          "sha256": "fb64a237d80fbfcfb93563bc1278a0a36462000ce1ae514b6913aaeb9d7afb43"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 7,
+          "path": "weather/weather_2023_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6823391,
+          "sha256": "b4abbd5e71725fa011f3362ac6c21d8ba3bf1e3cb29963fa85f16686655e4548"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 8,
+          "path": "weather/weather_2023_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6923783,
+          "sha256": "4881cb53897e9727bc222c4a9fee815c135a0ef417581fd385c39abb6366ded4"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 9,
+          "path": "weather/weather_2023_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6773883,
+          "sha256": "237e47840d328cb325362fdbc8a45838371a345c6f99137c6b9a0a3f56e7c2d1"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 10,
+          "path": "weather/weather_2023_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7443567,
+          "sha256": "675ed5a1af240847c8668d3fae516363d78e8138f804eb7420e2007f01118bb6"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 11,
+          "path": "weather/weather_2023_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7425494,
+          "sha256": "ee96d53171e24bae95dcdf0c06d029c0720c2da51361b6d9088077ad37a3edcb"
+        },
+        {
+          "product": "weather",
+          "year": 2023,
+          "month": 12,
+          "path": "weather/weather_2023_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7700122,
+          "sha256": "0a38b3f39480173007998e1388d3a2dadb2b6ce2bb59a3e0732966346ce2067d"
+        }
+      ]
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2024.parquet",
+      "asset_digest": "sha256:9bce1439849e988049363bf96ff8c8633322124c10d26ac2df34a5a2701b159b",
+      "verified_source_sha256": "sha256:9bce1439849e988049363bf96ff8c8633322124c10d26ac2df34a5a2701b159b",
+      "columns": [
+        "zip",
+        "date",
+        "tmean_c",
+        "rhmean_pct"
+      ],
+      "files": [
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 1,
+          "path": "weather/weather_2024_01.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7845775,
+          "sha256": "1a518ef2fa5fa3e25213de3b7e54223bfab7be6a1d6d8af3a4fdb4b79a51b99f"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 2,
+          "path": "weather/weather_2024_02.parquet",
+          "rows": 965700,
+          "n_zctas": 33300,
+          "size_bytes": 7197536,
+          "sha256": "02c8c212e925993c1349e964d3d9b51d64c4b3a2afe5a019f9a23c669c07a330"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 3,
+          "path": "weather/weather_2024_03.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7673968,
+          "sha256": "1e8d46b0d047e19da6e44eb19ce4b31e834deb5f28ced69c59b63276a401522e"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 4,
+          "path": "weather/weather_2024_04.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7160547,
+          "sha256": "55d889b7e3849e7c57de1b58db99801fe43a3dfd0f0f73b0de0dd6f7c42b3112"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 5,
+          "path": "weather/weather_2024_05.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7099103,
+          "sha256": "8ffb9d6f84c1824bd6f21cf10869f1b2c6ccadd8579332a5667e089d8172846e"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 6,
+          "path": "weather/weather_2024_06.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6670181,
+          "sha256": "ce72003b1198a6c13ba2b7521c03450704527a834e5c17eb12080a5874cacbf2"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 7,
+          "path": "weather/weather_2024_07.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6766461,
+          "sha256": "e62ca823f7a25618d3c3691c84379bb0bde9d4acc77de940cf3306823c5ae221"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 8,
+          "path": "weather/weather_2024_08.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 6891736,
+          "sha256": "1d87d04586c88fedc414ffa454e4d36c2557e4cbf53964c0ed0806b9e9d6bf85"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 9,
+          "path": "weather/weather_2024_09.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 6763823,
+          "sha256": "0cfed63039854dd8d5888d2360ffafe8fddf6908c0bb1e35663464d317f6b76c"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 10,
+          "path": "weather/weather_2024_10.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7336223,
+          "sha256": "d0c41310a089e046854ed533ed8c9c2174149961026a9fff32c18a92de9bb3a6"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 11,
+          "path": "weather/weather_2024_11.parquet",
+          "rows": 999000,
+          "n_zctas": 33300,
+          "size_bytes": 7376470,
+          "sha256": "79fc8c448a7b5e96906abe0778999aca42d5dbf05426480f5faa982fc7f6d9a7"
+        },
+        {
+          "product": "weather",
+          "year": 2024,
+          "month": 12,
+          "path": "weather/weather_2024_12.parquet",
+          "rows": 1032300,
+          "n_zctas": 33300,
+          "size_bytes": 7818489,
+          "sha256": "d6610e48555ac4ac61ca7aff6f74bd1e927987e770afb38ecf5c587b2622215b"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "product": "pm25",
+      "year": 2017,
+      "month": 12,
+      "path": "pm25/pm25_2017_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4728380,
+      "sha256": "0212d808ea202174733284ad81ee1cca65f2bea6d7fdd47668f60a1c693f6042"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 1,
+      "path": "pm25/pm25_2018_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4632825,
+      "sha256": "5468e3aa5078e544f17b6a4482230f06506e2381cc634ee3ed16cf9f0f2859da"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 2,
+      "path": "pm25/pm25_2018_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 4113481,
+      "sha256": "b81141d8bfad36b4dfcdd6a4731f9a6193f4ebc85eedb2679fe1e760ee19a998"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 3,
+      "path": "pm25/pm25_2018_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4520992,
+      "sha256": "dab61309f95ef0c5fc7d8c397d856b7f07b6a0a90082909f0b28a70a2dc5e89e"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 4,
+      "path": "pm25/pm25_2018_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4328437,
+      "sha256": "a26f3587a463c47021dc155c068f11526d2fd42de7958736f838f8f4f9a2cc4d"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 5,
+      "path": "pm25/pm25_2018_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4564499,
+      "sha256": "1fce9004dbe54525b6a7a8a20c6d26fe926aab903c5b10645c830c556016bcdf"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 6,
+      "path": "pm25/pm25_2018_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4512122,
+      "sha256": "df45199633c7adb54e1c64654d845c1f5f455c4c43d45b1cf221936ba7efc89b"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 7,
+      "path": "pm25/pm25_2018_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4756959,
+      "sha256": "818021b96df3394ceb27d9ca2b6d472bb74e418b693bede12c2db5385d84871c"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 8,
+      "path": "pm25/pm25_2018_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4808986,
+      "sha256": "63691074e39e11f73b11652c2012b7e9968334005292e866ee7d37853fd95811"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 9,
+      "path": "pm25/pm25_2018_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4366475,
+      "sha256": "345669c90f0e70bc4e7ccc0dd42ff23e75a612455ffc2f5f8537d2c7f7a0c6da"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 10,
+      "path": "pm25/pm25_2018_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4400804,
+      "sha256": "31c1e71b8fd675075ba6aae9fbc2e7c75e2c3c871d94c0987524edc90b432368"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 11,
+      "path": "pm25/pm25_2018_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4318493,
+      "sha256": "67238aa1330d2a864ae20028358ad40ccb248077bf6907d5eb6565cbad991d68"
+    },
+    {
+      "product": "pm25",
+      "year": 2018,
+      "month": 12,
+      "path": "pm25/pm25_2018_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4561143,
+      "sha256": "c5b8e6d1354f72d1a2661ad9274dd3bfabf6d483e1db344a8c37393748979376"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 1,
+      "path": "pm25/pm25_2019_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4518028,
+      "sha256": "87ef3a09b53f39efcf574f3ad64a6218271196e58f81f0f7bd53f9ae408edce6"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 2,
+      "path": "pm25/pm25_2019_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 4087702,
+      "sha256": "620a3cc755b3fb262d839e13d30ad8c70b9ea666d3f9c97d37aa353f95c2f1b8"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 3,
+      "path": "pm25/pm25_2019_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4538384,
+      "sha256": "5e0e3e051aa66c2765d30ce6dd0681f8515728cb4820d1680271af9e5de421f6"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 4,
+      "path": "pm25/pm25_2019_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4244813,
+      "sha256": "0d0db3b88025ccea84dc5f68dfd98146631869132ca9f3b36c5d5499a85f9d19"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 5,
+      "path": "pm25/pm25_2019_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4521216,
+      "sha256": "35edeee4078d4b81270723db48bb0305049551a8e1380786b782620a8f83d9c8"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 6,
+      "path": "pm25/pm25_2019_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4485908,
+      "sha256": "379566441d6e37c44dd8b912a660d715a36aabecb344442ba968fec3b5c9ae35"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 7,
+      "path": "pm25/pm25_2019_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4709178,
+      "sha256": "8a228ee77b8f11041e02e86edc7ec00dc1f35617400b71b90df18cbeb89b2dcc"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 8,
+      "path": "pm25/pm25_2019_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4518511,
+      "sha256": "8db28473be708463e1ab0e25ce34d140c1433e8a5c13031f0511b1d6ebec75b7"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 9,
+      "path": "pm25/pm25_2019_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4482287,
+      "sha256": "560ea28757adf54bb483f7e706a04459c74389eaeb1145b1738cbe25726155f2"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 10,
+      "path": "pm25/pm25_2019_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4499069,
+      "sha256": "6ddab4427067796da491b9cd162a9b01a44dfbd9214d79d434ab56e74563da48"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 11,
+      "path": "pm25/pm25_2019_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4422087,
+      "sha256": "cc021585b87f816e50acdd3c38931c2b6c17ecc8bcfd59b32e8045d538ceff54"
+    },
+    {
+      "product": "pm25",
+      "year": 2019,
+      "month": 12,
+      "path": "pm25/pm25_2019_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4596067,
+      "sha256": "fc2ab7d6718220450b71acd62451db31cc9fa4cbd23ccf2766e901dab0a7377c"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 1,
+      "path": "pm25/pm25_2020_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4528659,
+      "sha256": "db928dff3f277ea5cbeb1d733687bd06379fcef3471dbebe66a6cf29bab89119"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 2,
+      "path": "pm25/pm25_2020_02.parquet",
+      "rows": 965700,
+      "n_zctas": 33300,
+      "size_bytes": 4107295,
+      "sha256": "dbf0c21b1747d3b3a6ddd1f6f17c511e0ba2b25a9ccb5c24db18b3c94e74a7f2"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 3,
+      "path": "pm25/pm25_2020_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4497311,
+      "sha256": "03a10d2b7069758d666e2ac0ec0ef52f37cb0f8840e0e7538499046af1569620"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 4,
+      "path": "pm25/pm25_2020_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4250372,
+      "sha256": "594d432cc28818a1ea90b31b1f3e5b2adb371cb500d431b08b39325edf3c5939"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 5,
+      "path": "pm25/pm25_2020_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4320115,
+      "sha256": "0ec422f88c668dcc7ae78e311357cffa4a01e5268d5fd5b38fb63666e097db2c"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 6,
+      "path": "pm25/pm25_2020_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4406557,
+      "sha256": "1ca7e0c9f326d00f8ec931b70348aa935555b64404c3a34558587ca3232dc907"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 7,
+      "path": "pm25/pm25_2020_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4765776,
+      "sha256": "035ff121897d06e04d3251d7fb4c11a74c378cd44cd59fa0ab9727d704db30c9"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 8,
+      "path": "pm25/pm25_2020_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4631752,
+      "sha256": "6e049b4c5840fca850460d8912d4a29e16074b8bfceff4b2258e1ef3d2bf6f5f"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 9,
+      "path": "pm25/pm25_2020_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4569466,
+      "sha256": "10e2ae991eec70c1613eb6583f89b9b10a74d564521a187f09ab89a9c999e5f7"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 10,
+      "path": "pm25/pm25_2020_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4557414,
+      "sha256": "df9fc47188e552bc20d0fbb9853076f39fdfb5509d9348cd2e80a7de6b216a8e"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 11,
+      "path": "pm25/pm25_2020_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4475402,
+      "sha256": "10eae540803b008fee876930fcc6d19325935951e50095920e65bfdfb0ccdd8f"
+    },
+    {
+      "product": "pm25",
+      "year": 2020,
+      "month": 12,
+      "path": "pm25/pm25_2020_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4723988,
+      "sha256": "2ad87928698a8bb70494cc230b7b3ef57fe17ce3cfe6b23b5db05a5ae649fbf9"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 1,
+      "path": "pm25/pm25_2021_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4556437,
+      "sha256": "bf90c19476a991bc151fb7c380a4525e13c44bf97733a5fd151e14018d0b55a0"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 2,
+      "path": "pm25/pm25_2021_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 4100033,
+      "sha256": "d4adff15d5e01699a174514da2ba29af355e51260bd36ab64e30307773837686"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 3,
+      "path": "pm25/pm25_2021_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4548741,
+      "sha256": "c625d6c27f8de960b72833a9c76a984a3b68862572bdc68dd9fe4c1444ad6bb0"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 4,
+      "path": "pm25/pm25_2021_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4330422,
+      "sha256": "66b4285a00e48bff2eb4ade98c032af1455c54da851808eaeea8daf3ae78ad99"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 5,
+      "path": "pm25/pm25_2021_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4463570,
+      "sha256": "62fe7aae7aa55011a15d73e01460c64dfdf2c84baaf62c10c0befe4f71c47bb9"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 6,
+      "path": "pm25/pm25_2021_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4342169,
+      "sha256": "5c723f6e33a32be4ea91dfa8e91d062a912133411014c6cc0654891efbb321fe"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 7,
+      "path": "pm25/pm25_2021_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4901729,
+      "sha256": "801c299e59e2f062dda2fb102b15126b4b4c3274b8aaf3abd4afcb17631b55fc"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 8,
+      "path": "pm25/pm25_2021_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4871765,
+      "sha256": "ab996a028bb2621ef305666fe62c174a2bf0f72bd023542cef4aad278bf0d8d4"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 9,
+      "path": "pm25/pm25_2021_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4425594,
+      "sha256": "4df76f5a1d6806978c396410b41e5b8600bf5a376b17ba8ba8eae41c5f3122c8"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 10,
+      "path": "pm25/pm25_2021_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4348542,
+      "sha256": "d25613d8fcc21ca58602f2548dd2bc48283e8eda3abfad56a8877de06a6be183"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 11,
+      "path": "pm25/pm25_2021_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4325566,
+      "sha256": "dc0831a2022946e45fae53414991a77b9a8c8f89f29e25225f58300fbfa5dd99"
+    },
+    {
+      "product": "pm25",
+      "year": 2021,
+      "month": 12,
+      "path": "pm25/pm25_2021_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4454973,
+      "sha256": "9796e15f0fbe711aaae00aabe6a9ef8c3d7b3050c363806a41725041e1f777a1"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 1,
+      "path": "pm25/pm25_2022_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4595230,
+      "sha256": "ca370eeb4bda476dec4d83d70c29e17f67de6919e0586dabde3eafcf13029b92"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 2,
+      "path": "pm25/pm25_2022_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 4096969,
+      "sha256": "5c3b723cfc51a4bee64552ea03e06f8c2535b525cb5b4ec1002e082ae4cc3e22"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 3,
+      "path": "pm25/pm25_2022_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4438281,
+      "sha256": "e667123a80a8c6e03f8d98382092e93542c8630392b64b774bdef8ac23e76921"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 4,
+      "path": "pm25/pm25_2022_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4147429,
+      "sha256": "5d838e1d32ff662012f259b7be33daa913f955d9308fe1098c85c1b99686684e"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 5,
+      "path": "pm25/pm25_2022_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4454396,
+      "sha256": "7349bcd4a559dd081bee5d3a6a9d191a0e4254602ec4d0b1113d60e08646ae06"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 6,
+      "path": "pm25/pm25_2022_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4302653,
+      "sha256": "3cdab97e245cf3a20fafa5ff24d44935ca0b024332f7d42b0d72b98177d04a16"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 7,
+      "path": "pm25/pm25_2022_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4369247,
+      "sha256": "a4b873413fc4666e44a776c8b7c1a53a47be9f3a99d6f1d30c55d613278e870d"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 8,
+      "path": "pm25/pm25_2022_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4209072,
+      "sha256": "00395fb31cf4c4f99ac7d6d436d7f6d81645c5a6a955723d3850a7bd384bb4d7"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 9,
+      "path": "pm25/pm25_2022_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4197129,
+      "sha256": "3f5720f58017321dda1134bfb25cf9daa9ea2c0ff5ff0950c0db4e9c6712e6ff"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 10,
+      "path": "pm25/pm25_2022_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4447830,
+      "sha256": "79ba038143a3feb15dc14a0e15fa861d3fb4f110a36538e1f5e9a6bc6b9fcba5"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 11,
+      "path": "pm25/pm25_2022_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4371345,
+      "sha256": "7442edc635814b0a724562de45060be43c427953015c30e522972e2e8ea85aad"
+    },
+    {
+      "product": "pm25",
+      "year": 2022,
+      "month": 12,
+      "path": "pm25/pm25_2022_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4622874,
+      "sha256": "c7b9d837a96c010b553012f3d4b117b5e52507619a10ece5cce57650fe23bc01"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 1,
+      "path": "pm25/pm25_2023_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4632591,
+      "sha256": "f7eafee4dc435fd867c4e6d5962e221689d1ba9d989fa56683f61c3412c134f9"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 2,
+      "path": "pm25/pm25_2023_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 4088556,
+      "sha256": "fca1de6e7f70bab5018756e2858f378a160799de682d2c9c0e50706f43536466"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 3,
+      "path": "pm25/pm25_2023_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4442635,
+      "sha256": "065bc440b3503b4d702425b3f2129a108e4e6221736a3add3dcdeae4dabc716f"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 4,
+      "path": "pm25/pm25_2023_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4279719,
+      "sha256": "e841a40238ba59ab407b3e7668a6ff8adcdcdb9565edcb9f9bd8d7a78a57ab3a"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 5,
+      "path": "pm25/pm25_2023_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4602730,
+      "sha256": "73916fd7f4b59ba8e47825416a48c8185ba4b6b1cf2d900aa02d950ad5a92f2d"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 6,
+      "path": "pm25/pm25_2023_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4984827,
+      "sha256": "c7c889196d3489e2b1921041175db5ce0d62a719df18709201abb531bef51ed8"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 7,
+      "path": "pm25/pm25_2023_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4831656,
+      "sha256": "fc75d86697f7a034780b6c89efca60e89798c1d3ff5cc5c27a1c41f379087936"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 8,
+      "path": "pm25/pm25_2023_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4657728,
+      "sha256": "980f08c7c9f85cd52bb699ba98b647e7cba59c14ec0d9edd1ed914a24e5cf74c"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 9,
+      "path": "pm25/pm25_2023_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4350352,
+      "sha256": "9bb266a1944cff74aae3140b5f2fc5b218fd7ed17e5abe1297c70c00327991ac"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 10,
+      "path": "pm25/pm25_2023_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4380998,
+      "sha256": "0793408dc8333e899174b95a04d8f95fe441f48b469f625ffb26ed0dde43c9d8"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 11,
+      "path": "pm25/pm25_2023_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4327132,
+      "sha256": "fee725c6ce2a7b9edec3cf3d93b1199e116fc070b799fc11f9d13f2c25eaaf62"
+    },
+    {
+      "product": "pm25",
+      "year": 2023,
+      "month": 12,
+      "path": "pm25/pm25_2023_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4590492,
+      "sha256": "a725ae37f595b0ebc7c658c45047288c1c6c6008e139efa4db622b4139f0d88f"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 1,
+      "path": "pm25/pm25_2024_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4491917,
+      "sha256": "dc154dad6ff3399b42875ba784457887a9dd23c6b94f730a3e3e5c31ea2133c1"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 2,
+      "path": "pm25/pm25_2024_02.parquet",
+      "rows": 965700,
+      "n_zctas": 33300,
+      "size_bytes": 4243919,
+      "sha256": "5a9cf4c6c084dcf700dd40749cce5535fe843d41169b8af61843489b1b51247e"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 3,
+      "path": "pm25/pm25_2024_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4351133,
+      "sha256": "5c4d8957bbf629beb90c6953e7334c939d178a89e997188151436aa75486c64c"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 4,
+      "path": "pm25/pm25_2024_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4214131,
+      "sha256": "e12037b1969933dbd34e24033ff2eacf71e949572184d153ab5ffd57112719f6"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 5,
+      "path": "pm25/pm25_2024_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4383743,
+      "sha256": "2a657db77e020c9191e4527cff2b457d6ffc62b47dc8bbaf029c602ae9f39611"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 6,
+      "path": "pm25/pm25_2024_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4227757,
+      "sha256": "2a6470140ebc5f3da71a805a17110d5daf08d5eda21c65035a3401b5462c4a89"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 7,
+      "path": "pm25/pm25_2024_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4576838,
+      "sha256": "b939438711fce7000d9ebb400af8d467fa01864eeca04a7531778f1aca471313"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 8,
+      "path": "pm25/pm25_2024_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4637753,
+      "sha256": "07ceb0c752bcf492fc096959e159d42c92d80eff3908508557665158c173315c"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 9,
+      "path": "pm25/pm25_2024_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4170281,
+      "sha256": "1d408caba28ad61d29112694d21297d33d7e2a1a1c42a0c5564c0ba486cb3455"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 10,
+      "path": "pm25/pm25_2024_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4465263,
+      "sha256": "a6396c3bc78ff3c9b09cd3f979811d937e583902692f5179f616ba6b855b072e"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 11,
+      "path": "pm25/pm25_2024_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 4199015,
+      "sha256": "aae0873d5a2739ed9a12944583b4b2bc3a913508761d5971f36bdf9b9306b3ce"
+    },
+    {
+      "product": "pm25",
+      "year": 2024,
+      "month": 12,
+      "path": "pm25/pm25_2024_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4553425,
+      "sha256": "f3fd19002377b38f221fbda7246520ec8f3e0ae82d7e1c75d3b498dff3952b3f"
+    },
+    {
+      "product": "o3",
+      "year": 2017,
+      "month": 12,
+      "path": "o3/o3_2017_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8309053,
+      "sha256": "c26c05b74a3e8c1eb02f62e1d6f676b6076225eeff4e8d818283c9a6f8f45373"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 1,
+      "path": "o3/o3_2018_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8268173,
+      "sha256": "ddf6373897d8e8c57bc8318832d0a5e6636e746cacbcb388304e779008b10f7a"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 2,
+      "path": "o3/o3_2018_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7604906,
+      "sha256": "2eb583ed5afd323740dfcc285e8571efe32d3834024a3860fbc7f8a19ef41256"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 3,
+      "path": "o3/o3_2018_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8266658,
+      "sha256": "51d12d9e7f1e932c6adb04d74e7b6ac37a8737e81d5a534e794a8371d2e2ccbc"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 4,
+      "path": "o3/o3_2018_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8162629,
+      "sha256": "0c3f2f9797e8e9ad194dfd00bbe2758caa30e1b45452df539e1cb9f1fe52abaf"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 5,
+      "path": "o3/o3_2018_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8637709,
+      "sha256": "a38bcad68be6f777ba81365f93d08ef6dc2b0208b4639d0ee60fc9a1df00d6a7"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 6,
+      "path": "o3/o3_2018_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8341210,
+      "sha256": "8ca1a0c3d5d5bdbd12c8543423901193d07c7476d22e7d719f32d3513a065ba4"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 7,
+      "path": "o3/o3_2018_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8605746,
+      "sha256": "e46e1a04d2236713ecee0109a7f441b904a14764a8d8e9d3f3d24c2bd7dd47d7"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 8,
+      "path": "o3/o3_2018_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8568883,
+      "sha256": "f55acb84617a920719edb422a6b753e01b69800b8d1cf84535eab764d18eb338"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 9,
+      "path": "o3/o3_2018_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8284315,
+      "sha256": "88fb6e2184dca5e964a631238dc48b2516f04fe301b032ad8be3290c45805d15"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 10,
+      "path": "o3/o3_2018_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8397117,
+      "sha256": "51ec72863dc68889d4533c5b981cce00a55c39874c7d82ee3b130b92b59ac871"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 11,
+      "path": "o3/o3_2018_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8085123,
+      "sha256": "78f63d1ff986bfc8f7ddc9db1a034706e34c88de919041394cfaed49ccf08b38"
+    },
+    {
+      "product": "o3",
+      "year": 2018,
+      "month": 12,
+      "path": "o3/o3_2018_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8314682,
+      "sha256": "1be2151bf3636370cd447aa02042512470321dea9932436309663a44cbe6d882"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 1,
+      "path": "o3/o3_2019_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8320275,
+      "sha256": "a517b3ae2fb81c73e33accd2083f616d6eb3c9069af98e78ad5a86b7ef4619a3"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 2,
+      "path": "o3/o3_2019_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7574228,
+      "sha256": "82063a4b22e852204cf1f671baea90418d3356a171d1ccd859e9357d4f3e8a23"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 3,
+      "path": "o3/o3_2019_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8360286,
+      "sha256": "df4eea9009e61b1ab20583ea91f0870efc881dbdbdd81010d7c23e8aaf337efc"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 4,
+      "path": "o3/o3_2019_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8124752,
+      "sha256": "02f13b4d17633a1f4c3206f031d13cb9424e6954600c1280aaab65056ace6772"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 5,
+      "path": "o3/o3_2019_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8493498,
+      "sha256": "b0bd431a675274d80135694eeaae1c868e9ac517f569c8d1403948d31e619be7"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 6,
+      "path": "o3/o3_2019_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8308938,
+      "sha256": "f53e436c2513bd1a1eb58e754eb82689491335ae5bfa1bfbb3acffd7af28cb15"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 7,
+      "path": "o3/o3_2019_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8593855,
+      "sha256": "901ec3feb4d4af51f558d979a4d082a68bfc8ad1f53628a0a04647f273199370"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 8,
+      "path": "o3/o3_2019_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8566154,
+      "sha256": "1eefff81df14613cbf4c041f116b314d9f7cf762f095d1bdb35e231927614131"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 9,
+      "path": "o3/o3_2019_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8286863,
+      "sha256": "5fe4cb9b4ddb1fbbf6dfa60bd63bbb6b224de0a137c27a9b825e118561169a48"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 10,
+      "path": "o3/o3_2019_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8468463,
+      "sha256": "e94df15c9e0d41066d41c730918d03ffe4e03d6c75c03455d2762fcd60b3b9ee"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 11,
+      "path": "o3/o3_2019_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8055763,
+      "sha256": "33c79bb6177a347438f56015bf68a5881b38e9d70b4423f0f36be5007c0a49fc"
+    },
+    {
+      "product": "o3",
+      "year": 2019,
+      "month": 12,
+      "path": "o3/o3_2019_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8317531,
+      "sha256": "c490c6bd29fa54de08f4c11e82fbbcbabf01d7cba66cca06435637d1bfbe2302"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 1,
+      "path": "o3/o3_2020_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8360473,
+      "sha256": "55f6f7e072b88a14b40cf31156cc91b68f9c65e504c3ef90bf7bb9fd5dd94845"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 2,
+      "path": "o3/o3_2020_02.parquet",
+      "rows": 965700,
+      "n_zctas": 33300,
+      "size_bytes": 7768708,
+      "sha256": "320e31dd3abca8689715102be7c6bb55dffeb81af9947eff11f52f944308f5a4"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 3,
+      "path": "o3/o3_2020_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8308941,
+      "sha256": "893bf5e0e2a251d70b89f25d5c0504e0c6b0ff3742d545a5ff604be26a37f5ee"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 4,
+      "path": "o3/o3_2020_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8024183,
+      "sha256": "65742468ec42ea6c2ca998f060c47455ce719aca7429f131eeb09771a1388c5b"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 5,
+      "path": "o3/o3_2020_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8457485,
+      "sha256": "329e383edcd2a743b74e7a7023c11d21f8b7f234b2efc2cd07121f4ac27a8d93"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 6,
+      "path": "o3/o3_2020_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8326531,
+      "sha256": "dab44b38e155ca4a705926d8fcc41261c2b6b2cfd99c4e9bd53280aab77c59ea"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 7,
+      "path": "o3/o3_2020_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8590327,
+      "sha256": "952864344cef2bf517fb6dfd28708c81ffd427d1c21094c1e4744dd0ccb9412f"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 8,
+      "path": "o3/o3_2020_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8589551,
+      "sha256": "7a464f92b186cba3352eb9d1e9675f2d32a6dc01419b1c599bdb108acbae5109"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 9,
+      "path": "o3/o3_2020_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8258805,
+      "sha256": "244a5b6027f2bfd5831b016b219cda6415a642a752f4e1df73f67adcaa6feda4"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 10,
+      "path": "o3/o3_2020_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8508195,
+      "sha256": "04a47b5a89fc09f9d59a461301a655b7f06c6608959d27a3acf790fe8b29be86"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 11,
+      "path": "o3/o3_2020_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8105908,
+      "sha256": "a1bb00cca256eb67f2a6bf85ac8ca2cc9f6e0cbaf035485a9bb4ab20360114cf"
+    },
+    {
+      "product": "o3",
+      "year": 2020,
+      "month": 12,
+      "path": "o3/o3_2020_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8342492,
+      "sha256": "1020980da6a4a660db475897bbb4835b110f39f0141eb259b2f87469d13823c1"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 1,
+      "path": "o3/o3_2021_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8238555,
+      "sha256": "f4922fe37dff440a2b0de268113b0d2e7c844a3a126617d95fb816ab89fc8b16"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 2,
+      "path": "o3/o3_2021_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7460254,
+      "sha256": "d9842c387181e65f68b3b6b04d58a5454f7a21c13e2d0b2be5a2689c4798b832"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 3,
+      "path": "o3/o3_2021_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8252095,
+      "sha256": "9e22ff10d441b7b71910a168caafccf63bd9aed3e4ede1dcb5d85a564a46f818"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 4,
+      "path": "o3/o3_2021_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8103705,
+      "sha256": "b7ec30887ffcca6fb2daf298a7c65b4d7ef94cbfca40d9cec37c89196c3b0f24"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 5,
+      "path": "o3/o3_2021_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8479487,
+      "sha256": "5d3c274d34374382cb0d2905a5a73cb6fc3d20ac89a3864cebf3aa161fe6a9ea"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 6,
+      "path": "o3/o3_2021_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8317377,
+      "sha256": "f1e819e0fe962bc803d35ed82d55b01295af1d9594d4699f92a00db39285dc20"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 7,
+      "path": "o3/o3_2021_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8554119,
+      "sha256": "0d7355a831ea408feea9c4efe612f29cf609bc856962c54dfe57c70c7f6c1243"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 8,
+      "path": "o3/o3_2021_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8527400,
+      "sha256": "7caa5e583fa8776268eb2659739cfc291e792b93d974aeab0ea8e4c8ffa5e19c"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 9,
+      "path": "o3/o3_2021_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8180443,
+      "sha256": "da36737748999214f71b322d778d05f0202bec36602e077671239d5b2c159266"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 10,
+      "path": "o3/o3_2021_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8404288,
+      "sha256": "aae6b151dbad93d7da14bf945390fc2ef83ec4f81011357a9ca3b7afa2a03422"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 11,
+      "path": "o3/o3_2021_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7958433,
+      "sha256": "1f8de9cb2bf29b2b4af226bdc4f9b117e958d2c6a659e15b71ed715bba6cc723"
+    },
+    {
+      "product": "o3",
+      "year": 2021,
+      "month": 12,
+      "path": "o3/o3_2021_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8228586,
+      "sha256": "c667a59d3f81a7d9ea8167b43315d0ce15b3cc7919e46a7917ad2639dc4be23f"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 1,
+      "path": "o3/o3_2022_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8240610,
+      "sha256": "7f7ed3ca2fa0714d4e846abecd8374c8397e3295f4b662e28654dbb4906e4d9e"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 2,
+      "path": "o3/o3_2022_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7522370,
+      "sha256": "3012b5255750acd582c5eb98522d8eccf567f9f348fa165fe90cf62dfb67cdeb"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 3,
+      "path": "o3/o3_2022_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8372484,
+      "sha256": "e76ced090db663eaa6af564e076473d76d90aa23d815b5c7be767c3635f60f44"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 4,
+      "path": "o3/o3_2022_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8104127,
+      "sha256": "821d4392da00171c9e18cfe74111dcb0f79466339df7a0ca52a5e86d13cba394"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 5,
+      "path": "o3/o3_2022_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8567725,
+      "sha256": "15bb0260fe3fccc338a70903b764e2a81613842582fc27d9c5115802fa6e44b6"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 6,
+      "path": "o3/o3_2022_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8318648,
+      "sha256": "55848a68208fd3a562d3bdea724d7a531f95f2b3f3df9e6d3e6e2378afd2468a"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 7,
+      "path": "o3/o3_2022_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8572566,
+      "sha256": "a1706a64a58b561295a7ca949deb15fbf0e53218ca91b2888e1297c98132f8f8"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 8,
+      "path": "o3/o3_2022_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8551381,
+      "sha256": "6686a150484f3e894b0c6656397bf965c0d1f51ab6597fc83b08d19626d1f572"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 9,
+      "path": "o3/o3_2022_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8299236,
+      "sha256": "a5eca66e6fe367ef96e84e1bcdf1bb5c9316e402c2026a8dcbd6f3a5a845171f"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 10,
+      "path": "o3/o3_2022_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8543239,
+      "sha256": "4df19f1be62cd3a32516129547a18f290a1d27ac9c1634f5afd280c8ddb3180f"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 11,
+      "path": "o3/o3_2022_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8084431,
+      "sha256": "27239836a84f3b268e6e35ed4f1026dc12c2b7efdc8775a397b2e0654fa586b0"
+    },
+    {
+      "product": "o3",
+      "year": 2022,
+      "month": 12,
+      "path": "o3/o3_2022_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8388405,
+      "sha256": "784daddbceaaf5a3a89049ef8cbc2825c54c9f6784174aca8ee4830d999621e3"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 1,
+      "path": "o3/o3_2023_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8327443,
+      "sha256": "a8fb6097c9ec47acd0cd293d54e5ea468ef4c06f9059e37b5c0023b1a2b93f35"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 2,
+      "path": "o3/o3_2023_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7462637,
+      "sha256": "36ee419f315e1cb447ba8342760107f7519b15e7cc3938247912ff12d32dfd4a"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 3,
+      "path": "o3/o3_2023_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8334473,
+      "sha256": "52a2e10a465f4fffdd1c867fe893bc8432cc222769d0c86e9bfb2e7a29c5bc95"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 4,
+      "path": "o3/o3_2023_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8216957,
+      "sha256": "31bb75471992190a0abb525146856582ee66ae63fe85b50698dac393d3e606f1"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 5,
+      "path": "o3/o3_2023_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8548320,
+      "sha256": "7309ab525fb8e49189ae0a1383756698cc56415aefd8846923644ba0f150f733"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 6,
+      "path": "o3/o3_2023_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8376656,
+      "sha256": "f2a0317243905f1e2442a7d8d8ee386f0ea5c2514ccbb2e7034f6be94cc5ba8d"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 7,
+      "path": "o3/o3_2023_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8570239,
+      "sha256": "bbddaf1e314ad8a01a7756e6ac300583ca99f7828bd5db02c69f3b779e941c58"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 8,
+      "path": "o3/o3_2023_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8532158,
+      "sha256": "594d79a4625d3e1eda7616070fff3e445ad0bfc5bbb21dc3fb55362187be2c3b"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 9,
+      "path": "o3/o3_2023_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8293683,
+      "sha256": "b5f59eaf113fc36ebc9020ffef27f0ee62691fc1d2c896f94aaef0d20b1a4b7b"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 10,
+      "path": "o3/o3_2023_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8550630,
+      "sha256": "3c79f50e9d87879bd2b3cc51effdc25bf30ae24ed0cefff6b9646685078cc0e6"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 11,
+      "path": "o3/o3_2023_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8102775,
+      "sha256": "12dd9dabbc1b8f07e4aae92c0272d025c5f8050d99f83917d43da757d70cbd3e"
+    },
+    {
+      "product": "o3",
+      "year": 2023,
+      "month": 12,
+      "path": "o3/o3_2023_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8341699,
+      "sha256": "278aeeb6ab76db0f6bef5c6ee002b3f871394b46988d48fec2f604faa0552c91"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 1,
+      "path": "o3/o3_2024_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8346632,
+      "sha256": "1f152dd9142e4333c77132d530a97b04438d1612d6195ae2d5c5d69f57bdae5e"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 2,
+      "path": "o3/o3_2024_02.parquet",
+      "rows": 965700,
+      "n_zctas": 33300,
+      "size_bytes": 7840823,
+      "sha256": "8a812db0f6c2b072fec06caac4d998de30c471d75764f50b0ad082f210d66cb0"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 3,
+      "path": "o3/o3_2024_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8376178,
+      "sha256": "1baf78a31369b9ad7ccaae2ffee708bdc772b2e70e5c3aa58c5b6aff25be7ef3"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 4,
+      "path": "o3/o3_2024_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8140331,
+      "sha256": "fa4b9bf065f3cfd38bab4133a8e8f4c00f4f10349ca03986ddd8f2dfefcf9c81"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 5,
+      "path": "o3/o3_2024_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8523054,
+      "sha256": "332a08bcf41cc116f7cf6176b9cdb17d2c3e911a6d82fa58f346350a5e10ed32"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 6,
+      "path": "o3/o3_2024_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8329581,
+      "sha256": "85aa00ba273fe776007deb167fa136494a4bbecfc296ad3d71927ce38523b5e4"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 7,
+      "path": "o3/o3_2024_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8587433,
+      "sha256": "9a0d22921cbfdaad8e36faf74000b99f2cfdc17b539e3ede484ab6ebdaabe268"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 8,
+      "path": "o3/o3_2024_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8609579,
+      "sha256": "b860de02e7ddfc4687c79bf358f2cbbee5453c94d20b8306ed185f77476c3e6e"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 9,
+      "path": "o3/o3_2024_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8319320,
+      "sha256": "be5c9491960160dea329a18a02929712a3a7b1eee1fa8e04d8d2c16b82a2ff9a"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 10,
+      "path": "o3/o3_2024_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8531892,
+      "sha256": "cdaed03d600a1372ee9bcb1044ee6345bd53df0d82d0c7042894b2b7064735e2"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 11,
+      "path": "o3/o3_2024_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 8084766,
+      "sha256": "137ebe48e0cc44a0a8d3f7b95af02f9091f756d5b44639e7a15f85473831a128"
+    },
+    {
+      "product": "o3",
+      "year": 2024,
+      "month": 12,
+      "path": "o3/o3_2024_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8367246,
+      "sha256": "c0c433668d49d60f3b63ffafa5a5cf934d0b4a057b02e850ffff7d99ae07392b"
+    },
+    {
+      "product": "weather",
+      "year": 2017,
+      "month": 12,
+      "path": "weather/weather_2017_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7967233,
+      "sha256": "3d1f8f13bdf1f42157cad56fcd9eea6c2d0b1006fbad8e1b10d4107a8d32b6b7"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 1,
+      "path": "weather/weather_2018_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7957136,
+      "sha256": "7a48c9d36fce56a25a99bc245248aac743a7abfe7227d82e13d84fdbcda3b1bf"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 2,
+      "path": "weather/weather_2018_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7053102,
+      "sha256": "8aded0f5e068afc0b2adcaae688236ebaf9a2fc1cf7fc7be198b4af8d45f0e43"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 3,
+      "path": "weather/weather_2018_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7717877,
+      "sha256": "d9acf0d11dea01b3165727dae790ebbd361f4f8455093bc2b39695554c790fbc"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 4,
+      "path": "weather/weather_2018_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7401960,
+      "sha256": "495402dcf919aa2574498e4399240f119db27d728d497e82c534d0f11f57dd54"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 5,
+      "path": "weather/weather_2018_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7097859,
+      "sha256": "79bd5f3cf424b6be5401a4f1594867d94b1bf94c83095b1a43377787ea5ecb39"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 6,
+      "path": "weather/weather_2018_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6661753,
+      "sha256": "cc796ce5491dad9a1ac4ea9bbe3edd8c8bb9fe833e94649e455caaf3cb0c25ee"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 7,
+      "path": "weather/weather_2018_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6780524,
+      "sha256": "d05201943fb310b2d045b1cf8c91a367c1f07971efdb6ee47e51aefa31c3eb10"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 8,
+      "path": "weather/weather_2018_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6790809,
+      "sha256": "194e09e8a19d578a9613c59bd01699c94e3da75e8f0e5081b412c0412f64f754"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 9,
+      "path": "weather/weather_2018_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6719600,
+      "sha256": "002d14b9caa7ce2c002dfee936616c9a7035bfe7cb159ee60e47b9015a969fd0"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 10,
+      "path": "weather/weather_2018_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7430679,
+      "sha256": "7ce09f82d5a6076cc8f2dedd125cbb891aa66b6fdfe4b79ef900387a90f34bab"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 11,
+      "path": "weather/weather_2018_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7478303,
+      "sha256": "195d07680ccef8638639735311a5b523b098027d78931fdaa52a54cc92eb54bd"
+    },
+    {
+      "product": "weather",
+      "year": 2018,
+      "month": 12,
+      "path": "weather/weather_2018_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7685357,
+      "sha256": "1a6aa702b0aa1bc808bef9952cebb05fb2678837d38bed1aa3518a9548a6aaab"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 1,
+      "path": "weather/weather_2019_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7866113,
+      "sha256": "3afb2129f7f0f20fe2b8a88e6bb07f34e6b63344223d47b9ff57e42039f3596d"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 2,
+      "path": "weather/weather_2019_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7004285,
+      "sha256": "e8bb3a77c287eeefcb6494b57c02704b3f5057d1d197797e989e0058c183c91b"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 3,
+      "path": "weather/weather_2019_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7821714,
+      "sha256": "23231de38148a51fe14a58b2dfba5c4f413a61c05cdbb21966a6315605bba426"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 4,
+      "path": "weather/weather_2019_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7202710,
+      "sha256": "8eae2a081fa7327072dcfb6ad5b89643a5711a58761bf01c231f4377a931b5f1"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 5,
+      "path": "weather/weather_2019_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7236096,
+      "sha256": "8f8315a311dabfa3d1bdda695d18f0735b7558d65257adf19cad0d1d46b78803"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 6,
+      "path": "weather/weather_2019_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6687297,
+      "sha256": "2f88009d401beb9b222903012a39c10095016d37bc123e5edb7250a08bb5a2d1"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 7,
+      "path": "weather/weather_2019_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6729826,
+      "sha256": "077d7080dd0f3a21e2d2fd4ab8c298ea4319310954f3ba2e5b555fdb40b5761f"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 8,
+      "path": "weather/weather_2019_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6781277,
+      "sha256": "3b821495fdc873d1301743ec9a00f833a0ea74f76535223aa8d88fbd97abf3d4"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 9,
+      "path": "weather/weather_2019_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6647975,
+      "sha256": "bed02d97a070aa9e50c0ed479f8e779f26d4ac81814df7d9de2582028f7e2c11"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 10,
+      "path": "weather/weather_2019_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7513234,
+      "sha256": "576f77bd87b1ac92a8b45165872409cdce04f470a0940e6e912b3bae66d283c2"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 11,
+      "path": "weather/weather_2019_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7435405,
+      "sha256": "840190236467ebabd25ab9a86727b4dd1b875b8a2425ab3527abd961efde6d00"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 12,
+      "path": "weather/weather_2019_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7749750,
+      "sha256": "31f6cf9dd24edeaadf0e3eff850ae9695e4fef43eb37187e48bd51f6e8adab2f"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 1,
+      "path": "weather/weather_2020_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7783361,
+      "sha256": "45233845c83978b15f115ca2fede75bd1eb81dbc5ce902e122b0f2ae493f3577"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 2,
+      "path": "weather/weather_2020_02.parquet",
+      "rows": 965700,
+      "n_zctas": 33300,
+      "size_bytes": 7315766,
+      "sha256": "fc3f7462f2ee4f93a8943800d76126d9d1ce1262e530704891e80a2584c8c8f6"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 3,
+      "path": "weather/weather_2020_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7618367,
+      "sha256": "977ce663d4ef499159f7bee29c0530243aa810386b1012a9b17a8ab78deb0f5f"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 4,
+      "path": "weather/weather_2020_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7265547,
+      "sha256": "9138c07da96fb1dfddce3a265514a95357d0002905b58901b42a5f6ad47e121b"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 5,
+      "path": "weather/weather_2020_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7342718,
+      "sha256": "036717f937a06e2b73c39c22d5a22d65a9bc38922c22d7b51e900f7fc3b25cc5"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 6,
+      "path": "weather/weather_2020_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6685749,
+      "sha256": "897c29523eccc77f32fb8ecfd45fc019d8fe550a41cba4ef9da39a3fdf321997"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 7,
+      "path": "weather/weather_2020_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6691774,
+      "sha256": "d876e099bb52bf7254072664ef3b0450fa0ddc4b805717c023fb0874c259cad5"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 8,
+      "path": "weather/weather_2020_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6837408,
+      "sha256": "98167aa31514fe37c2eb853231843733f610c10d3d8fd1a3dcc53619767f2678"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 9,
+      "path": "weather/weather_2020_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6895135,
+      "sha256": "216575e7ab7ede22a2fc24156365dca479b437261c34a00d7f5736c4cb63414d"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 10,
+      "path": "weather/weather_2020_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7550832,
+      "sha256": "660ee4af24dd109b7d7b07302b5d9a6b99fdc9d3f0cf6a1bd15a5ae398f30fea"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 11,
+      "path": "weather/weather_2020_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7410222,
+      "sha256": "a758733006edb2a685294d388429f37a354f04f5f8e59d6169c05db42cf63ada"
+    },
+    {
+      "product": "weather",
+      "year": 2020,
+      "month": 12,
+      "path": "weather/weather_2020_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7796163,
+      "sha256": "41f47a01fbe716ff883cd10eec422b67b1dffa3f680dba8c0dd8e4aeb27b7b2d"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 1,
+      "path": "weather/weather_2021_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7695675,
+      "sha256": "8be3039916f3679c87f992fc7aaae240b6c0f562cd8c08235b1a9ccb78713337"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 2,
+      "path": "weather/weather_2021_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7013607,
+      "sha256": "5f07307a1b2e54383f796a602349524072113a1f6f2f9be84b8e453c70386b55"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 3,
+      "path": "weather/weather_2021_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7691395,
+      "sha256": "ffc2b0a92de85a761bfc5a91f00434f9fab06cc5d45b76df12d89844179a1ddc"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 4,
+      "path": "weather/weather_2021_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7313410,
+      "sha256": "1162657843f8bbd5091ba681eb7481d96957a1a65a8532fa226c9bc9afc2b477"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 5,
+      "path": "weather/weather_2021_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7317083,
+      "sha256": "6256a5cdfc69d70a7d6aaadb36aa5810347dd0bd2e1709e285a6dff67bcacd04"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 6,
+      "path": "weather/weather_2021_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6684589,
+      "sha256": "d14eb319e8097249bee3e3058bada051bbaff7a3832e2a464b9515f308e26bbb"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 7,
+      "path": "weather/weather_2021_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6789588,
+      "sha256": "8578b5f244a8c15ac3be30d1451a62c26868c891b750af5d3c441efc48755729"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 8,
+      "path": "weather/weather_2021_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6781224,
+      "sha256": "6e6616bc654269a859ef5eb0a1e1544852c1e240c52a4daf4a6a00193978c935"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 9,
+      "path": "weather/weather_2021_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6719884,
+      "sha256": "101e5dd6df124e70ea78779bfc61703546dde89bdbe54c63615324f8a663e816"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 10,
+      "path": "weather/weather_2021_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7274315,
+      "sha256": "f46fff0b46efa3a3116b604ea7a0e23a4ddb0b8a57b4df68ff8e01735ecee54a"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 11,
+      "path": "weather/weather_2021_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7327210,
+      "sha256": "5a1a258543f8900235c09a3ee1757254a6f6b01a148d9bb492d6b7bb5729a5b4"
+    },
+    {
+      "product": "weather",
+      "year": 2021,
+      "month": 12,
+      "path": "weather/weather_2021_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7727859,
+      "sha256": "c32b23e8f437a8a9d93677fc7df26e0942b6fe525ef10da666771b88a6ca8dbe"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 1,
+      "path": "weather/weather_2022_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7828380,
+      "sha256": "15b8286ab23a6723c118abc299c4532aaefc9f36dcf1a939b43340d113b35b1a"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 2,
+      "path": "weather/weather_2022_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7110292,
+      "sha256": "839f3e52af4cf6b19c635df313556c9231b82696082051a4e81afeecc9b77bc8"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 3,
+      "path": "weather/weather_2022_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7828831,
+      "sha256": "c2083c08cacc2dd0f517a38a515187e30a151a64de59496010d4a248bb9676f2"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 4,
+      "path": "weather/weather_2022_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7296549,
+      "sha256": "1072ea7221fd4892a6895697801a85c36c5a18210b1b58976f2d0f8f813e33db"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 5,
+      "path": "weather/weather_2022_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7276499,
+      "sha256": "68447a6643a86e607c71c6903809093c628bc73f00ec77520e08e8a5bb586b4d"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 6,
+      "path": "weather/weather_2022_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6758055,
+      "sha256": "f1e8c48b574c6c6281715c4e33be360a50b8b3ae178114a9f27fe1127bac9772"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 7,
+      "path": "weather/weather_2022_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6828594,
+      "sha256": "91f94e4dcc541ebc17163ffdca9ad00f62a7b093f9a83e5a7ea170319d148c4a"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 8,
+      "path": "weather/weather_2022_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6831536,
+      "sha256": "33fa7b0f8ab918cd119de0dfb6568e5966ed366c35eea8110e0318057514f8c1"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 9,
+      "path": "weather/weather_2022_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6841805,
+      "sha256": "82daa4bf79fc682232b89f33df16766d7651ca885b493be55fe233fd6faf4c02"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 10,
+      "path": "weather/weather_2022_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7440110,
+      "sha256": "a4a07191e64056480ad0e6aca31abc86d34be062c26a75a4cffdce9b70d226f7"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 11,
+      "path": "weather/weather_2022_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7556271,
+      "sha256": "1af2969247efa3c9cf9784bdc379bd0a9e28d0dde3b5c771e71ec6da224405bc"
+    },
+    {
+      "product": "weather",
+      "year": 2022,
+      "month": 12,
+      "path": "weather/weather_2022_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7952910,
+      "sha256": "153f44d9f700294f624c1a7e53704f4553604002f3cbd069cad9e339b8311e54"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 1,
+      "path": "weather/weather_2023_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7792284,
+      "sha256": "8f9e785400d37730feda90be2b14fc461ccfb938ce8b0bdb5864d93ea46e3685"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 2,
+      "path": "weather/weather_2023_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7148900,
+      "sha256": "b062767c4d27b39c9fd75c920405a96ebf629a0f1491963943372aed69a54ad7"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 3,
+      "path": "weather/weather_2023_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7786810,
+      "sha256": "c6c6ea528c773377a917ddf7d66fde969267a5bef8525c69cfaea5c00e42b0ce"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 4,
+      "path": "weather/weather_2023_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7289933,
+      "sha256": "00b0205a3aecfcda7dc18bc3edc8516ac575ed9cf220a8da82a92b72457a9272"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 5,
+      "path": "weather/weather_2023_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7178066,
+      "sha256": "5ea0a6f518b96523c3f2c1a817b9d933b8b84bde9bc541c2d940bd7fb1284c05"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 6,
+      "path": "weather/weather_2023_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6703734,
+      "sha256": "fb64a237d80fbfcfb93563bc1278a0a36462000ce1ae514b6913aaeb9d7afb43"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 7,
+      "path": "weather/weather_2023_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6823391,
+      "sha256": "b4abbd5e71725fa011f3362ac6c21d8ba3bf1e3cb29963fa85f16686655e4548"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 8,
+      "path": "weather/weather_2023_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6923783,
+      "sha256": "4881cb53897e9727bc222c4a9fee815c135a0ef417581fd385c39abb6366ded4"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 9,
+      "path": "weather/weather_2023_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6773883,
+      "sha256": "237e47840d328cb325362fdbc8a45838371a345c6f99137c6b9a0a3f56e7c2d1"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 10,
+      "path": "weather/weather_2023_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7443567,
+      "sha256": "675ed5a1af240847c8668d3fae516363d78e8138f804eb7420e2007f01118bb6"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 11,
+      "path": "weather/weather_2023_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7425494,
+      "sha256": "ee96d53171e24bae95dcdf0c06d029c0720c2da51361b6d9088077ad37a3edcb"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 12,
+      "path": "weather/weather_2023_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7700122,
+      "sha256": "0a38b3f39480173007998e1388d3a2dadb2b6ce2bb59a3e0732966346ce2067d"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 1,
+      "path": "weather/weather_2024_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7845775,
+      "sha256": "1a518ef2fa5fa3e25213de3b7e54223bfab7be6a1d6d8af3a4fdb4b79a51b99f"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 2,
+      "path": "weather/weather_2024_02.parquet",
+      "rows": 965700,
+      "n_zctas": 33300,
+      "size_bytes": 7197536,
+      "sha256": "02c8c212e925993c1349e964d3d9b51d64c4b3a2afe5a019f9a23c669c07a330"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 3,
+      "path": "weather/weather_2024_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7673968,
+      "sha256": "1e8d46b0d047e19da6e44eb19ce4b31e834deb5f28ced69c59b63276a401522e"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 4,
+      "path": "weather/weather_2024_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7160547,
+      "sha256": "55d889b7e3849e7c57de1b58db99801fe43a3dfd0f0f73b0de0dd6f7c42b3112"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 5,
+      "path": "weather/weather_2024_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7099103,
+      "sha256": "8ffb9d6f84c1824bd6f21cf10869f1b2c6ccadd8579332a5667e089d8172846e"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 6,
+      "path": "weather/weather_2024_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6670181,
+      "sha256": "ce72003b1198a6c13ba2b7521c03450704527a834e5c17eb12080a5874cacbf2"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 7,
+      "path": "weather/weather_2024_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6766461,
+      "sha256": "e62ca823f7a25618d3c3691c84379bb0bde9d4acc77de940cf3306823c5ae221"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 8,
+      "path": "weather/weather_2024_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6891736,
+      "sha256": "1d87d04586c88fedc414ffa454e4d36c2557e4cbf53964c0ed0806b9e9d6bf85"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 9,
+      "path": "weather/weather_2024_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6763823,
+      "sha256": "0cfed63039854dd8d5888d2360ffafe8fddf6908c0bb1e35663464d317f6b76c"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 10,
+      "path": "weather/weather_2024_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7336223,
+      "sha256": "d0c41310a089e046854ed533ed8c9c2174149961026a9fff32c18a92de9bb3a6"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 11,
+      "path": "weather/weather_2024_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7376470,
+      "sha256": "79fc8c448a7b5e96906abe0778999aca42d5dbf05426480f5faa982fc7f6d9a7"
+    },
+    {
+      "product": "weather",
+      "year": 2024,
+      "month": 12,
+      "path": "weather/weather_2024_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7818489,
+      "sha256": "d6610e48555ac4ac61ca7aff6f74bd1e927987e770afb38ecf5c587b2622215b"
+    }
+  ]
+}

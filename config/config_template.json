@@ -3,7 +3,7 @@
     "repo": "/path/to/CLIF-pollution-microbiome",
     "tables_path": "/path/to/tables/",
     "file_type": "parquet",
-    "zcta_exposure_dir": "data/exposome_zcta",
     "site_timezone": "America/Chicago",
-    "mwas_exposure_cache": "data/mwas_cache"
+    "mwas_exposure_cache": "data/public/exposures",
+    "mwas_acs_dir": "data/public/acs/2017"
 }

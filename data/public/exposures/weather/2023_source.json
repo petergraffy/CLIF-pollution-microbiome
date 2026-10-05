@@ -1,0 +1,135 @@
+{
+  "product": "weather",
+  "year": 2023,
+  "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2023.parquet",
+  "asset_digest": "sha256:8f2dbfda235dcd13743ec1eec73dca33976aec426457aa91750004668824002f",
+  "verified_source_sha256": "sha256:8f2dbfda235dcd13743ec1eec73dca33976aec426457aa91750004668824002f",
+  "columns": [
+    "zip",
+    "date",
+    "tmean_c",
+    "rhmean_pct"
+  ],
+  "files": [
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 1,
+      "path": "weather/weather_2023_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7792284,
+      "sha256": "8f9e785400d37730feda90be2b14fc461ccfb938ce8b0bdb5864d93ea46e3685"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 2,
+      "path": "weather/weather_2023_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7148900,
+      "sha256": "b062767c4d27b39c9fd75c920405a96ebf629a0f1491963943372aed69a54ad7"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 3,
+      "path": "weather/weather_2023_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7786810,
+      "sha256": "c6c6ea528c773377a917ddf7d66fde969267a5bef8525c69cfaea5c00e42b0ce"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 4,
+      "path": "weather/weather_2023_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7289933,
+      "sha256": "00b0205a3aecfcda7dc18bc3edc8516ac575ed9cf220a8da82a92b72457a9272"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 5,
+      "path": "weather/weather_2023_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7178066,
+      "sha256": "5ea0a6f518b96523c3f2c1a817b9d933b8b84bde9bc541c2d940bd7fb1284c05"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 6,
+      "path": "weather/weather_2023_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6703734,
+      "sha256": "fb64a237d80fbfcfb93563bc1278a0a36462000ce1ae514b6913aaeb9d7afb43"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 7,
+      "path": "weather/weather_2023_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6823391,
+      "sha256": "b4abbd5e71725fa011f3362ac6c21d8ba3bf1e3cb29963fa85f16686655e4548"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 8,
+      "path": "weather/weather_2023_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6923783,
+      "sha256": "4881cb53897e9727bc222c4a9fee815c135a0ef417581fd385c39abb6366ded4"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 9,
+      "path": "weather/weather_2023_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6773883,
+      "sha256": "237e47840d328cb325362fdbc8a45838371a345c6f99137c6b9a0a3f56e7c2d1"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 10,
+      "path": "weather/weather_2023_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7443567,
+      "sha256": "675ed5a1af240847c8668d3fae516363d78e8138f804eb7420e2007f01118bb6"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 11,
+      "path": "weather/weather_2023_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7425494,
+      "sha256": "ee96d53171e24bae95dcdf0c06d029c0720c2da51361b6d9088077ad37a3edcb"
+    },
+    {
+      "product": "weather",
+      "year": 2023,
+      "month": 12,
+      "path": "weather/weather_2023_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7700122,
+      "sha256": "0a38b3f39480173007998e1388d3a2dadb2b6ce2bb59a3e0732966346ce2067d"
+    }
+  ]
+}

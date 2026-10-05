@@ -1,0 +1,55 @@
+{
+  "bundled_files_sha256": {
+    "zcta_ses.csv": "cb86b71d53e03f3691d61d865fab255d4a85403e27a5d522e3bd9861159423be",
+    "acs_variables.csv": "8aa49634dcb83f8afe65389988d58fe20441a510f2b5b2b8477256fb899d2387",
+    "B15003_metadata.json": "34c9c43352e1db3230af8e35a7b853fe54d4d904d26b29e550cd0fbb698c2e65",
+    "B17001_metadata.json": "854870389fc17704a6aab1123666363e5fc350294751089cecfb38530aa0dd99",
+    "B19013_metadata.json": "07f8af501383cd90ab99b834f5eda5e1e28ac26db275541cf1dae4e42d5c3e8b",
+    "B23025_metadata.json": "3af8cc4a4961a5efdf2d423d8f46796f2f775d64f1c253408219f55e3987ea50",
+    "B25014_metadata.json": "14200687121617a349dbbb7ca06c8126cc61d011229adfcad28492c76709d647"
+  },
+  "acs_year": 2017,
+  "period": "2013-2017",
+  "geography": "ZCTA",
+  "source": "summary",
+  "zcta_count": 32989,
+  "urls": [
+    "https://www2.census.gov/programs-surveys/acs/summary_file/2017/documentation/user_tools/ACS_5yr_Seq_Table_Number_Lookup.txt",
+    "https://www2.census.gov/programs-surveys/acs/summary_file/2017/data/5_year_seq_by_state/UnitedStates/All_Geographies_Not_Tracts_Block_Groups/g20175us.csv",
+    "https://www2.census.gov/programs-surveys/acs/summary_file/2017/data/5_year_seq_by_state/UnitedStates/All_Geographies_Not_Tracts_Block_Groups/20175us0043000.zip",
+    "https://www2.census.gov/programs-surveys/acs/summary_file/2017/data/5_year_seq_by_state/UnitedStates/All_Geographies_Not_Tracts_Block_Groups/20175us0048000.zip",
+    "https://www2.census.gov/programs-surveys/acs/summary_file/2017/data/5_year_seq_by_state/UnitedStates/All_Geographies_Not_Tracts_Block_Groups/20175us0059000.zip",
+    "https://www2.census.gov/programs-surveys/acs/summary_file/2017/data/5_year_seq_by_state/UnitedStates/All_Geographies_Not_Tracts_Block_Groups/20175us0079000.zip",
+    "https://www2.census.gov/programs-surveys/acs/summary_file/2017/data/5_year_seq_by_state/UnitedStates/All_Geographies_Not_Tracts_Block_Groups/20175us0103000.zip",
+    "https://api.census.gov/data/2017/acs/acs5/groups/B17001.json",
+    "https://api.census.gov/data/2017/acs/acs5/groups/B15003.json",
+    "https://api.census.gov/data/2017/acs/acs5/groups/B23025.json",
+    "https://api.census.gov/data/2017/acs/acs5/groups/B19013.json",
+    "https://api.census.gov/data/2017/acs/acs5/groups/B25014.json"
+  ],
+  "sha256": {
+    "sequence_lookup.txt": "e6d2e801ac97f92b59a173cb99a5845d954c9965ec6e747793fa39a3cef3b687",
+    "g20175us.csv": "c53ae0539754e2f756c816eaec43fd6557fbdaa127f4e58b75ec2d56608ff2f2",
+    "20175us0043000.zip": "eab800d054ea27dcc36919a1cdb72164056095e7568386fda58ee5b522bdc04e",
+    "20175us0048000.zip": "cd58ad0e63b784c4e54a7dcb24a40ca78a231a6652ad1a38503000dd14d9158e",
+    "20175us0059000.zip": "e1db1b79441e545d299d93a38c2eb0a4198748bd66df695acbf995b949b2fb13",
+    "20175us0079000.zip": "3d2c747c79edab12a0277d2f9bd2b3b198fe1be71c0cd2a2ad1f39e0760c41f1",
+    "20175us0103000.zip": "75c100a3219c5be7be4aea62cd68d5e546095965390e13a5cd5f916963295a59",
+    "B17001_metadata.json": "854870389fc17704a6aab1123666363e5fc350294751089cecfb38530aa0dd99",
+    "B15003_metadata.json": "34c9c43352e1db3230af8e35a7b853fe54d4d904d26b29e550cd0fbb698c2e65",
+    "B23025_metadata.json": "3af8cc4a4961a5efdf2d423d8f46796f2f775d64f1c253408219f55e3987ea50",
+    "B19013_metadata.json": "07f8af501383cd90ab99b834f5eda5e1e28ac26db275541cf1dae4e42d5c3e8b",
+    "B25014_metadata.json": "14200687121617a349dbbb7ca06c8126cc61d011229adfcad28492c76709d647"
+  },
+  "indicator_sha256": "cb86b71d53e03f3691d61d865fab255d4a85403e27a5d522e3bd9861159423be",
+  "definitions": {
+    "poverty": "B17001_002 / B17001_001",
+    "no_high_school": "sum B15003_002..016 / B15003_001; age 25+",
+    "unemployment": "B23025_005 / B23025_003; civilian labor force",
+    "income": "B19013_001; median household income in vintage-year dollars",
+    "crowding": "sum B25014_005,006,007,011,012,013 / B25014_001; >1 occupants/room"
+  },
+  "missing": "Negative sentinels, annotations, invalid ratios and zero denominators -> missing; no imputation",
+  "uncertainty": "Required raw estimates/MOE and available annotations preserved in acs_variables.csv; ACS sampling error not propagated into interactions",
+  "linkage": "Exact five-digit residential ZIP-to-ZCTA proxy; unmatched codes remain missing; no boundary crosswalk"
+}

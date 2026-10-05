@@ -7,5 +7,6 @@ for(test in tests) {
  if(status!=0)stop('Smoke test failed: ',test)
 }
 python <- Sys.getenv('MWAS_PYTHON','python3')
-if(system2(python,'tests/test_acs_ses.py')!=0)stop('ACS definition tests failed')
+for(test in c('tests/test_acs_ses.py','tests/test_public_data.py'))
+ if(system2(python,test)!=0)stop('Python smoke test failed: ',test)
 message('All buddy smoke tests passed; synthetic test did not require patient data or network access.')

@@ -1,0 +1,26 @@
+{
+  "product": "o3",
+  "year": 2017,
+  "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/o3-zcta-daily-v1/o3_zcta_daily_2017.parquet",
+  "asset_digest": "sha256:c1e3a1c9b87766ad3f79f505c0ec4a4ca5fada9d9a0f78e95edc6224eb04af75",
+  "verified_source_sha256": "sha256:c1e3a1c9b87766ad3f79f505c0ec4a4ca5fada9d9a0f78e95edc6224eb04af75",
+  "columns": [
+    "zip",
+    "date",
+    "o3_ppb",
+    "value_source",
+    "fill_distance_m"
+  ],
+  "files": [
+    {
+      "product": "o3",
+      "year": 2017,
+      "month": 12,
+      "path": "o3/o3_2017_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 8309053,
+      "sha256": "c26c05b74a3e8c1eb02f62e1d6f676b6076225eeff4e8d818283c9a6f8f45373"
+    }
+  ]
+}

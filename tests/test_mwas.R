@@ -1,5 +1,5 @@
 suppressPackageStartupMessages({library(data.table);library(survival)})
-source('utils/mwas.R')
+source('utils/mwas.R');source('utils/mwas_federated.R')
 stopifnot(identical(mwas_zip(c('02115','2115','60637-1234','bad','00000')),c('02115','02115','60637',NA_character_,NA_character_)))
 r <- mwas_referents(as.Date('2020-02-29'))
 stopifnot(length(r)==5,all(lubridate::wday(r)==7),all(format(r,'%Y-%m')=='2020-02'),as.Date('2020-02-29') %in% r)
@@ -10,10 +10,10 @@ stopifnot(a$ab_status[1]=='timing_uncertain',a$ab_status[2]=='documented_prior',
 set.seed(72)
 d <- data.table(stratum=rep(1:200,each=4),patient_id=rep(1:200,each=4),case=rep(c(1,0,0,0),200),
  pm25=rnorm(800),tmean_lag1_7=rnorm(800),rhmean_lag1_7=rnorm(800),holiday=0L)
-f <- mwas_fit(d,'pm25',1,100)
-stopifnot(f$n_events==200,f$n_referents==600,f$status=='ok',is.finite(f$p_value))
+f <- mwas_federated_fit(d,'pm25',1)
+stopifnot(f$n_events==200,f$n_referents==600,f$status=='ok',is.finite(f$se))
 d[stratum<=25 & case==1,pm25:=NA_real_]
-f <- mwas_fit(d,'pm25',1,100)
+f <- mwas_federated_fit(d,'pm25',1)
 stopifnot(f$n_events==175,f$n_referents==525)
 stopifnot(identical(mwas_negative_text(c('no legionella isolated','coagulase negative staphylococcus species','candida sp. not candida albicans','unable to isolate legionella')),c(TRUE,FALSE,FALSE,TRUE)))
 cat('MWAS synthetic tests passed: ZIP normalization, referent calendar, antibiotic ordering, matched-set completeness and model fit.\n')

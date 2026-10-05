@@ -2,7 +2,9 @@
 suppressPackageStartupMessages({library(data.table);library(arrow);library(dplyr);library(jsonlite)})
 source('utils/clif_io.R');source('utils/mwas.R');source('utils/mwas_federated.R');source('utils/mwas_targets.R');source('utils/mwas_characteristics.R')
 run_dir <- Sys.getenv('MWAS_RUN_DIR',readLines('output/mwas/latest_run.txt',warn=FALSE)[1])
-acs_dir <- Sys.getenv('MWAS_ACS_DIR','data/mwas_cache/acs/2017')
+acs_dir <- config_value(config,'mwas_acs_dir',env='MWAS_ACS_DIR',default='data/public/acs/2017')
+exposure_dir <- config_value(config,'mwas_exposure_cache',env='MWAS_EXPOSURE_CACHE',default='data/public/exposures')
+exposure_manifest_path <- file.path(exposure_dir,'manifest.json')
 out_dir <- file.path(run_dir,'federated');dir.create(out_dir,recursive=TRUE,showWarnings=FALSE)
 b <- readRDS(file.path(run_dir,'private','cohort.rds'))
 m <- readRDS(file.path(run_dir,'private','matched_exposures.rds'))
@@ -57,7 +59,7 @@ if(have_acs)fwrite(rbindlist(lapply(registry$indicator,function(v)
  file.path(out_dir,'ses_linkage_qc.csv'))
 det <- b$detections[hours_from_icu<=72]
 orgs <- c(sort(unique(det$organism_category)),'__early_icu_admission','__any_respiratory_culture','__any_named_organism')
-protocol <- list(version='acute_mwas_federated_v4_modifiers',culture_window=48,icu_entry_hours=24,
+protocol <- list(version='acute_mwas_federated_v5_bundled_public',culture_window=48,icu_entry_hours=24,
  source_categories=c('respiratory_tract','respiratory_tract_lower','nasopharynx_upperairway','oropharynx_tongue_oralcavity'),
  method='culture',event='local hospital admission date',lag='mean complete days 1-N',
  exposure_windows=windows,primary_exposure_window=7,
@@ -71,6 +73,7 @@ protocol <- list(version='acute_mwas_federated_v4_modifiers',culture_window=48,i
  modifier_method='separate pollution interactions; no modifier main effects; fixed race category contrasts versus white; unknown/missing excluded; complete SOFA only; 24h sensitivity',
  model_package_versions=as.list(setNames(vapply(c('survival','data.table','lubridate'),function(p)as.character(packageVersion(p)),character(1)),c('survival','data.table','lubridate'))),
  start_date=manifest$start_date,end_date=manifest$end_date,
+ public_exposure_manifest_md5=if(file.exists(exposure_manifest_path))unname(tools::md5sum(exposure_manifest_path)) else 'alternate_unmanifested_fixture',
  acs_year=if(have_acs)unique(acs$acs_year) else NA_integer_,
  acs_indicator_md5=if(have_acs)unname(tools::md5sum(acs_path)) else 'unavailable',
  antibacterial_mapping_md5=manifest$antibiotic_mapping_md5,

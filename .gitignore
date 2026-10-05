@@ -47,3 +47,7 @@ __pycache__/
 
 .venv-buddy/
 renv/buddy-library/
+
+# Public-data rebuilds use temporary download files; only finished national bundles are tracked.
+data/public/**/*.partial
+data/public/exposures/national-public-*/

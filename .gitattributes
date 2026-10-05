@@ -1,0 +1,6 @@
+# Code hashes used for federated compatibility must be identical across checkouts.
+* text=auto eol=lf
+
+# Public data manifests hash original bytes; never normalize these files.
+data/public/** -text
+resources/mwas/clif_intermittent_med_categories.csv -text

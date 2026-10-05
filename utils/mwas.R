@@ -54,30 +54,6 @@ mwas_ab_history <- function(episodes, meds, observed_hosp) {
                   fifelse(med_record_observed,'none_documented','med_history_unknown')))]
   out
 }
-mwas_fit <- function(d, exposure, unit, min_events=100L) {
-  # Conditional logistic regression: strata are admissions, not organism rows.
-  warnings <- character()
-  d <- copy(d); d[, x := get(exposure)/unit]
-  d <- d[is.finite(x) & is.finite(tmean_lag1_7) & is.finite(rhmean_lag1_7) & !is.na(holiday)]
-  keep <- d[, .(ok=sum(case)==1L && sum(case==0L)>=1L && diff(range(x))>1e-8),by=stratum][ok==TRUE,stratum]
-  d <- d[stratum %in% keep]
-  n <- uniqueN(d$stratum)
-  base <- list(n_events=n,n_patients=uniqueN(d$patient_id),n_referents=sum(d$case==0L),
-               status='too_few_events',warning='',odds_ratio=NA_real_,ci_low=NA_real_,ci_high=NA_real_,p_value=NA_real_)
-  if(n<min_events) return(as.data.table(base))
-  form <- case ~ x + splines::ns(tmean_lag1_7,df=3) + splines::ns(rhmean_lag1_7,df=3) +
-    holiday + strata(stratum) + cluster(patient_id)
-  fit <- tryCatch(withCallingHandlers(survival::clogit(form,data=d,method='efron',
-    control=survival::coxph.control(iter.max=50)),warning=function(w){warnings<<-c(warnings,conditionMessage(w));invokeRestart('muffleWarning')}),error=function(e)e)
-  if(inherits(fit,'error')) {base$status <- 'fit_error';base$warning <- conditionMessage(fit);return(as.data.table(base))}
-  b <- coef(fit)['x']; se <- sqrt(diag(vcov(fit)))['x']
-  base$warning <- paste(unique(warnings),collapse='; ')
-  if(length(warnings) || !is.finite(b) || !is.finite(se) || se<=0) {base$status <- 'fit_warning';return(as.data.table(base))}
-  base$status <- 'ok';base$odds_ratio <- exp(b);base$ci_low <- exp(b-1.96*se);base$ci_high <- exp(b+1.96*se)
-  base$p_value <- 2*pnorm(-abs(b/se))
-  as.data.table(base)
-}
-
 # Site ETL text overrides are limited to explicit negative/failed results.
 # Do not reject 'coagulase negative' or 'not candida albicans': those can be positive organisms.
 mwas_negative_text <- function(x) {

@@ -1,52 +1,15 @@
-## Output Directory
+# Local MWAS output
 
-Use this directory for generated local outputs. These files are produced by the
-scripts in `code/` and are intentionally separated from source code and
-documentation.
+Current runs are written to ignored `output/mwas/<run ID>/` directories. Older exploratory outputs may remain locally but are not used by the current workflow.
 
-Generated site outputs are ignored by default. Do not commit patient-level data,
-site-specific CLIF extracts, or unsuppressed site-derived outputs unless the
-project team explicitly approves release.
+- `private/`: admission-level cohort, culture episodes, organism detections, exposure matching, diagnosis and demographic/outcome linkage. Never distribute.
+- Cohort, specimen, antibiotic and exposure QC: review locally for mapping and coverage.
+- `federated/site_estimates.csv` and `shared_exposure_estimates.csv`: aggregate model terms, uncertainty, counts and attempted/failed status.
+- `federated/protocol.json`: version, scientific definitions and compatibility hashes.
+- `federated/table1.csv`, `table1_long.csv`: primary cohort and context populations, admission denominators and missingness.
+- `federated/site_year_characteristics.csv`, `site_year_categories.csv`, `site_year_specimen_sources.csv`, `site_year_antibiotic_practices.csv`, `site_year_organisms.csv`: descriptive site trends with explicit denominators.
+- Modifier registries/capture/support and candidate diagnostics: missingness, subgroup support and stability.
+- Shared-exposure and simulation diagnostics: development checks; successful computation does not establish calibrated inference.
+- Local pool, HTML report and figures: inspect before scientific interpretation or release.
 
-## Subdirectories
-
-1. `final/`: CSV exports, summaries, and model results.
-2. `figures/`: generated PNG/PDF figures.
-
-## Current PheWAS Outputs
-
-The active positive-lung-culture PheWAS workflow may create:
-
-1. `positive_lung_cultures_prior_year_pollution_<site>_<stamp>.csv`
-2. `positive_lung_cultures_prior_year_pollution_coverage_<site>_<stamp>.csv`
-3. `positive_lung_cultures_prior_year_pollution_organism_summary_<site>_<stamp>.csv`
-4. `positive_lung_cultures_prior_year_pollution_year_summary_<site>_<stamp>.csv`
-5. `positive_lung_culture_organism_prior_year_pollution_models_<stamp>.csv`
-6. `positive_lung_culture_organism_phewas_site_summary_<stamp>.csv`
-7. `positive_lung_culture_organism_phewas_modeled_organisms_<stamp>.csv`
-8. `positive_lung_culture_organism_phewas_pm25_prior_year_<stamp>.png`
-9. `positive_lung_culture_organism_phewas_no2_prior_year_<stamp>.png`
-
-Optional group-level companion outputs:
-
-1. `positive_lung_culture_group_prior_year_pollution_models_<stamp>.csv`
-2. `positive_lung_culture_group_phewas_site_summary_<stamp>.csv`
-3. `positive_lung_culture_group_phewas_modeled_groups_<stamp>.csv`
-4. `positive_lung_culture_group_phewas_pm25_prior_year_<stamp>.png`
-5. `positive_lung_culture_group_phewas_no2_prior_year_<stamp>.png`
-
-## Legacy Outputs
-
-Older county-level and restricted-cohort workflows may create files beginning
-with `microbe_`, `pollution_microbe_`, `hierarchical_`, `shrf_`, or
-`ed_icu_early_resp_`. Those are retained locally for provenance but are not part
-of the current buddy-test workflow.
-
-## Acute MWAS runs
-
-`mwas/<run_id>/` contains ignored local analysis runs. Each has aggregate QC,
-model tables, figures, an HTML report, manifests, and preserved source. The
-`private/` subfolder contains patient-level working files and must remain local.
-Aggregate run outputs are unsuppressed and require review before external release.
-
-The v4 federated directory also contains `table1.csv`, `table1_long.csv`, `site_year_characteristics.csv`, `site_year_categories.csv`, `site_year_specimen_sources.csv`, `site_year_antibiotic_practices.csv`, `site_year_organisms.csv`, `modifier_registry.csv`, `modifier_capture.csv`, and `characteristics_manifest.json`. These are site-derived aggregates; review small cells before sharing. `private/site_characteristics.rds` contains clinical linkage and must stay local.
+Only institutionally approved aggregates may be shared. Small cells, unsuppressed organism counts, clinical logs, ZIP linkage files, private extracts and site-filtered caches must remain local unless separately authorized. Public nationwide pollution/weather/ACS inputs are kept separately in tracked `data/public/` and contain no clinical records.

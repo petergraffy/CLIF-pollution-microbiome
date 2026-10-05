@@ -1,0 +1,25 @@
+{
+  "product": "weather",
+  "year": 2017,
+  "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2017.parquet",
+  "asset_digest": "sha256:ab52ea0f0cb31412df00307491b6d31bafcf3eabf714cc886fda84200042cf6c",
+  "verified_source_sha256": "sha256:ab52ea0f0cb31412df00307491b6d31bafcf3eabf714cc886fda84200042cf6c",
+  "columns": [
+    "zip",
+    "date",
+    "tmean_c",
+    "rhmean_pct"
+  ],
+  "files": [
+    {
+      "product": "weather",
+      "year": 2017,
+      "month": 12,
+      "path": "weather/weather_2017_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7967233,
+      "sha256": "3d1f8f13bdf1f42157cad56fcd9eea6c2d0b1006fbad8e1b10d4107a8d32b6b7"
+    }
+  ]
+}

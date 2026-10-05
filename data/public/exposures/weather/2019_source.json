@@ -1,0 +1,135 @@
+{
+  "product": "weather",
+  "year": 2019,
+  "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/gridmet-zcta-daily-v1/gridmet_zcta_daily_2019.parquet",
+  "asset_digest": "sha256:6e074b3d6585ead833f34015542f413512113e1032044c6bc4a90103cfb67a1d",
+  "verified_source_sha256": "sha256:6e074b3d6585ead833f34015542f413512113e1032044c6bc4a90103cfb67a1d",
+  "columns": [
+    "zip",
+    "date",
+    "tmean_c",
+    "rhmean_pct"
+  ],
+  "files": [
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 1,
+      "path": "weather/weather_2019_01.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7866113,
+      "sha256": "3afb2129f7f0f20fe2b8a88e6bb07f34e6b63344223d47b9ff57e42039f3596d"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 2,
+      "path": "weather/weather_2019_02.parquet",
+      "rows": 932400,
+      "n_zctas": 33300,
+      "size_bytes": 7004285,
+      "sha256": "e8bb3a77c287eeefcb6494b57c02704b3f5057d1d197797e989e0058c183c91b"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 3,
+      "path": "weather/weather_2019_03.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7821714,
+      "sha256": "23231de38148a51fe14a58b2dfba5c4f413a61c05cdbb21966a6315605bba426"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 4,
+      "path": "weather/weather_2019_04.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7202710,
+      "sha256": "8eae2a081fa7327072dcfb6ad5b89643a5711a58761bf01c231f4377a931b5f1"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 5,
+      "path": "weather/weather_2019_05.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7236096,
+      "sha256": "8f8315a311dabfa3d1bdda695d18f0735b7558d65257adf19cad0d1d46b78803"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 6,
+      "path": "weather/weather_2019_06.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6687297,
+      "sha256": "2f88009d401beb9b222903012a39c10095016d37bc123e5edb7250a08bb5a2d1"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 7,
+      "path": "weather/weather_2019_07.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6729826,
+      "sha256": "077d7080dd0f3a21e2d2fd4ab8c298ea4319310954f3ba2e5b555fdb40b5761f"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 8,
+      "path": "weather/weather_2019_08.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 6781277,
+      "sha256": "3b821495fdc873d1301743ec9a00f833a0ea74f76535223aa8d88fbd97abf3d4"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 9,
+      "path": "weather/weather_2019_09.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 6647975,
+      "sha256": "bed02d97a070aa9e50c0ed479f8e779f26d4ac81814df7d9de2582028f7e2c11"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 10,
+      "path": "weather/weather_2019_10.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7513234,
+      "sha256": "576f77bd87b1ac92a8b45165872409cdce04f470a0940e6e912b3bae66d283c2"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 11,
+      "path": "weather/weather_2019_11.parquet",
+      "rows": 999000,
+      "n_zctas": 33300,
+      "size_bytes": 7435405,
+      "sha256": "840190236467ebabd25ab9a86727b4dd1b875b8a2425ab3527abd961efde6d00"
+    },
+    {
+      "product": "weather",
+      "year": 2019,
+      "month": 12,
+      "path": "weather/weather_2019_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 7749750,
+      "sha256": "31f6cf9dd24edeaadf0e3eff850ae9695e4fef43eb37187e48bd51f6e8adab2f"
+    }
+  ]
+}

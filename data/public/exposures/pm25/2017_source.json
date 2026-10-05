@@ -1,0 +1,26 @@
+{
+  "product": "pm25",
+  "year": 2017,
+  "asset_url": "https://github.com/petergraffy/environment_transplant_survival/releases/download/lghap-pm25-zcta-daily-v1/lghap_pm25_zcta_daily_2017.parquet",
+  "asset_digest": "sha256:f33022fef9b401320ac2972e423094d0ab2749473be9c4effde716d4b0b29248",
+  "verified_source_sha256": "sha256:f33022fef9b401320ac2972e423094d0ab2749473be9c4effde716d4b0b29248",
+  "columns": [
+    "zip",
+    "date",
+    "pm25_ug_m3",
+    "value_source",
+    "fill_distance_m"
+  ],
+  "files": [
+    {
+      "product": "pm25",
+      "year": 2017,
+      "month": 12,
+      "path": "pm25/pm25_2017_12.parquet",
+      "rows": 1032300,
+      "n_zctas": 33300,
+      "size_bytes": 4728380,
+      "sha256": "0212d808ea202174733284ad81ee1cca65f2bea6d7fdd47668f60a1c693f6042"
+    }
+  ]
+}
