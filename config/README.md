@@ -45,3 +45,18 @@ Optional legacy field:
 - `exposome_path`: county-year exposure directory used only by the older aggregate county-level scripts. It is not needed for the current PheWAS workflow.
 
 The `.gitignore` file in this directory prevents `config.json` from being pushed to GitHub. Keep site-specific paths and credentials local.
+
+For the acute MWAS, also set `site_timezone` to the hospital's IANA timezone
+(e.g. `America/Chicago` for UCMC). Elapsed inclusion windows use timestamp
+instants; daily exposure matching uses local admission dates. `tables_path`
+should point to the specific CLIF release folder, not a parent containing
+additional disease-specific exports. Daily exposures are cached separately
+under `data/mwas_cache/`; see the acute workflow in `code/README.md`.
+
+The federated SES extension uses `MWAS_ACS_DIR` (default
+`data/mwas_cache/acs/2017`) for the national ACS cache. All sites must use the
+same vintage and indicator definitions. The default public summary-file route
+needs no key. For the optional API route, set `CENSUS_API_KEY` in the local
+environment; never put it in committed configuration or share it in outputs.
+
+The v4 buddy MWAS additionally requires the patient table (`patient_id`, `sex_category`, `race_category`) and `hospitalization.discharge_category`. Ethnicity and admission type are optional descriptive fields. The run writes private demographic/outcome linkage and aggregate Table 1/annual exports; see the [buddy guide](../docs/buddy_testing.md) for denominators and disclosure review.

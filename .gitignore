@@ -35,3 +35,15 @@ initialize_renv.R
 output/final/*.csv
 output/figures/*
 !output/README.md
+
+# MWAS: local clinical extracts, exposure caches, and generated run outputs
+output/mwas/
+data/mwas_cache/
+
+# The public medication vocabulary is part of the reproducible site package.
+!resources/mwas/clif_intermittent_med_categories.csv
+dist/
+__pycache__/
+
+.venv-buddy/
+renv/buddy-library/

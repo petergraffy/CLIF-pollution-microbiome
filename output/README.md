@@ -41,3 +41,12 @@ Older county-level and restricted-cohort workflows may create files beginning
 with `microbe_`, `pollution_microbe_`, `hierarchical_`, `shrf_`, or
 `ed_icu_early_resp_`. Those are retained locally for provenance but are not part
 of the current buddy-test workflow.
+
+## Acute MWAS runs
+
+`mwas/<run_id>/` contains ignored local analysis runs. Each has aggregate QC,
+model tables, figures, an HTML report, manifests, and preserved source. The
+`private/` subfolder contains patient-level working files and must remain local.
+Aggregate run outputs are unsuppressed and require review before external release.
+
+The v4 federated directory also contains `table1.csv`, `table1_long.csv`, `site_year_characteristics.csv`, `site_year_categories.csv`, `site_year_specimen_sources.csv`, `site_year_antibiotic_practices.csv`, `site_year_organisms.csv`, `modifier_registry.csv`, `modifier_capture.csv`, and `characteristics_manifest.json`. These are site-derived aggregates; review small cells before sharing. `private/site_characteristics.rds` contains clinical linkage and must stay local.

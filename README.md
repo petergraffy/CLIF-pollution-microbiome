@@ -1,8 +1,22 @@
 # CLIF Pollution-Microbiome
 
+## Acute MWAS development
+
+**Second-site pilot:** [installation, synthetic test, local runner and aggregate return](docs/buddy_testing.md). Start with `Rscript code/35_buddy_smoke_test.R`, then configure the six core CLIF tables and run `Rscript code/34_run_buddy_site.R`.
+
+The newest workflow is an admission-based time-stratified case-crossover screen
+of acute daily PM2.5 and ozone exposure. It includes hospitalizations entering
+the ICU within 24 hours, with respiratory cultures in the first 24/48/72 hours
+of ICU entry. See [the acute MWAS run instructions](code/README.md#acute-pm25--ozone-mwas-current-development-workflow).
+The [federated extension](code/README.md#federated-mwas-with-acs-ses-and-admission-diagnoses)
+adds ACS ZCTA SES interactions, diagnosis-defined secondary outcomes, aggregate
+site exports, and central meta-analysis. It now includes age, sex, recorded-race and clinical-severity interactions, a primary-cohort Table 1, and annual site summaries. This is the current development path;
+its all-organism screen replaces the initial 50/100-count filters.
+The older prior-year positive-culture screen below is retained for provenance.
+
 ## Overview
 
-This project studies whether ambient air pollution is associated with geographic variation in respiratory microbial ecology among CLIF patients with positive lung cultures. The current workflow is a PheWAS-style organism-wide screen: each organism is treated as an outcome, and prior-year ZCTA PM2.5 and NO2 are tested as exposures.
+This project screens associations between acute residential ZCTA PM2.5/ozone exposure and respiratory culture-detected organisms in hospital admissions entering the ICU within 24 hours. The current workflow is a time-stratified case-crossover analysis with aggregate outputs for federated meta-analysis. The older prior-year pollution workflow is retained for provenance.
 
 CLIF contains clinical microbiology culture and susceptibility data rather than sequencing-based microbiome assays. For that reason, this repository uses the phrase **respiratory microbial ecology** or **culture-detected organisms** rather than claiming to measure the full lung microbiome.
 
@@ -12,22 +26,24 @@ This project targets CLIF 2.1.
 
 ## Scientific Aims
 
-1. Estimate whether prior-year PM2.5 and NO2 exposures are associated with organism composition among hospitalizations with positive pulmonary cultures.
-2. Use PheWAS-style plots to screen many culture-detected organisms while preserving organism group structure.
-3. Carry forward promising organisms into more restricted clinical cohorts, such as severe hypoxemic respiratory failure, pneumonia, or sepsis.
+1. Screen named respiratory organisms against daily PM2.5 and ozone, using seven-day exposure as primary and 3/14/28-day sensitivities.
+2. Assess neighborhood SES modification, diagnosis-defined outcomes, culture selection and specimen/antibiotic sensitivities.
+3. Validate inference and site portability with conditional count models, simulation calibration and federated aggregate pooling.
 
 ## Required CLIF tables and fields
 
 Please refer to the [CLIF data dictionary](https://clif-icu.com/data-dictionary), [CLIF Tools](https://clif-icu.com/tools), [ETL Guide](https://clif-icu.com/etl-guide), and [specific table contacts](https://github.com/clif-consortium/CLIF?tab=readme-ov-file#relational-clif) for more information on constructing the required tables and fields. 
 
-The following tables are required for the current PheWAS:
+The acute MWAS buddy pilot requires **patient, hospitalization, adt, microbiology_culture, medication_admin_intermittent and hospital_diagnosis**. See [the buddy guide](docs/buddy_testing.md) and run `Rscript code/33_site_preflight.R` for required fields. SOFA derivation is optional in the first pilot.
+
+The following tables are used by the older prior-year PheWAS:
 1. **patient**: `patient_id`, `sex_category`, `race_category`, `ethnicity_category`
 2. **hospitalization**: `patient_id`, `hospitalization_id`, `admission_dttm`, `discharge_dttm`, `age_at_admission`, `zipcode_five_digit`
 3. **microbiology_culture**: `patient_id`, `hospitalization_id`, `organism_id`, `order_dttm`, `collect_dttm`, `result_dttm`, `fluid_name`, `fluid_category`, `method_name`, `method_category`, `organism_name`, `organism_category`, `organism_group`
 
 Additional tables such as `adt`, `respiratory_support`, `labs`, `vitals`, `hospital_diagnosis`, and medication tables are used only by the legacy restricted-cohort workflows.
 
-## Exposure Data
+## Legacy exposure data
 
 The current PheWAS workflow uses ZCTA-level exposure parquet files linked by `hospitalization.zipcode_five_digit` and the calendar year before admission. Set `zcta_exposure_dir` in `config/config.json` to a directory containing:
 
@@ -93,7 +109,7 @@ The legacy county-level scripts produce:
 
 See [`docs/project_spec.md`](docs/project_spec.md) for the full working analysis plan.
 
-## Detailed Instructions for running the project
+## Legacy PheWAS run instructions
 
 ### 1. Update `config/config.json`
 
@@ -129,9 +145,6 @@ Detailed workflow instructions are provided in the [code directory](code/README.
 
 Do not commit patient-level CLIF tables, site configs, or unsuppressed site-derived outputs. The local exploratory output files can remain in `output/`, but they should be reviewed for sharing rules before being pushed or distributed.
 
-## Next Steps
+## Next steps
 
-1. Buddy test the PheWAS workflow at another CLIF site.
-2. Add multi-site pooled models with site fixed or random effects.
-3. Add sensitivity analyses for lower respiratory specimens only, first 48 hours of hospital admission, pneumonia, sepsis, and severe hypoxemic respiratory failure.
-4. Add covariates such as smoking proxies, season, admission source, and neighborhood vulnerability measures where available.
+Run the synthetic smoke test, then execute the frozen buddy protocol at another CLIF site. Review source mapping, coverage, sparse fits and simulation error rates locally before releasing institutionally approved aggregate outputs. Development calibration has identified excess null rejection in some scenarios; inferential validity remains an explicit research task.
