@@ -55,7 +55,7 @@ acs_files <- list.files(acs_dir,full.names=TRUE)
 write_json(list(source='synthetic',acs_year=2017,bundled_files_sha256=as.list(setNames(vapply(acs_files,function(f)
  digest::digest(file=f,algo='sha256'),character(1)),basename(acs_files)))),file.path(acs_dir,'manifest.json'),auto_unbox=TRUE)
 config_file <- file.path(root,'config.json')
-write_json(list(site_name='SYNTHETIC',tables_path=tables,file_type='parquet',site_timezone='America/Chicago'),config_file,auto_unbox=TRUE)
+write_json(list(site_name='SYNTHETIC',tables_path=tables,file_type='parquet'),config_file,auto_unbox=TRUE)
 Sys.setenv(CLIF_CONFIG_PATH=config_file,MWAS_RUN_ID=run_id,MWAS_RUN_DIR=run_dir,MWAS_EXPOSURE_CACHE=cache,
  MWAS_ACS_DIR=acs_dir,MWAS_SKIP_SEVERITY='1',MWAS_EXPOSURES_ONLY='1',MWAS_START_DATE='2020-01-01',MWAS_END_DATE='2020-12-31',
  MWAS_SIM_REPS='2',MWAS_SIM_SIZES='12,100',MWAS_SIM_WINDOWS='7')

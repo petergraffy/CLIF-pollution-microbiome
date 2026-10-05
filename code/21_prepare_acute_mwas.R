@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 suppressPackageStartupMessages({library(arrow);library(dplyr);library(data.table);library(jsonlite);library(comorbidity)})
 source('utils/clif_io.R'); source('utils/mwas.R')
+if(!nzchar(Sys.getenv('MWAS_SKIP_SEVERITY')))Sys.setenv(MWAS_SKIP_SEVERITY=if(isTRUE(config$derive_sofa))'0' else '1')
 site_tz <- config_value(config,'site_timezone',env='MWAS_TIMEZONE',default='America/Chicago')
 start_date <- as.Date(Sys.getenv('MWAS_START_DATE','2018-01-01'))
 end_date <- as.Date(Sys.getenv('MWAS_END_DATE','2024-12-31'))

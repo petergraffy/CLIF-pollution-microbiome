@@ -8,7 +8,12 @@ load_config <- function(config_path = Sys.getenv("CLIF_CONFIG_PATH", unset = "co
                         required = TRUE) {
   if (file.exists(config_path)) {
     message("Loaded configuration from ", config_path)
-    return(jsonlite::fromJSON(config_path))
+    site_config <- jsonlite::fromJSON(config_path)
+    # Shared protocol defaults are supplied centrally, not entered by each site.
+    defaults <- list(site_timezone = "America/Chicago",
+                     mwas_exposure_cache = "data/public/exposures",
+                     mwas_acs_dir = "data/public/acs/2017", derive_sofa = FALSE)
+    return(utils::modifyList(defaults, site_config))
   }
 
   if (required) {

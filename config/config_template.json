@@ -2,8 +2,5 @@
     "site_name": "Your_Site_Name",
     "tables_path": "/path/to/tables/",
     "file_type": "parquet",
-    "site_timezone": "America/Chicago",
-    "mwas_exposure_cache": "data/public/exposures",
-    "mwas_acs_dir": "data/public/acs/2017",
-    "derive_sofa": false
+    "site_timezone": "America/Chicago"
 }

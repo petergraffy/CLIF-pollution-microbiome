@@ -2,6 +2,17 @@ suppressPackageStartupMessages({library(data.table);library(jsonlite);library(di
 source('utils/public_data.R');source('utils/exports.R')
 main <- function() {
  root <- tempfile('site-workflow-test-');dir.create(root);on.exit(unlink(root,recursive=TRUE),add=TRUE)
+ # Minimal site configuration gets the same standard settings as the full runner.
+ config_path <- file.path(root,'config.json')
+ write_json(list(site_name='SYNTHETIC',tables_path=root,file_type='parquet'),config_path,auto_unbox=TRUE)
+ previous <- Sys.getenv('CLIF_CONFIG_PATH',unset=NA_character_)
+ on.exit(if(is.na(previous))Sys.unsetenv('CLIF_CONFIG_PATH') else Sys.setenv(CLIF_CONFIG_PATH=previous),add=TRUE)
+ Sys.setenv(CLIF_CONFIG_PATH=config_path)
+ source('utils/config.R',local=TRUE)
+ stopifnot(config$site_timezone=='America/Chicago',config$mwas_exposure_cache=='data/public/exposures',
+           config$mwas_acs_dir=='data/public/acs/2017',identical(config$derive_sofa,FALSE))
+ write_json(list(site_name='SYNTHETIC',tables_path=root,file_type='parquet',site_timezone='America/New_York'),config_path,auto_unbox=TRUE)
+ stopifnot(load_config(config_path)$site_timezone=='America/New_York')
  # Curated export must exclude nearby private files and reject identifiers in an allowlisted CSV.
  run <- file.path(root,'run');dir.create(file.path(run,'federated'),recursive=TRUE);dir.create(file.path(run,'private'))
  writeLines('DO NOT EXPORT',file.path(run,'private','cohort.rds'))

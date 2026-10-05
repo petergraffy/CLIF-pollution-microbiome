@@ -29,7 +29,11 @@ The project environment activates automatically through `.Rprofile`. Restore onc
 cp config/config_template.json config/config.json
 ```
 
-Edit `site_name`, `tables_path` and `site_timezone`. Keep the public-data paths and `file_type="parquet"` defaults. The local config is ignored by Git. Set `derive_sofa=true` if the additional physiology tables are available; otherwise SOFA interactions are explicitly unavailable.
+Fill in `site_name`, `tables_path` and `file_type` (`parquet` for the current site pipeline). The local config is ignored by Git.
+
+`site_timezone` defaults to `America/Chicago` (Central time). If your hospital is elsewhere, use its IANA time zone: `America/New_York` (Eastern), `America/Denver` (Mountain), `America/Los_Angeles` (Pacific), or `America/Phoenix` (Arizona). Use the hospital/data timestamp time zone, not your computer’s location; do not use abbreviations such as CST or EST. These names account for applicable daylight saving time.
+
+All other settings use the shared protocol defaults, including bundled public-data paths and the first pilot’s disabled optional SOFA derivation.
 
 ### 4. Run the pipeline
 
@@ -59,7 +63,7 @@ Optional synthetic check: `Rscript code/35_buddy_smoke_test.R`. To resume a fail
 - Table 1, annual site characteristics, culture practices, antibiotic timing and descriptive outcomes.
 - Site estimates and compatible aggregate meta-analysis, with prespecified hypothesis families and failed-model tracking.
 
-Severity and SES enter as pollution interactions. Their admission-level main effects cancel in self-matched models. SOFA totals require all six observed domains; optional physiology derivation is disabled in the default first buddy pilot. Set `derive_sofa=true` in the site config to enable it.
+Severity and SES enter as pollution interactions. Their admission-level main effects cancel in self-matched models. SOFA totals require all six observed domains; optional physiology derivation is disabled in the default first buddy pilot. Enabling optional SOFA derivation is a coordinated protocol choice, not a required site configuration step.
 
 ## Bundled public inputs
 

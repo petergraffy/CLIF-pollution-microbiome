@@ -32,7 +32,8 @@ Use R 4.4.2 and the repository root. Restore packages separately, configure your
 ```sh
 Rscript -e 'renv::restore(prompt = FALSE)'
 cp config/config_template.json config/config.json
-# Edit site_name, tables_path and site_timezone.
+# Fill in site_name, tables_path and file_type.
+# Change site_timezone only if the hospital is outside Central time.
 Rscript code/00_run_pipeline.R
 ```
 
@@ -40,7 +41,7 @@ The runner validates bundled public files in R and prints the completed `output/
 
 `Rscript code/35_buddy_smoke_test.R` tests the R workflow on synthetic inputs, including the main entry point and export. Python scripts are optional maintainer tools; rebuilding data needs the pinned PyArrow dependency, while normal site analysis requires no Python.
 
-Set `derive_sofa=true` in config to enable physiology derivation. To resume: `Rscript code/00_run_pipeline.R --resume --run-id EXISTING_RUN_ID`. Script 34 remains the underlying orchestrator; users need only the 00 entry point.
+Public inputs and optional physiology derivation use shared defaults; sites do not need to configure these. See [config guidance](../config/README.md) for hospital time zones. To resume: `Rscript code/00_run_pipeline.R --resume --run-id EXISTING_RUN_ID`. Script 34 remains the underlying orchestrator; users need only the 00 entry point.
 
 To export an already completed working run, set `MWAS_RUN_DIR` and run `Rscript code/07_prepare_site_exports.R`. Source/public-data archive tools are described in [the buddy guide](../docs/buddy_testing.md).
 
