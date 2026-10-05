@@ -2,14 +2,50 @@
 
 This repository implements an organism-wide association study of acute residential air pollution and respiratory culture-detected organisms in CLIF 2.1. It uses a time-stratified case-crossover design and exports aggregate estimates for federated meta-analysis. Clinical cultures do not measure the complete sequencing-based respiratory microbiome.
 
-## Start here
+## Quick start for sites
 
-1. Follow the [buddy-site installation and analysis guide](docs/buddy_testing.md).
-2. Run `Rscript code/35_buddy_smoke_test.R` using synthetic data.
-3. Copy `config/config_template.json` to the ignored `config/config.json` and set site name, CLIF table path and timezone.
-4. Set a new `MWAS_RUN_ID`, then run `Rscript code/34_run_buddy_site.R`.
+Use **R 4.4.2**, the version pinned in `renv.lock`. Run all commands from the repository root.
 
-The [script inventory](code/README.md) lists only the current workflow. Older county-level, prior-year PheWAS, grant-figure and template scripts were removed from `code/`; they remain recoverable in Git history.
+### 1. Clone the repository
+
+```sh
+git clone https://github.com/petergraffy/CLIF-pollution-microbiome.git
+cd CLIF-pollution-microbiome
+```
+
+The clone includes the nationwide pollution, weather and ACS files (about 1.7 GB). Normal site runs require only R.
+
+### 2. Restore the R environment
+
+```sh
+Rscript -e 'renv::restore(prompt = FALSE)'
+```
+
+The project environment activates automatically through `.Rprofile`. Restore once before the first run and again after an update changes `renv.lock`. The analysis pipeline does not install packages.
+
+### 3. Configure your site
+
+```sh
+cp config/config_template.json config/config.json
+```
+
+Edit `site_name`, `tables_path` and `site_timezone`. Keep the public-data paths and `file_type="parquet"` defaults. The local config is ignored by Git. Set `derive_sofa=true` if the additional physiology tables are available; otherwise SOFA interactions are explicitly unavailable.
+
+### 4. Run the pipeline
+
+```sh
+Rscript code/00_run_pipeline.R
+```
+
+The pipeline checks the pinned packages, CLIF schemas and bundled data, creates a unique run, then performs cohort preparation, exposure linkage, Table 1/annual summaries, all models, diagnostics, local pooling and reporting. No Python setup or environmental download is needed.
+
+### 5. Review and return results
+
+The final message identifies the completed **`output/runs/<run_id>/`** folder. Open its `federated/report.html`, review coverage, culture mapping, missingness, sparse fits and calibration diagnostics, and check the empty `privacy_audit.csv`. After institutional disclosure review, return that one aggregate-only folder.
+
+Patient-level working files remain in ignored `output/mwas/<run_id>/private/`. Do not return the working run, config, caches or logs. Small aggregate cells are not automatically suppressed; the export audit checks structured identifier fields and does not replace institutional review.
+
+Optional synthetic check: `Rscript code/35_buddy_smoke_test.R`. To resume a failed run, use `Rscript code/00_run_pipeline.R --resume --run-id EXISTING_RUN_ID`. See [the buddy guide](docs/buddy_testing.md) and [script inventory](code/README.md) for details.
 
 ## Scientific definitions
 
@@ -23,7 +59,7 @@ The [script inventory](code/README.md) lists only the current workflow. Older co
 - Table 1, annual site characteristics, culture practices, antibiotic timing and descriptive outcomes.
 - Site estimates and compatible aggregate meta-analysis, with prespecified hypothesis families and failed-model tracking.
 
-Severity and SES enter as pollution interactions. Their admission-level main effects cancel in self-matched models. SOFA totals require all six observed domains; optional physiology derivation is disabled in the default first buddy pilot. Set `MWAS_SKIP_SEVERITY=0` to enable it.
+Severity and SES enter as pollution interactions. Their admission-level main effects cancel in self-matched models. SOFA totals require all six observed domains; optional physiology derivation is disabled in the default first buddy pilot. Set `derive_sofa=true` in the site config to enable it.
 
 ## Bundled public inputs
 

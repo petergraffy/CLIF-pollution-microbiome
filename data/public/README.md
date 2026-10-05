@@ -40,7 +40,7 @@ python3 code/22_cache_mwas_exposures.py
 python3 code/26_cache_acs_zcta_ses.py
 ```
 
-These commands only validate finished bundled files. Missing/corrupt files cause an error; the site runner never silently replaces them with network downloads.
+These are optional Python maintainer checks. The ordinary `Rscript code/00_run_pipeline.R` validates the same SHA256 manifests directly in R, without Python. These commands only validate finished bundled files. Missing/corrupt files cause an error; the site runner never silently replaces them with network downloads.
 
 To intentionally rebuild public data with the pinned Python environment:
 

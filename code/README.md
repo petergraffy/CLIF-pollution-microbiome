@@ -4,6 +4,8 @@ Run from the repository root. The complete installation, scientific definitions 
 
 | Script | Purpose |
 |---|---|
+| `00_run_pipeline.R` | Recommended single-command site entry point |
+| `07_prepare_site_exports.R` | Curated aggregate-only return folder, structural privacy audit and checksums |
 | `21_prepare_acute_mwas.R` | Early-ICU cohort, respiratory culture episodes, named detections, antibiotic history, Charlson and optional modified SOFA |
 | `22_cache_mwas_exposures.py` | Offline checksum validation of bundled nationwide exposures; explicit `--download` maintainer rebuild |
 | `23_run_acute_mwas.R` | Calendar reference dates, local public exposure linkage, exact 3/7/14/28-day means and coverage QC; prepares exposures only |
@@ -25,16 +27,22 @@ Number gaps preserve familiar script names and references. Legacy county-level/S
 
 ## Run
 
-```bash
-export MWAS_RUN_ID=MY_SITE_first_pass
-export MWAS_PYTHON="$(pwd)/.venv-buddy/bin/python"
-Rscript code/35_buddy_smoke_test.R
-Rscript code/34_run_buddy_site.R
+Use R 4.4.2 and the repository root. Restore packages separately, configure your site, then run:
+
+```sh
+Rscript -e 'renv::restore(prompt = FALSE)'
+cp config/config_template.json config/config.json
+# Edit site_name, tables_path and site_timezone.
+Rscript code/00_run_pipeline.R
 ```
 
-The runner validates `data/public/exposures/manifest.json` and `data/public/acs/2017/manifest.json` offline. Environmental files are already downloaded. Public-data rebuild commands and definitions are in [data/public/README.md](../data/public/README.md). Source reads use Arrow filters to load only required ZIPs into local memory; those selections remain private.
+The runner validates bundled public files in R and prints the completed `output/runs/<run_id>/` aggregate-only folder. Review `federated/report.html`, `privacy_audit.csv` and small cells before sharing. Private working files remain under `output/mwas/<run_id>/private/`.
 
-To enable six-/24-hour modified SOFA, set `MWAS_SKIP_SEVERITY=0` before a fresh run. `MWAS_EXPOSURE_CACHE` and `MWAS_ACS_DIR` deliberately override bundled paths. Generated output is `output/mwas/<run ID>/`; do not publish its private data or unreviewed aggregates.
+`Rscript code/35_buddy_smoke_test.R` tests the R workflow on synthetic inputs, including the main entry point and export. Python scripts are optional maintainer tools; rebuilding data needs the pinned PyArrow dependency, while normal site analysis requires no Python.
+
+Set `derive_sofa=true` in config to enable physiology derivation. To resume: `Rscript code/00_run_pipeline.R --resume --run-id EXISTING_RUN_ID`. Script 34 remains the underlying orchestrator; users need only the 00 entry point.
+
+To export an already completed working run, set `MWAS_RUN_DIR` and run `Rscript code/07_prepare_site_exports.R`. Source/public-data archive tools are described in [the buddy guide](../docs/buddy_testing.md).
 
 ## Coordinator
 

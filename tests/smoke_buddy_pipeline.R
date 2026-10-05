@@ -1,5 +1,5 @@
 # Entire local site pipeline on synthetic CLIF/ACS/exposure tables; no network.
-suppressPackageStartupMessages({library(data.table);library(arrow);library(jsonlite)})
+suppressPackageStartupMessages({library(data.table);library(arrow);library(jsonlite);library(digest)})
 main <- function() {
 set.seed(881)
 root <- tempfile('clif-buddy-');dir.create(root);tables <- file.path(root,'tables');dir.create(tables)
@@ -32,14 +32,28 @@ days <- seq(as.Date('2019-01-01'),as.Date('2021-12-31'),by='day')
 env <- CJ(zip=c('01001','01002','01003'),date=days)
 env[,`:=`(pm25_ug_m3=exp(rnorm(.N,2,.35)),o3_ppb=30+10*sin(as.numeric(date)/365*2*pi)+rnorm(.N,0,3),
  tmean_c=10+15*sin(as.numeric(date)/365*2*pi)+rnorm(.N),rhmean_pct=50+rnorm(.N,0,5),value_source='synthetic',fill_distance_m=0)]
+exposure_records <- list()
 for(product in c('pm25','o3','weather')) {
  folder <- file.path(cache,product);dir.create(folder)
- arrow::write_parquet(env,file.path(folder,'synthetic.parquet'))
+ cols <- switch(product,pm25=c('zip','date','pm25_ug_m3','value_source','fill_distance_m'),
+  o3=c('zip','date','o3_ppb','value_source','fill_distance_m'),weather=c('zip','date','tmean_c','rhmean_pct'))
+ for(month in seq(as.Date('2019-12-01'),as.Date('2020-12-01'),by='month')) {
+  start <- as.Date(month,origin='1970-01-01');year <- as.integer(format(start,'%Y'));mm <- as.integer(format(start,'%m'))
+  relative <- sprintf('%s/%s_%d_%02d.parquet',product,product,year,mm);file <- file.path(cache,relative)
+  arrow::write_parquet(env[format(date,'%Y-%m')==format(start,'%Y-%m'),..cols],file)
+  exposure_records[[length(exposure_records)+1L]] <- list(product=product,year=year,month=mm,path=relative,
+   sha256=digest::digest(file=file,algo='sha256'))
+ }
 }
+write_json(list(scope='national_public_no_clinical_filter',files=exposure_records),file.path(cache,'manifest.json'),auto_unbox=TRUE)
 acs_dir <- file.path(root,'acs');dir.create(acs_dir)
 fwrite(data.table(zcta=c('01001','01002','01003'),acs_year=2017,poverty_pct=c(10,20,30),
  no_high_school_pct=c(10,15,20),unemployment_pct=c(4,7,10),median_household_income=c(30000,50000,70000),crowding_pct=c(1,2,3)),file.path(acs_dir,'zcta_ses.csv'))
-write_json(list(source='synthetic',acs_year=2017),file.path(acs_dir,'manifest.json'),auto_unbox=TRUE)
+fwrite(data.table(zcta='01001'),file.path(acs_dir,'acs_variables.csv'))
+for(table in c('B17001','B15003','B23025','B19013','B25014'))writeLines('{}',file.path(acs_dir,paste0(table,'_metadata.json')))
+acs_files <- list.files(acs_dir,full.names=TRUE)
+write_json(list(source='synthetic',acs_year=2017,bundled_files_sha256=as.list(setNames(vapply(acs_files,function(f)
+ digest::digest(file=f,algo='sha256'),character(1)),basename(acs_files)))),file.path(acs_dir,'manifest.json'),auto_unbox=TRUE)
 config_file <- file.path(root,'config.json')
 write_json(list(site_name='SYNTHETIC',tables_path=tables,file_type='parquet',site_timezone='America/Chicago'),config_file,auto_unbox=TRUE)
 Sys.setenv(CLIF_CONFIG_PATH=config_file,MWAS_RUN_ID=run_id,MWAS_RUN_DIR=run_dir,MWAS_EXPOSURE_CACHE=cache,
@@ -53,7 +67,11 @@ run <- function(script,args=character()) {
 }
 old_latest <- if(file.exists('output/mwas/latest_run.txt'))readLines('output/mwas/latest_run.txt') else NULL
 on.exit({if(!is.null(old_latest))writeLines(old_latest,'output/mwas/latest_run.txt') else unlink('output/mwas/latest_run.txt');unlink(run_dir,recursive=TRUE);unlink(root,recursive=TRUE)},add=TRUE)
-for(script in c('code/33_site_preflight.R','code/21_prepare_acute_mwas.R','code/23_run_acute_mwas.R','code/37_site_characteristics.R','code/27_run_federated_mwas.R','code/31_shared_exposure_checks.R'))run(script)
+run('code/00_run_pipeline.R')
+export_dir <- file.path('output','runs',run_id)
+on.exit(unlink(export_dir,recursive=TRUE),add=TRUE)
+stopifnot(file.exists(file.path(export_dir,'export_manifest.json')),nrow(fread(file.path(export_dir,'privacy_audit.csv')))==0,
+ !any(grepl('private|[.]rds$',list.files(export_dir,recursive=TRUE))))
 bundle <- readRDS(file.path(run_dir,'private','cohort.rds'))
 stopifnot(nrow(bundle$cohort)==395,all(is.na(bundle$cohort$sofa_24h_total)))
  t1 <- fread(file.path(run_dir,'federated','table1_long.csv'))
@@ -62,15 +80,11 @@ stopifnot(nrow(bundle$cohort)==395,all(is.na(bundle$cohort$sofa_24h_total)))
  stopifnot(annual[cohort=='clif_hospitalization_records',n_admissions]==400,
  annual[cohort=='early_icu_valid_zip',n_admissions]==395,
  !any(c('patient_id','hospitalization_id','zip','date') %in% names(annual)))
-pool <- file.path(run_dir,'federated','pool_local');Sys.setenv(MWAS_POOL_DIR=pool)
-run('code/28_pool_federated_mwas.R',c(pool,file.path(run_dir,'federated','site_estimates.csv'),file.path(run_dir,'federated','shared_exposure_estimates.csv')))
-run('code/38_audit_modifier_support.R')
+pool <- file.path(run_dir,'federated','pool_local')
  support <- fread(file.path(run_dir,'federated','modifier_case_support.csv'))
  stopifnot(!any(c('patient_id','hospitalization_id','zip','date') %in% names(support)))
  check_n <- merge(support,estimates <- fread(file.path(run_dir,'federated','site_estimates.csv'))[startsWith(analysis,'modifier:') & term=='pollution_modifier',.(organism,pollutant,analysis,exposure_window,n_events)],by=c('organism','pollutant','analysis','exposure_window'))
  stopifnot(all(check_n$n_events_with_modifier==check_n$n_events))
-run('code/32_calibrate_mwas.R')
-run('code/29_report_federated_mwas.R')
 source('utils/mwas_characteristics.R')
 est <- fread(file.path(run_dir,'federated','site_estimates.csv'))
 stopifnot(!any(c('patient_id','hospitalization_id','zip','date') %in% names(est)),

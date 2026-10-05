@@ -51,3 +51,7 @@ renv/buddy-library/
 # Public-data rebuilds use temporary download files; only finished national bundles are tracked.
 data/public/**/*.partial
 data/public/exposures/national-public-*/
+
+# Pinned R activation is part of the site setup.
+!.Rprofile
+output/runs/

@@ -2,47 +2,52 @@
 
 This is a development protocol for a second CLIF 2.1 site. It tests portability, culture capture, inference and aggregate pooling. Clinical cultures measure detected organisms, not sequencing-based microbiome composition. No patient records leave the site.
 
-## Install and test before opening clinical data
+## Site quick start
 
-Use the repository root as the working directory. Tested with R 4.4.2 and Python with PyArrow 21.0.0. The dedicated `renv/buddy.lock` pins the tested R packages independently of the older workflow. Install R 4.4.2, Python 3.10+ and command-line curl. Internet is needed for dependency installation or obtaining the repository. National pollution, weather and ACS inputs are already bundled under `data/public/`; normal site analysis validates and reads these files without downloading environmental data.
+Use **R 4.4.2** and the repository root as the working directory. The ordinary site pipeline is R-only. Python/PyArrow are maintainer tools for rebuilding public data or packaging archives, not site-run prerequisites.
 
-```bash
-mkdir -p renv/buddy-library
-export R_LIBS_USER="$(pwd)/renv/buddy-library"
-Rscript -e 'if (!requireNamespace("renv",quietly=TRUE)) install.packages("renv",repos="https://cloud.r-project.org"); renv::restore(lockfile="renv/buddy.lock",library=Sys.getenv("R_LIBS_USER"),prompt=FALSE)'
-python3 -m venv .venv-buddy
-. .venv-buddy/bin/activate
-python -m pip install -r requirements-buddy.txt
-export MWAS_PYTHON="$(pwd)/.venv-buddy/bin/python"
+```sh
+git clone https://github.com/petergraffy/CLIF-pollution-microbiome.git
+cd CLIF-pollution-microbiome
+Rscript -e 'renv::restore(prompt = FALSE)'
+cp config/config_template.json config/config.json
+```
+
+Edit `site_name`, `tables_path` and `site_timezone`. Keep the bundled public-data paths and Parquet file type. `CLIF_CONFIG_PATH` can select an alternate local config. R packages are pinned in the single `renv.lock`; `.Rprofile` activates the environment automatically. Package restoration is a setup step and never happens inside the analysis pipeline. After changing the lockfile, restore again.
+
+Required tables: patient, hospitalization, adt, microbiology_culture, medication_admin_intermittent and hospital_diagnosis. Confirm actual calendar dates, correct timestamp timezone interpretation and residential ZIP. The first pilot defaults to `derive_sofa=false`. Set it to `true` if labs, vitals, respiratory_support, patient_assessments and medication_admin_continuous are available. Complete six-domain SOFA totals are required; missing/skipped scores do not become normal scores. Six-hour SOFA is the primary acute modifier and 24-hour SOFA a sensitivity, both measured after ICU entry.
+
+Optional synthetic R check before clinical data:
+
+```sh
 Rscript code/35_buddy_smoke_test.R
 ```
 
-The smoke test uses synthetic CLIF, exposures and ACS; it needs neither clinical data nor network access. It checks calendar matching, antibiotic order, severity definitions, exposure completeness, known-effect recovery, covariance, the full site pipeline, two-site aggregation, incompatible protocols and duplicate-site rejection. It cleans its temporary synthetic output and restores the local latest-run pointer even after failure.
+Run everything with:
 
-## Configure the site
-
-Copy `config/config_template.json` to `config/config.json`. Set a unique `site_name`, `tables_path`, `file_type="parquet"` and the hospital's IANA `site_timezone` (for example `America/Chicago`). Paths may contain spaces. `CLIF_CONFIG_PATH` can point to an alternate config. Never distribute the completed site config.
-
-Required core tables are patient, hospitalization, adt, microbiology_culture, medication_admin_intermittent and hospital_diagnosis. Patient requires patient_id, sex_category and race_category; hospitalization additionally requires discharge_category. Ethnicity and admission type are used descriptively when available. Exact required fields are checked by:
-
-```bash
-Rscript code/33_site_preflight.R
+```sh
+Rscript code/00_run_pipeline.R
 ```
 
-Confirm actual, unshifted calendar dates with the data steward. Verify whether timestamps are stored in UTC or with correct offsets; timezone-naive local timestamps need correct ETL interpretation before execution. Residence ZIP must be the available home ZIP, not the hospital ZIP. The first pilot skips SOFA to avoid requiring physiological tables; Charlson remains available from POA diagnoses. Set `MWAS_SKIP_SEVERITY=0` for the existing full modified SOFA derivation, requiring its additional CLIF tables. SOFA is a post-entry summary and is used for effect modification. The first 6-hour score is the primary acute-severity modifier, with the first 24-hour score a sensitivity. SOFA is derived for admissions with an eligible culture within 72 ICU hours; complete totals require all six domains. Skipped/missing scores yield explicit unavailable or failed modifier models, rather than normal scores.
+The runner creates a unique site/timestamp run ID, checks dependencies/schemas, validates national input SHA256 checksums, then runs the cohort, exposure matching, characteristics, models, count checks, local pooling, calibration, sparse audits, report and curated export. Study dates stay fixed at 2018–2024. Bundled daily inputs include December 2017 for the maximum lookback. Normal runs make no environmental network requests.
 
-## Run locally
+The final message prints **`output/runs/<run_id>/`**, the aggregate-only return folder. Open `federated/report.html`, review the diagnostics and empty `privacy_audit.csv`, and apply institutional small-cell/disclosure rules before returning that folder. `export_manifest.json` records file checksums and release-review status. No transmission happens automatically.
 
-Use the same 2018-01-01 through 2024-12-31 admission period and ACS vintage at every site. Availability can differ; retain coverage QC. Do not alter scientific defaults to improve significance.
+Patient-level working files and local diagnostics remain under ignored `output/mwas/<run_id>/`; never return that entire directory. The export uses an explicit allowlist, rejects identifier columns/JSON keys and excludes private files, raw linkage, local configuration and clinical logs. This structural audit is not a comprehensive de-identification guarantee.
 
-```bash
-export MWAS_RUN_ID=MY_SITE_buddy_v1
-Rscript code/34_run_buddy_site.R > buddy_run.log 2>&1
+After a failed stage:
+
+```sh
+Rscript code/00_run_pipeline.R --resume --run-id EXISTING_RUN_ID
 ```
 
-Choose a filesystem-safe run ID using letters, numbers, underscores or hyphens. A fresh run refuses to overwrite an existing cohort. After a failed stage, `Rscript code/34_run_buddy_site.R --resume` reuses the prepared cohort and public caches, then recomputes models. If clinical inputs or preparation code change, use a fresh run ID. The public bundle is nationwide and independent of clinical ZIPs. It includes daily PM2.5, ozone and weather for December 2017–December 2024, partitioned into monthly Parquet files, plus the national 2013–2017 ACS indicators and raw required estimates/MOEs. `MWAS_EXPOSURE_CACHE` and `MWAS_ACS_DIR` override the bundled paths only for a deliberate alternate bundle. Ordinary site runs make no environmental network requests. See [public-data provenance and rebuild commands](../data/public/README.md).
+Resume reuses the prepared cohort and recomputes analysis stages. Start a fresh run after clinical inputs or preparation definitions change. To prepare exports from an already completed working run without rerunning models:
 
-Outputs live under `output/mwas/<run ID>/`. Open `federated/report.html` locally. The runner executes preflight, cohort preparation, daily exposure/ACS caching, Table 1 and annual characteristics, all organism models, shared-exposure checks, local aggregation, simulation calibration, sparse-candidate audit and report generation. It performs no publication or external data submission.
+```sh
+MWAS_RUN_DIR=output/mwas/EXISTING_RUN_ID Rscript code/07_prepare_site_exports.R
+```
+
+An existing export destination is never overwritten. `MWAS_EXPORT_DIR` can select a new destination. `MWAS_EXPOSURE_CACHE` and `MWAS_ACS_DIR` remain advanced overrides for deliberate alternate public bundles. See [public-data provenance](../data/public/README.md).
 
 ## Frozen scientific definitions
 

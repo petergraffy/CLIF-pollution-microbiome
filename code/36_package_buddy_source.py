@@ -8,16 +8,16 @@ from pathlib import Path
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ['.gitattributes','.gitignore','config/.gitignore','renv/.gitignore','README.md','LICENSE','requirements-buddy.txt','renv/buddy.lock',
+BASE = ['.gitattributes','.gitignore','config/.gitignore','renv/.gitignore','README.md','LICENSE','requirements-buddy.txt','renv.lock','.Rprofile','renv/activate.R','renv/settings.json',
         'docs/buddy_testing.md','code/README.md','config/config_template.json','config/README.md',
         'data/public/README.md','resources/mwas/clif_intermittent_med_categories.csv','utils/config.R','utils/clif_io.R']
-SCRIPTS = ['21_prepare_acute_mwas.R','22_cache_mwas_exposures.py','23_run_acute_mwas.R','26_cache_acs_zcta_ses.py',
+SCRIPTS = ['00_run_pipeline.R','07_prepare_site_exports.R','21_prepare_acute_mwas.R','22_cache_mwas_exposures.py','23_run_acute_mwas.R','26_cache_acs_zcta_ses.py',
            '27_run_federated_mwas.R','28_pool_federated_mwas.R','29_report_federated_mwas.R','30_audit_duration_candidates.R',
            '31_shared_exposure_checks.R','32_calibrate_mwas.R','33_site_preflight.R','34_run_buddy_site.R',
            '35_buddy_smoke_test.R','36_package_buddy_source.py','37_site_characteristics.R','38_audit_modifier_support.R']
-UTILS = ['mwas.R','mwas_federated.R','mwas_poisson.R','mwas_power.R','mwas_severity.R','mwas_targets.R','mwas_characteristics.R']
+UTILS = ['mwas.R','mwas_federated.R','mwas_poisson.R','mwas_power.R','mwas_severity.R','mwas_targets.R','mwas_characteristics.R','public_data.R','environment.R','exports.R']
 TESTS = ['test_mwas.R','test_mwas_power.R','test_mwas_windows.R','test_mwas_federated.R','test_mwas_poisson.R',
-         'test_mwas_characteristics.R','test_acs_ses.py','test_public_data.py','smoke_buddy_pipeline.R']
+         'test_mwas_characteristics.R','test_site_workflow.R','test_acs_ses.py','test_public_data.py','smoke_buddy_pipeline.R']
 FILES = sorted(BASE + ['code/'+s for s in SCRIPTS] + ['utils/'+s for s in UTILS] + ['tests/'+s for s in TESTS])
 
 def digest(path):

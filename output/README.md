@@ -1,4 +1,7 @@
-# Local MWAS output
+# MWAS results and local working files
+
+The recommended pipeline prepares `output/runs/<run_id>/`, an aggregate-only return folder with `privacy_audit.csv`, `export_manifest.json` and `federated/report.html`. Review it under institutional disclosure rules, then share only that completed folder. Export destinations are never overwritten.
+
 
 Current runs are written to ignored `output/mwas/<run ID>/` directories. Older exploratory outputs may remain locally but are not used by the current workflow.
 
