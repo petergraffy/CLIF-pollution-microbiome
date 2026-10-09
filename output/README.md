@@ -1,5 +1,7 @@
 # MWAS results and local working files
 
+Only this README is tracked in Git. All generated outputs are ignored and must be shared through approved aggregate exports, not repository commits.
+
 The recommended pipeline prepares `output/runs/<run_id>/`, an aggregate-only return folder with `privacy_audit.csv`, `export_manifest.json` and `federated/report.html`. Review it under institutional disclosure rules, then share only that completed folder. Export destinations are never overwritten.
 
 

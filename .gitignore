@@ -55,3 +55,8 @@ data/public/exposures/national-public-*/
 # Pinned R activation is part of the site setup.
 !.Rprofile
 output/runs/
+
+# Keep every generated result local, regardless of filename or analysis version.
+/output/**
+!/output/README.md
+/data/intermediate/
