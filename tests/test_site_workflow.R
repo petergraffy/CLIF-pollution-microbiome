@@ -13,15 +13,31 @@ main <- function() {
            config$mwas_acs_dir=='data/public/acs/2017',identical(config$derive_sofa,FALSE))
  write_json(list(site_name='SYNTHETIC',tables_path=root,file_type='parquet',site_timezone='America/New_York'),config_path,auto_unbox=TRUE)
  stopifnot(load_config(config_path)$site_timezone=='America/New_York')
+ # A different recorded R version warns but does not reject matching packages.
+ source('utils/environment.R',local=TRUE)
+ lock <- read_json('renv.lock',simplifyVector=FALSE)
+ lock$R$Version <- '0.0.0'
+ lock_path <- file.path(root,'test.lock');write_json(lock,lock_path,auto_unbox=TRUE)
+ warnings <- character()
+ runtime <- withCallingHandlers(mwas_check_environment(lock_path),warning=function(w) {
+  warnings <<- c(warnings,conditionMessage(w));invokeRestart('muffleWarning')
+ })
+ stopifnot(runtime$r_version==as.character(getRversion()),!runtime$matches_reference_r,
+           any(grepl('R version differences do not block',warnings,fixed=TRUE)))
+ lock$Packages$jsonlite$Version <- '0.0.0';write_json(lock,lock_path,auto_unbox=TRUE)
+ bad_packages <- try(mwas_check_environment(lock_path),silent=TRUE)
+ stopifnot(inherits(bad_packages,'try-error'),grepl('Pinned R environment is incomplete',as.character(bad_packages),fixed=TRUE))
  # Curated export must exclude nearby private files and reject identifiers in an allowlisted CSV.
  run <- file.path(root,'run');dir.create(file.path(run,'federated'),recursive=TRUE);dir.create(file.path(run,'private'))
  writeLines('DO NOT EXPORT',file.path(run,'private','cohort.rds'))
+ write_json(runtime,file.path(run,'runtime_environment.json'),auto_unbox=TRUE)
  for(name in c('site_estimates.csv','shared_exposure_estimates.csv'))fwrite(data.table(site='SYNTHETIC',log_or=.1,se=.2),file.path(run,'federated',name))
  write_json(list(version='synthetic'),file.path(run,'federated','protocol.json'))
  fwrite(data.table(characteristic='Admissions',n=100),file.path(run,'federated','table1.csv'))
  writeLines('<html>Synthetic aggregates</html>',file.path(run,'federated','report.html'))
  out <- file.path(root,'export');mwas_prepare_exports(run,out)
  stopifnot(nrow(fread(file.path(out,'privacy_audit.csv')))==0,!any(grepl('private|cohort.rds',list.files(out,recursive=TRUE))))
+ stopifnot(read_json(file.path(out,'runtime_environment.json'))$r_version==as.character(getRversion()))
  manifest <- read_json(file.path(out,'export_manifest.json'))
  for(name in names(manifest$files_sha256))stopifnot(mwas_sha256(file.path(out,name))==manifest$files_sha256[[name]])
  fwrite(data.table(patient_id='synthetic_patient'),file.path(run,'federated','site_estimates.csv'))

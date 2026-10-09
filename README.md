@@ -4,7 +4,7 @@ This repository implements an organism-wide association study of acute residenti
 
 ## Quick start for sites
 
-Use **R 4.4.2**, the version pinned in `renv.lock`. Run all commands from the repository root.
+No exact R version is required. Use an installed R version capable of restoring the packages in `renv.lock`; the current package set requires R 4.4 or newer because of `Matrix`. R 4.4.2 is the tested reference version, not a mandatory site version. `renv::restore()` installs the pinned packages; it does not install or switch R itself. A different R version produces a warning rather than stopping the pipeline. Run the synthetic smoke test before clinical analysis, especially when using a different R version. Run all commands from the repository root.
 
 ### 1. Clone the repository
 
@@ -21,7 +21,7 @@ The clone includes the nationwide pollution, weather and ACS files (about 1.7 GB
 Rscript -e 'renv::restore(prompt = FALSE)'
 ```
 
-The project environment activates automatically through `.Rprofile`. Restore once before the first run and again after an update changes `renv.lock`. The analysis pipeline does not install packages.
+The project environment activates automatically through `.Rprofile`. Restore once before the first run and again after an update changes `renv.lock`. The analysis pipeline does not install packages. It exports the actual R version, platform and package versions in `runtime_environment.json`.
 
 ### 3. Configure your site
 

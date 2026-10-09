@@ -27,7 +27,7 @@ Number gaps preserve familiar script names and references. Legacy county-level/S
 
 ## Run
 
-Use R 4.4.2 and the repository root. Restore packages separately, configure your site, then run:
+No exact R version is required; R 4.4.2 is the tested reference. The installed R must support the pinned packages (currently R 4.4 or newer, required by `Matrix`). Run from the repository root. Restore packages separately, configure your site, then run:
 
 ```sh
 Rscript -e 'renv::restore(prompt = FALSE)'
@@ -37,7 +37,7 @@ cp config/config_template.json config/config.json
 Rscript code/00_run_pipeline.R
 ```
 
-The runner validates bundled public files in R and prints the completed `output/runs/<run_id>/` aggregate-only folder. Review `federated/report.html`, `privacy_audit.csv` and small cells before sharing. Private working files remain under `output/mwas/<run_id>/private/`.
+The runner checks pinned package versions, warns on a different R version, exports `runtime_environment.json`, validates bundled public files in R and prints the completed `output/runs/<run_id>/` aggregate-only folder. Review `federated/report.html`, `privacy_audit.csv` and small cells before sharing. Private working files remain under `output/mwas/<run_id>/private/`.
 
 `Rscript code/35_buddy_smoke_test.R` tests the R workflow on synthetic inputs, including the main entry point and export. Python scripts are optional maintainer tools; rebuilding data needs the pinned PyArrow dependency, while normal site analysis requires no Python.
 

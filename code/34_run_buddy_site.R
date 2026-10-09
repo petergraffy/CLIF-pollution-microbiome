@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # No external transmission. Resume cached stages with --resume; smoke is separate.
-source('utils/environment.R');mwas_check_environment()
+source('utils/environment.R');runtime <- mwas_check_environment()
 source('utils/config.R')
 source('utils/public_data.R')
 Sys.setenv(MWAS_EXPOSURE_CACHE=config_value(config,'mwas_exposure_cache',env='MWAS_EXPOSURE_CACHE',default='data/public/exposures'),
@@ -27,6 +27,7 @@ public <- mwas_validate_public_data(Sys.getenv('MWAS_EXPOSURE_CACHE'),Sys.getenv
  as.integer(substr(Sys.getenv('MWAS_START_DATE','2018-01-01'),1,4)),as.integer(substr(Sys.getenv('MWAS_END_DATE','2024-12-31'),1,4)))
 dir.create(run_dir,recursive=TRUE,showWarnings=FALSE)
 jsonlite::write_json(public,file.path(run_dir,'exposure_manifest.json'),pretty=TRUE,auto_unbox=TRUE)
+jsonlite::write_json(runtime,file.path(run_dir,'runtime_environment.json'),pretty=TRUE,auto_unbox=TRUE)
 if(!resume || !file.exists(file.path(run_dir,'private','cohort.rds')))run(rscript,'code/21_prepare_acute_mwas.R')
 run(rscript,'code/23_run_acute_mwas.R')
 run(rscript,'code/37_site_characteristics.R')

@@ -4,7 +4,7 @@ This is a development protocol for a second CLIF 2.1 site. It tests portability,
 
 ## Site quick start
 
-Use **R 4.4.2** and the repository root as the working directory. The ordinary site pipeline is R-only. Python/PyArrow are maintainer tools for rebuilding public data or packaging archives, not site-run prerequisites.
+No exact R version is required. Use an installed R version capable of restoring the packages in `renv.lock`; the current package set requires R 4.4 or newer because of `Matrix`. R 4.4.2 is the tested reference version, not a mandatory site version. `renv::restore()` installs the pinned packages; it does not install or switch R itself. A different R version produces a warning rather than stopping the pipeline. Run the synthetic smoke test before clinical analysis, especially when using a different R version. Use the repository root as the working directory. The ordinary site pipeline is R-only. Python/PyArrow are maintainer tools for rebuilding public data or packaging archives, not site-run prerequisites.
 
 ```sh
 git clone https://github.com/petergraffy/CLIF-pollution-microbiome.git
@@ -17,7 +17,7 @@ Fill in `site_name`, `tables_path` and `file_type` (`parquet` for the current si
 
 Required tables: patient, hospitalization, adt, microbiology_culture, medication_admin_intermittent and hospital_diagnosis. Confirm actual calendar dates, correct timestamp timezone interpretation and residential ZIP. Optional SOFA derivation is disabled in the standard first pilot. Enabling it requires a coordinated protocol choice and labs, vitals, respiratory_support, patient_assessments and medication_admin_continuous. Complete six-domain SOFA totals are required; missing/skipped scores do not become normal scores. Six-hour SOFA is the primary acute modifier and 24-hour SOFA a sensitivity, both measured after ICU entry.
 
-Optional synthetic R check before clinical data:
+Synthetic R compatibility check before clinical data:
 
 ```sh
 Rscript code/35_buddy_smoke_test.R
@@ -31,7 +31,7 @@ Rscript code/00_run_pipeline.R
 
 The runner creates a unique site/timestamp run ID, checks dependencies/schemas, validates national input SHA256 checksums, then runs the cohort, exposure matching, characteristics, models, count checks, local pooling, calibration, sparse audits, report and curated export. Study dates stay fixed at 2018–2024. Bundled daily inputs include December 2017 for the maximum lookback. Normal runs make no environmental network requests.
 
-The final message prints **`output/runs/<run_id>/`**, the aggregate-only return folder. Open `federated/report.html`, review the diagnostics and empty `privacy_audit.csv`, and apply institutional small-cell/disclosure rules before returning that folder. `export_manifest.json` records file checksums and release-review status. No transmission happens automatically.
+The final message prints **`output/runs/<run_id>/`**, the aggregate-only return folder. `runtime_environment.json` records the actual/reference R versions, platform and package versions without local paths. Package versions remain pinned; a matching package environment does not guarantee identical behavior across R versions or platforms. Open `federated/report.html`, review the diagnostics and empty `privacy_audit.csv`, and apply institutional small-cell/disclosure rules before returning that folder. `export_manifest.json` records file checksums and release-review status. No transmission happens automatically.
 
 Patient-level working files and local diagnostics remain under ignored `output/mwas/<run_id>/`; never return that entire directory. The export uses an explicit allowlist, rejects identifier columns/JSON keys and excludes private files, raw linkage, local configuration and clinical logs. This structural audit is not a comprehensive de-identification guarantee.
 

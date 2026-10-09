@@ -72,6 +72,9 @@ export_dir <- file.path('output','runs',run_id)
 on.exit(unlink(export_dir,recursive=TRUE),add=TRUE)
 stopifnot(file.exists(file.path(export_dir,'export_manifest.json')),nrow(fread(file.path(export_dir,'privacy_audit.csv')))==0,
  !any(grepl('private|[.]rds$',list.files(export_dir,recursive=TRUE))))
+runtime <- read_json(file.path(export_dir,'runtime_environment.json'))
+stopifnot(runtime$r_version==as.character(getRversion()),runtime$reference_r_version==read_json('renv.lock')$R$Version,
+ identical(runtime$package_versions$survival,packageDescription('survival')$Version))
 bundle <- readRDS(file.path(run_dir,'private','cohort.rds'))
 stopifnot(nrow(bundle$cohort)==395,all(is.na(bundle$cohort$sofa_24h_total)))
  t1 <- fread(file.path(run_dir,'federated','table1_long.csv'))

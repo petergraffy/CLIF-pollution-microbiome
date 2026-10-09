@@ -7,7 +7,7 @@ mwas_prepare_exports <- function(run_dir,destination) {
  'ses_registry.csv','ses_linkage_qc.csv','diagnosis_capture.csv','exposure_window_qc.csv','model_diagnostics.csv',
  'shared_exposure_diagnostics.csv','simulation_calibration.csv','calibration_review.csv',
  'report.html','annual_site_trends.png','duration_sensitivity_forest.png')
- files <- c(file.path('federated',federated),c('cohort_flow.csv','antibiotic_qc.csv','exposure_coverage.csv','exposure_fill_qc.csv'))
+ files <- c(file.path('federated',federated),c('cohort_flow.csv','antibiotic_qc.csv','exposure_coverage.csv','exposure_fill_qc.csv','runtime_environment.json'))
  required <- file.path('federated',c('site_estimates.csv','shared_exposure_estimates.csv','protocol.json','table1.csv','report.html'))
  if(!all(file.exists(file.path(run_dir,required))))stop('Run is incomplete: required aggregate results are missing')
  files <- files[file.exists(file.path(run_dir,files))]
