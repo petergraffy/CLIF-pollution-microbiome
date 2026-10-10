@@ -39,19 +39,26 @@ find_table_path <- function(tbl_base, tables_path = clif_tables_path, file_type 
     c("csv", "parquet", "fst")
   }
 
-  files <- list.files(tables_path, full.names = TRUE, recursive = TRUE)
-  files <- files[tolower(tools::file_ext(files)) %in% allowed_ext]
-  base <- tolower(tools::file_path_sans_ext(basename(files)))
-  base_norm <- ifelse(startsWith(base, "clif_"), base, paste0("clif_", base))
-  hit <- files[base_norm == wanted]
+  match_in <- function(recursive) {
+    files <- list.files(tables_path, full.names = TRUE, recursive = recursive)
+    files <- files[tolower(tools::file_ext(files)) %in% allowed_ext]
+    base <- tolower(tools::file_path_sans_ext(basename(files)))
+    base_norm <- ifelse(startsWith(base, "clif_"), base, paste0("clif_", base))
+    unique(normalizePath(files[base_norm == wanted]))
+  }
+
+  # only look in subfolders if the top level has no hit
+  hit <- match_in(recursive = FALSE)
+  if (length(hit) == 0) hit <- match_in(recursive = TRUE)
 
   if (length(hit) == 1) return(hit)
   if (required) {
-    stop("Could not uniquely locate ", wanted, " in ", tables_path, ". Matches: ", length(hit))
+    stop("Could not uniquely locate ", wanted, " in ", tables_path, ". Matches: ", length(hit),
+         if (length(hit)) paste0("\n  ", hit, collapse = "") else "")
   }
-
   NA_character_
 }
+
 
 read_tbl <- function(tbl_base, required = TRUE) {
   path <- find_table_path(tbl_base, required = required)
