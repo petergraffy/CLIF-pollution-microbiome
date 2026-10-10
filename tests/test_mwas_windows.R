@@ -20,3 +20,13 @@ d[stratum==3,pm25_lag1_28:=1]
 shared <- mwas_common_windows(d,'pm25')
 stopifnot(identical(shared$row_id,c(1L,2L)),uniqueN(mwas_common_windows(d,'pm25',7)$stratum)==3)
 cat('Window checks passed: exact means, complete daily coverage, identical referents, missing-case and constant-exposure exclusions.\n')
+
+# Missing weather must not select the primary analysis population.
+d <- data.table(stratum=rep(1:2,each=3),case=rep(c(1L,0L,0L),2),row_id=1:6,
+ tmean_lag1_7=c(NA,10,11,12,13,14),rhmean_lag1_7=50,holiday=0)
+for(w in c(3,7,14,28))d[,paste0('pm25_lag1_',w):=rep(1:3,2)]
+stopifnot(uniqueN(mwas_common_windows(d,'pm25')$stratum)==2,
+ uniqueN(mwas_common_windows(d,'pm25',weather_adjusted=TRUE)$stratum)==1)
+d[,c('tmean_lag1_7','rhmean_lag1_7'):=NULL]
+stopifnot(uniqueN(mwas_common_windows(d,'pm25')$stratum)==2)
+cat('Primary matching does not depend on weather availability.\n')

@@ -86,7 +86,7 @@ stopifnot(nrow(bundle$cohort)==395,all(is.na(bundle$cohort$sofa_24h_total)))
 pool <- file.path(run_dir,'federated','pool_local')
  support <- fread(file.path(run_dir,'federated','modifier_case_support.csv'))
  stopifnot(!any(c('patient_id','hospitalization_id','zip','date') %in% names(support)))
- check_n <- merge(support,estimates <- fread(file.path(run_dir,'federated','site_estimates.csv'))[startsWith(analysis,'modifier:') & term=='pollution_modifier',.(organism,pollutant,analysis,exposure_window,n_events)],by=c('organism','pollutant','analysis','exposure_window'))
+ check_n <- merge(support,estimates <- fread(file.path(run_dir,'federated','site_estimates.csv'))[startsWith(analysis,'modifier:') & term=='pollution_modifier',.(organism,pollutant,analysis,exposure_window,model_adjustment,n_events)],by=c('organism','pollutant','analysis','exposure_window','model_adjustment'))
  stopifnot(all(check_n$n_events_with_modifier==check_n$n_events))
 source('utils/mwas_characteristics.R')
 est <- fread(file.path(run_dir,'federated','site_estimates.csv'))
@@ -94,7 +94,16 @@ stopifnot(!any(c('patient_id','hospitalization_id','zip','date') %in% names(est)
  all(c('clinical:culture24','clinical:culture72','clinical:no_documented_antibiotics','clinical:pulmonary_sources','clinical:upper_airway_sources','selection_companion') %in% est$analysis),
  all(mwas_modifier_registry()$analysis %in% est$analysis),
  all(c('lag1_3','lag1_7','lag1_14','lag1_28') %in% est$exposure_window))
-stopifnot(!any(est[analysis=='modifier:sofa6',status]=='ok'))
+stopifnot(!any(est[analysis=='modifier:sofa6',status]=='ok'),
+ setequal(est$model_adjustment,c('primary_no_weather','weather_adjusted')),
+ all(grepl('_weather_sensitivity$',est[model_adjustment=='weather_adjusted',family])),
+ all(!grepl('_weather_sensitivity$',est[model_adjustment=='primary_no_weather',family])))
+protocol <- read_json(file.path(run_dir,'federated','protocol.json'))
+stopifnot(protocol$version=='acute_mwas_federated_v6_weather_sensitivity')
+qc <- fread(file.path(run_dir,'federated','exposure_window_qc.csv'))
+stopifnot(setequal(qc$model_adjustment,c('primary_no_weather','weather_adjusted')))
+sim <- fread(file.path(run_dir,'federated','simulation_calibration.csv'))
+stopifnot(setequal(sim$model_adjustment,c('primary_no_weather','weather_adjusted')))
  pooled <- fread(file.path(pool,'pooled_mwas.csv'))
  stopifnot(any(startsWith(pooled$analysis,'modifier:')),all(is.na(pooled[startsWith(analysis,'modifier:') & term=='pollution',q_value])))
 checks <- fread(file.path(run_dir,'federated','shared_exposure_diagnostics.csv'))

@@ -1,10 +1,11 @@
 # Conditional count likelihood plus separate variance checks. Calendar HAC sums
 # scores over all ZCTAs on each date; Bartlett weights use actual calendar lags.
 suppressPackageStartupMessages(library(data.table))
-mwas_count_design <- function(d,exposure,unit) {
+mwas_count_design <- function(d,exposure,unit,weather_adjusted=FALSE) {
  d <- copy(d);d[,x:=get(exposure)/unit]
- stopifnot(all(is.finite(d$x)),all(is.finite(d$tmean_lag1_7)),all(is.finite(d$rhmean_lag1_7)))
- X <- model.matrix(~x+splines::ns(tmean_lag1_7,3)+splines::ns(rhmean_lag1_7,3)+holiday,d)[,-1,drop=FALSE]
+ stopifnot(all(is.finite(d$x)),!anyNA(d$holiday))
+ if(weather_adjusted)stopifnot(all(is.finite(d$tmean_lag1_7)),all(is.finite(d$rhmean_lag1_7)))
+ X <- model.matrix(mwas_model_formula(weather_adjusted=weather_adjusted,conditional=FALSE),d)[,-1,drop=FALSE]
  # Preserve exact candidate-date sets, including exclusions from missing data.
  signatures <- d[,.(signature=paste(sort(as.character(date)),collapse=',')),by=stratum]
  d[signatures,on='stratum',signature:=i.signature]

@@ -1,10 +1,10 @@
 suppressPackageStartupMessages({library(data.table);library(survival)})
 
-mwas_common_windows <- function(d, exposure, windows=c(3L,7L,14L,28L)) {
+mwas_common_windows <- function(d, exposure, windows=c(3L,7L,14L,28L), weather_adjusted=FALSE) {
   d <- copy(d);cols <- paste0(exposure,'_lag1_',windows)
   if(!all(cols %in% names(d)))stop('Missing exposure windows; rerun code/23_run_acute_mwas.R with MWAS_EXPOSURES_ONLY=1')
-  complete <- rowSums(is.finite(as.matrix(d[,..cols])))==length(cols) &
-    is.finite(d$tmean_lag1_7) & is.finite(d$rhmean_lag1_7) & !is.na(d$holiday)
+  complete <- rowSums(is.finite(as.matrix(d[,..cols])))==length(cols) & !is.na(d$holiday)
+  if(weather_adjusted)complete <- complete & is.finite(d$tmean_lag1_7) & is.finite(d$rhmean_lag1_7)
   d <- d[complete]
   keep <- d[,.(ok=sum(case)==1L && sum(case==0L)>=1L &&
     all(vapply(.SD,function(x)diff(range(x))>1e-8,logical(1)))),by=stratum,.SDcols=cols][ok==TRUE,stratum]
@@ -36,9 +36,20 @@ mwas_admission_diagnoses <- function(dx, ids) {
   out
 }
 
-mwas_federated_fit <- function(d, exposure, unit, interaction=FALSE) {
+# Shared formulas keep likelihood checks and candidate refits on the same specification.
+mwas_model_formula <- function(interaction=FALSE, weather_adjusted=FALSE, conditional=TRUE) {
+  terms <- c('x',if(interaction)'xs',
+    if(weather_adjusted)c('splines::ns(tmean_lag1_7,3)','splines::ns(rhmean_lag1_7,3)'),
+    'holiday',if(conditional)c('strata(stratum)','cluster(patient_id)'))
+  as.formula(paste(if(conditional)'case ~' else '~',paste(terms,collapse=' + ')))
+}
+
+mwas_adjustment_labels <- c('primary_no_weather','weather_adjusted')
+
+mwas_federated_fit <- function(d, exposure, unit, interaction=FALSE, weather_adjusted=FALSE) {
   d <- copy(d);d[,x:=get(exposure)/unit]
-  d <- d[is.finite(x) & is.finite(tmean_lag1_7) & is.finite(rhmean_lag1_7) & !is.na(holiday)]
+  d <- d[is.finite(x) & !is.na(holiday)]
+  if(weather_adjusted)d <- d[is.finite(tmean_lag1_7) & is.finite(rhmean_lag1_7)]
   if(interaction)d <- d[is.finite(ses)]
   keep <- d[,.(ok=sum(case)==1L && sum(case==0L)>=1L && diff(range(x))>1e-8),by=stratum][ok==TRUE,stratum]
   d <- d[stratum %in% keep]
@@ -50,10 +61,8 @@ mwas_federated_fit <- function(d, exposure, unit, interaction=FALSE) {
   if(interaction && uniqueN(d$ses)<2){out[,status:='no_ses_variation'];return(out)}
   # A case-only SES main effect cancels within each stratum; only x:SES is fitted.
   if(interaction)d[,xs:=x*ses]
-  form <- if(interaction)case ~ x + xs + splines::ns(tmean_lag1_7,3) + splines::ns(rhmean_lag1_7,3) + holiday + strata(stratum) + cluster(patient_id) else
-    case ~ x + splines::ns(tmean_lag1_7,3) + splines::ns(rhmean_lag1_7,3) + holiday + strata(stratum) + cluster(patient_id)
-  matrix_form <- if(interaction)~x+xs+splines::ns(tmean_lag1_7,3)+splines::ns(rhmean_lag1_7,3)+holiday else
-    ~x+splines::ns(tmean_lag1_7,3)+splines::ns(rhmean_lag1_7,3)+holiday
+  form <- mwas_model_formula(interaction,weather_adjusted)
+  matrix_form <- mwas_model_formula(interaction,weather_adjusted,conditional=FALSE)
   z <- tryCatch(model.matrix(matrix_form,d)[,-1,drop=FALSE],error=function(e)NULL)
   if(is.null(z))return(out)
   for(ii in split(seq_len(nrow(d)),d$stratum))z[ii,] <- sweep(z[ii,,drop=FALSE],2,colMeans(z[ii,,drop=FALSE]),'-')/sqrt(length(ii))

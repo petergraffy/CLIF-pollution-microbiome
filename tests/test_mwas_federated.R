@@ -16,6 +16,16 @@ d[,case:=as.integer(seq_len(.N)==sample(seq_len(.N),1,prob=exp(.25*pm+.2*pm*ses)
 f <- mwas_federated_fit(d,'pm',1,TRUE)
 stopifnot(all(f$status=='ok'),abs(f$log_or[1]-.25)<.15,abs(f$log_or[2]-.2)<.15,
  all(is.finite(f$cov_main_interaction)),all(f$se>0),f$n_events[1]==1600)
+# Weather sensitivity must reproduce the original spline-adjusted likelihood.
+adjusted <- mwas_federated_fit(d,'pm',1,TRUE,weather_adjusted=TRUE)
+direct <- clogit(case~pm+I(pm*ses)+splines::ns(tmean_lag1_7,3)+
+ splines::ns(rhmean_lag1_7,3)+holiday+strata(stratum)+cluster(patient_id),data=d,method='efron')
+stopifnot(all(adjusted$status=='ok'),max(abs(adjusted$log_or-coef(direct)[1:2]))<1e-8,
+ max(abs(adjusted$se-sqrt(diag(vcov(direct)))[1:2]))<1e-8,
+ f$design_rank[1]==3,adjusted$design_rank[1]==9)
+missing_weather <- copy(d);missing_weather[stratum<=20,tmean_lag1_7:=NA_real_]
+stopifnot(mwas_federated_fit(missing_weather,'pm',1,TRUE)$n_events[1]==1600,
+ mwas_federated_fit(missing_weather,'pm',1,TRUE,weather_adjusted=TRUE)$n_events[1]==1580)
 d[,ses:=0]
 stopifnot(all(mwas_federated_fit(d,'pm',1,TRUE)$status=='no_ses_variation'))
 # Closed-form inverse-variance result: identical site estimates retain beta,
@@ -30,13 +40,15 @@ cat('Federated checks passed: diagnosis missingness, known interaction recovery,
 tmp <- tempfile('mwas-meta-');dir.create(tmp)
 base <- copy(f)
 base[,`:=`(site='A',protocol_id='synthetic-v1',organism='synthetic_taxon',pollutant='pm25',
- analysis='ses:poverty_pct',family='ses_primary',exposure_unit='5 ug/m3',culture_window_hours=48L,exposure_window='lag1_7')]
+ model_adjustment='primary_no_weather',analysis='ses:poverty_pct',family='ses_primary',exposure_unit='5 ug/m3',culture_window_hours=48L,exposure_window='lag1_7')]
 overall <- copy(base[term=='pollution']);overall[,`:=`(analysis='overall',family='primary',null_information=100)]
 base <- rbind(base,overall)
 duration <- copy(base)
 duration[,`:=`(exposure_window='lag1_3',family=ifelse(analysis=='overall','exposure_duration_sensitivity','ses_primary_duration_sensitivity'),
  log_or=log_or+.1,cov_main_interaction=cov_main_interaction*2)]
 base <- rbind(base,duration)
+weather <- copy(base);weather[,`:=`(model_adjustment='weather_adjusted',family=paste0(family,'_weather_sensitivity'),log_or=log_or+.4)]
+base <- rbind(base,weather)
 file_a <- file.path(tmp,'a.csv');file_b <- file.path(tmp,'b.csv')
 fwrite(base,file_a);other <- copy(base);other[,site:='B'];fwrite(other,file_b)
 run_pool <- function(files,out)system2(file.path(R.home('bin'),'Rscript'),
@@ -48,7 +60,9 @@ pooled <- fread(file.path(tmp,'pool','pooled_mwas.csv'))
 stopifnot(all(pooled$k_sites==2),all(abs(pooled[analysis=='overall',se]-f$se[1]/sqrt(2))<1e-8),
  abs(pooled[analysis=='ses:poverty_pct' & exposure_window=='lag1_7',pooled_main_interaction_covariance][1]-f$cov_main_interaction[1]/2)<1e-8,
  abs(pooled[analysis=='ses:poverty_pct' & exposure_window=='lag1_3',pooled_main_interaction_covariance][1]-f$cov_main_interaction[1])<1e-8,
- abs(pooled[analysis=='overall' & exposure_window=='lag1_3',log_or]-f$log_or[1]-.1)<1e-8)
+ abs(pooled[analysis=='overall' & exposure_window=='lag1_3' & model_adjustment=='primary_no_weather',log_or]-f$log_or[1]-.1)<1e-8)
+stopifnot(uniqueN(pooled$model_adjustment)==2,
+ abs(pooled[analysis=='overall' & exposure_window=='lag1_7' & model_adjustment=='weather_adjusted',log_or]-f$log_or[1]-.4)<1e-8)
 stopifnot(run_pool(c(file_a,file_a),file.path(tmp,'duplicate'))!=0)
 other[,protocol_id:='incompatible'];fwrite(other,file_b)
 stopifnot(run_pool(c(file_a,file_b),file.path(tmp,'mismatch'))!=0)

@@ -1,11 +1,11 @@
 # Design-based local normal approximation; does not use fitted organism effects.
 # Assumes independent matched sets and equal case probabilities under a joint
-# exposure/weather null. Simulation is required to validate final eligibility.
-mwas_design_information <- function(d, exposure, unit) {
+# exposure/nuisance null. Simulation is required to validate final eligibility.
+mwas_design_information <- function(d, exposure, unit, weather_adjusted=FALSE) {
   d <- data.table::copy(d)
   d[, x := get(exposure)/unit]
-  d <- d[is.finite(x) & is.finite(tmean_lag1_7) &
-           is.finite(rhmean_lag1_7) & !is.na(holiday)]
+  d <- d[is.finite(x) & !is.na(holiday)]
+  if(weather_adjusted)d <- d[is.finite(tmean_lag1_7) & is.finite(rhmean_lag1_7)]
   keep <- d[, .(ok=sum(case)==1L && sum(case==0L)>=1L &&
                   diff(range(x))>1e-8), by=stratum][ok==TRUE,stratum]
   d <- d[stratum %in% keep]
@@ -13,9 +13,9 @@ mwas_design_information <- function(d, exposure, unit) {
               n_patients=data.table::uniqueN(d$patient_id),
               information=NA_real_, status='insufficient_design')
   if (!nrow(d)) return(out)
-  z <- tryCatch(cbind(x=d$x, splines::ns(d$tmean_lag1_7,df=3),
-                     splines::ns(d$rhmean_lag1_7,df=3), holiday=d$holiday),
-                error=function(e) NULL)
+  z <- tryCatch(if(weather_adjusted) cbind(x=d$x, splines::ns(d$tmean_lag1_7,df=3),
+                     splines::ns(d$rhmean_lag1_7,df=3), holiday=d$holiday) else
+                     cbind(x=d$x,holiday=d$holiday),error=function(e) NULL)
   if (is.null(z)) return(out)
   # Expected conditional likelihood information at zero coefficients is the
   # sum of within-set covariance matrices, each using uniform weights 1/m.

@@ -33,3 +33,11 @@ stopifnot(max(abs(mwas_calendar_meat(score,dates,1)-crossprod(score)))<1e-10)
 meat <- mwas_calendar_meat(score,dates,28)
 stopifnot(min(eigen(meat,symmetric=TRUE)$values)>-1e-8)
 cat('Count likelihood checks passed: identical clogit estimates/patient SEs, known effect, quasi variance and calendar HAC gaps.\n')
+
+# The sensitivity count likelihood must match weather-adjusted clogit too.
+weather_count <- mwas_count_fit(mwas_count_design(d,'pm',1,weather_adjusted=TRUE),expanded_case=d$case)
+weather_clogit <- mwas_federated_fit(d,'pm',1,weather_adjusted=TRUE)
+stopifnot(weather_count$status=='ok',weather_clogit$status=='ok',
+ abs(weather_count$log_or-weather_clogit$log_or)<1e-5,
+ abs(weather_count$se['patient']-weather_clogit$se)<1e-5)
+cat('Weather-sensitive count and conditional-logistic specifications agree.\n')

@@ -8,13 +8,14 @@ input <- fread(file.path(root,'site_estimates.csv'))
 b <- readRDS(file.path(run_dir,'private','cohort.rds'));m <- readRDS(file.path(run_dir,'private','matched_exposures.rds'))
 h <- readRDS(file.path(run_dir,'private','site_characteristics.rds'));registry <- mwas_modifier_registry()
 columns <- unique(registry$column);m <- merge(m,h[,c('hospitalization_id',columns),with=FALSE],by.x='stratum',by.y='hospitalization_id',all.x=TRUE,sort=FALSE)
-common <- setNames(lapply(c('pm25','o3'),function(ex)mwas_common_windows(m,ex)),c('pm25','o3'))
-cases <- lapply(common,function(d)d[case==1L]);targets <- input[startsWith(analysis,'modifier:') & term=='pollution_modifier']
+common <- setNames(lapply(mwas_adjustment_labels,function(adj)
+ setNames(lapply(c('pm25','o3'),function(ex)mwas_common_windows(m,ex,weather_adjusted=adj=='weather_adjusted')),c('pm25','o3'))),mwas_adjustment_labels)
+cases <- lapply(common,function(spec)lapply(spec,function(d)d[case==1L]));targets <- input[startsWith(analysis,'modifier:') & term=='pollution_modifier']
 support <- rbindlist(lapply(seq_len(nrow(targets)),function(i) {
  r <- targets[i];j <- match(r$analysis,registry$analysis);reg <- registry[j]
- d <- cases[[r$pollutant]][stratum %in% mwas_target_ids(b,r$organism)]
+ d <- cases[[r$model_adjustment]][[r$pollutant]][stratum %in% mwas_target_ids(b,r$organism)]
  v <- mwas_modifier_values(d,reg);ok <- is.finite(v)
- data.table(organism=r$organism,pollutant=r$pollutant,analysis=r$analysis,exposure_window=r$exposure_window,
+ data.table(organism=r$organism,pollutant=r$pollutant,analysis=r$analysis,exposure_window=r$exposure_window,model_adjustment=r$model_adjustment,
   n_before_modifier_exclusions=nrow(d),n_events_with_modifier=sum(ok),n_excluded=sum(!ok),
   n_reference=if(reg$type=='contrast')sum(v==0,na.rm=TRUE) else NA_integer_,
   n_comparison=if(reg$type=='contrast')sum(v==1,na.rm=TRUE) else NA_integer_,
@@ -32,17 +33,17 @@ path <- file.path(root,'modifier_candidate_diagnostics.csv')
 if(!nrow(candidates)) {if(file.exists(path))unlink(path);message('No local modifier candidates; all model support exported');quit(save='no')}
 rows <- lapply(seq_len(nrow(candidates)),function(i) {
  r <- candidates[i];j <- match(r$analysis,registry$analysis);reg <- registry[j]
- d <- copy(common[[r$pollutant]][stratum %in% mwas_target_ids(b,r$organism)])
+ d <- copy(common[[r$model_adjustment]][[r$pollutant]][stratum %in% mwas_target_ids(b,r$organism)])
  d[,ses:=mwas_modifier_values(d,reg)];d <- d[is.finite(ses)]
  exposure <- paste0(r$pollutant,'_',r$exposure_window);unit <- if(r$pollutant=='pm25')5 else 10
  d[,`:=`(x=get(exposure)/unit,xs=get(exposure)/unit*ses)]
  warnings <- character()
- fit <- tryCatch(withCallingHandlers(survival::clogit(case~x+xs+splines::ns(tmean_lag1_7,3)+splines::ns(rhmean_lag1_7,3)+holiday+strata(stratum)+cluster(patient_id),data=d,method='efron',control=coxph.control(iter.max=50)),warning=function(w){warnings<<-c(warnings,conditionMessage(w));invokeRestart('muffleWarning')}),error=function(e)NULL)
+ fit <- tryCatch(withCallingHandlers(survival::clogit(mwas_model_formula(TRUE,r$model_adjustment=='weather_adjusted'),data=d,method='efron',control=coxph.control(iter.max=50)),warning=function(w){warnings<<-c(warnings,conditionMessage(w));invokeRestart('muffleWarning')}),error=function(e)NULL)
  model_se <- if(!is.null(fit))sqrt(fit$naive.var[match('xs',names(coef(fit))),match('xs',names(coef(fit)))]) else NA_real_
  loo <- rbindlist(lapply(unique(d$patient_id),function(id) {
-  f <- mwas_federated_fit(d[patient_id!=id],exposure,unit,TRUE);f[term=='pollution_ses']
+  f <- mwas_federated_fit(d[patient_id!=id],exposure,unit,TRUE,weather_adjusted=r$model_adjustment=='weather_adjusted');f[term=='pollution_ses']
  }))
- row <- data.table(organism=r$organism,pollutant=r$pollutant,analysis=r$analysis,exposure_window=r$exposure_window,
+ row <- data.table(organism=r$organism,pollutant=r$pollutant,analysis=r$analysis,exposure_window=r$exposure_window,model_adjustment=r$model_adjustment,
   n_events=r$n_events,log_ratio_of_ORs=r$log_or,patient_cluster_se=r$se,model_based_se=model_se,
   model_based_p=if(is.finite(model_se))2*pnorm(-abs(r$log_or/model_se)) else NA_real_,q_value=r$q_value,
   leave_one_patient_out_attempted=nrow(loo),leave_one_patient_out_ok=sum(loo$status=='ok'),leave_one_patient_out_failed=sum(loo$status!='ok'),
@@ -50,6 +51,6 @@ rows <- lapply(seq_len(nrow(candidates)),function(i) {
   loo_max_log_ratio=if(any(loo$status=='ok'))max(loo[status=='ok',log_or]) else NA_real_,
   naive_fit_warned=length(warnings)>0,
   review='Exploratory only: inspect group support, model-based uncertainty and refit failures; baseline simulations do not validate modifier interactions')
- merge(row,support[,!c('site','protocol_id'),with=FALSE],by=c('organism','pollutant','analysis','exposure_window'),all.x=TRUE)
+ merge(row,support[,!c('site','protocol_id'),with=FALSE],by=c('organism','pollutant','analysis','exposure_window','model_adjustment'),all.x=TRUE)
 })
 fwrite(rbindlist(rows),path);message('Audited ',nrow(candidates),' local modifier candidates')

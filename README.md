@@ -58,12 +58,14 @@ Optional synthetic check: `Rscript code/35_buddy_smoke_test.R`. To resume a fail
 - Source uses CLIF `fluid_category`, with culture methods only. Four respiratory categories are included; source-specific sensitivities are separate.
 - Each named organism is an outcome, once per admission. All named taxa are attempted; no arbitrary 50/100-event cutoff.
 - Daily PM2.5 per 5 µg/m³ and ozone per 10 ppb. Seven-day preceding mean is primary, with 3/14/28-day sensitivities. NO2 is excluded.
-- Same-weekday/month/year reference dates, seven-day temperature/humidity splines and federal holidays; patient-cluster inference with conditional count-model checks.
+- Same-weekday/month/year reference dates and federal holidays in the primary model, without weather terms; seven-day temperature/humidity splines (3 df each) are separate sensitivities. Patient-cluster inference with conditional count-model checks.
 - ACS neighborhood SES interactions, diagnosis-defined outcomes, age/sex/recorded-race and Charlson/modified-SOFA interactions.
 - Table 1, annual site characteristics, culture practices, antibiotic timing and descriptive outcomes.
 - Site estimates and compatible aggregate meta-analysis, with prespecified hypothesis families and failed-model tracking.
 
 Severity and SES enter as pollution interactions. Their admission-level main effects cancel in self-matched models. SOFA totals require all six observed domains; optional physiology derivation is disabled in the default first buddy pilot. Enabling optional SOFA derivation is a coordinated protocol choice, not a required site configuration step.
+
+Protocol v6 separates primary and weather-adjusted results. Earlier v5 exports cannot be relabeled or pooled with v6; sites must rerun the analysis. Missing weather does not exclude primary matched sets.
 
 ## Bundled public inputs
 

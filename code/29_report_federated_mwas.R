@@ -6,12 +6,13 @@ pool <- Sys.getenv('MWAS_POOL_DIR',file.path(root,'pool_ucmc'))
 d <- fread(file.path(root,'site_estimates.csv'));p <- fread(file.path(pool,'pooled_mwas.csv'))
 for(v in intersect(c('odds_ratio','ci_low','ci_high','q_value','log_or','se'),names(p)))set(p,j=v,value=as.numeric(p[[v]]))
 if(!'inference_method' %in% names(p))p[,inference_method:='patient_cluster']
-primary <- p[inference_method=='patient_cluster']
+primary <- p[inference_method=='patient_cluster' & model_adjustment=='primary_no_weather']
+weather_sensitivity <- p[inference_method=='patient_cluster' & model_adjustment=='weather_adjusted' & analysis=='overall']
 esc <- function(x) {x<-gsub('&','&amp;',as.character(x),fixed=TRUE);x<-gsub('<','&lt;',x,fixed=TRUE);gsub('>','&gt;',x,fixed=TRUE)}
 table <- function(x)paste0('<table><thead><tr>',paste0('<th>',esc(names(x)),'</th>',collapse=''),
  '</tr></thead><tbody>',paste(vapply(seq_len(nrow(x)),function(i)paste0('<tr>',paste0('<td>',
  esc(unlist(x[i],use.names=FALSE)),'</td>',collapse=''),'</tr>'),character(1)),collapse=''),'</tbody></table>')
-summary <- p[!is.na(q_value),.(estimated_terms=.N,FDR_hits=sum(q_value<.05)),by=.(family,inference_method)]
+summary <- p[!is.na(q_value),.(estimated_terms=.N,FDR_hits=sum(q_value<.05)),by=.(family,inference_method,model_adjustment)]
 freq <- d[analysis=='overall' & status=='ok',.(n=max(n_events)),by=organism][order(-n)]
 common <- head(freq$organism,6)
 effects <- primary[exposure_window=='lag1_7' & organism %in% common & (analysis=='overall' | (analysis=='ses:poverty_pct' & term=='pollution_ses')),
@@ -48,7 +49,7 @@ shared_html <- '<p>Unavailable in this run.</p>'
 shared_path <- file.path(root,'shared_exposure_diagnostics.csv')
 if(file.exists(shared_path)) {
  checks <- fread(shared_path)
- shared_html <- paste0(table(checks[,.(models=.N),by=.(analysis,status)]),
+ shared_html <- paste0(table(checks[,.(models=.N),by=.(analysis,model_adjustment,status)]),
   table(checks[analysis=='overall' & exposure_window=='lag1_7' & organism %in% common & status=='ok']))
 }
 calibration_html <- optional_table('simulation_calibration.csv')
@@ -58,7 +59,7 @@ if(file.exists(calibration_path)) {
  review <- sim[target_or==1,.(null_cells=.N,
   minimum_null_rejection=min(rejection_rate),maximum_null_rejection=max(rejection_rate),
   cells_with_evidence_of_inflation=sum(rejection_ci_low>.05),
-  maximum_fit_failure=max(fit_failure_rate)),by=inference_method]
+  maximum_fit_failure=max(fit_failure_rate)),by=.(inference_method,model_adjustment)]
  fwrite(review,file.path(root,'calibration_review.csv'))
  flag <- if(any(review$cells_with_evidence_of_inflation>0))'<p class="note">Calibration found null scenarios with rejection rates exceeding 5% beyond Monte Carlo uncertainty. These methods are not uniformly calibrated; technical fit success and FDR correction do not establish valid scientific inference. Review the affected scenarios before confirmatory use.</p>' else '<p>No null scenario showed clear excess rejection beyond Monte Carlo uncertainty; this does not establish universal calibration.</p>'
  sim_manifest_path <- file.path(root,'simulation_manifest.json')
@@ -95,7 +96,7 @@ html <- paste0('<!doctype html><html><head><meta charset="utf-8"><title>Federate
  '<style>body{font:16px system-ui;max-width:1500px;margin:40px auto;padding:0 20px;color:#203040}table{display:block;overflow-x:auto;border-collapse:collapse;width:100%;font-size:14px;margin:20px 0}th,td{padding:8px;text-align:left;border-bottom:1px solid #ddd}th{background:#edf2f6}h2{margin-top:32px}.note{background:#fff4d9;padding:16px}</style></head><body>',
  '<h1>Federated respiratory culture MWAS: ',site_label,' development run</h1>',
  '<p class="note">This run contains one site. Results reproduce local estimates and test the aggregation workflow; they are not multisite evidence. Passing model diagnostics does not establish adequate power or reliable sparse-sample inference.</p>',
- '<p>Hospital admissions entering ICU within 24 hours; cultures in the first 48 ICU hours. Mean PM2.5 and ozone exposures on days 1–3, 1–7 (primary), 1–14, and 1–28 before hospital admission. Four CLIF respiratory source categories are included. Models match weekday within month/year. All windows hold lag-1–7 temperature/humidity splines and holiday adjustment fixed.</p>',
+ '<p>Hospital admissions entering ICU within 24 hours; cultures in the first 48 ICU hours. Mean PM2.5 and ozone exposures on days 1–3, 1–7 (primary), 1–14, and 1–28 before hospital admission. Four CLIF respiratory source categories are included. Models match weekday within month/year. Primary models adjust for holidays without weather terms. Separate weather sensitivities add lag-1–7 temperature and relative-humidity splines (3 df each) across all windows and analysis families. Primary eligibility does not require weather; sensitivity eligibility additionally requires complete weather.</p>',
  '<h2>Table 1: primary cohort and context cohorts</h2>',optional_table('table1.csv'),
  '<p>The primary cohort includes any eligible respiratory culture within 48 ICU hours, including cultures without a named organism. Summaries count hospital admissions; unique patients are shown separately. Median [IQR] rows show observed/total counts. The matched-both cohort is descriptive; pollutant models retain their own matched sets. Six-/24-hour modified SOFA totals require all six domains and are derived only for admissions cultured within 72 hours. Partial scores are not substituted.</p>',
  '<h2>Annual site characteristics</h2>',annual_html,
@@ -106,9 +107,11 @@ html <- paste0('<!doctype html><html><head><meta charset="utf-8"><title>Federate
  '<p>Seven-day models fit one modifier at a time: age per 10 years (reference 60), Charlson per point (reference 2), complete six-hour modified SOFA per 2 points (reference 6), and 24-hour SOFA as a sensitivity. Sex compares male with female. Each recorded race category is compared separately with White; unknown/missing/unmapped values are excluded. Race is a recorded social classification, not a biological mechanism. The interaction OR is a ratio of pollution ORs, not a direct demographic or severity effect. Clinical and demographic interaction families have separate BH corrections retaining failed attempts. Six-hour SOFA is early post-entry organ dysfunction. Its interactions describe events of different observed severity and do not establish causal modification by baseline severity.</p>',
  '<p class="note">New modifier interactions currently use patient-cluster uncertainty. The baseline simulation calibration does not validate these interaction models. Complete-score and demographic exclusions may select the patients contributing to each contrast.</p>',
  '<h2>Analysis families</h2>',table(summary),
+ '<h2>Weather adjustment sensitivity</h2>',table(weather_sensitivity[,.(organism,pollutant,exposure_window,n_events,OR=odds_ratio,CI_low=ci_low,CI_high=ci_high,q=q_value)]),
+ '<p>Compare exposure_window_qc.csv to distinguish weather-related sample loss from covariate adjustment. Weather sensitivities have separate FDR families and are not primary findings.</p>',
  '<p>BH correction retains the full attempted hypothesis count in each family. Seven-day overall associations are primary; seven-day poverty interactions, other SES interactions, and diagnosis-defined outcomes have separate families. The 3-, 14-, and 28-day windows are corrected jointly within their corresponding sensitivity families.</p>',
  '<h2>Exposure duration sensitivity</h2>',table(fread(file.path(root,'exposure_window_qc.csv'))),
- '<p>Cases and referent rows are identical across windows within each pollutant. Every retained row has complete daily exposure across all windows and complete lag-1–7 weather; each matched set has one case, at least one referent, and exposure variation in every window. The 28-day window overlaps heavily between nearby referent dates and may reduce precision. Different windows are correlated; differences in significance are not formal tests of differences in effects.</p>',
+ '<p>Cases and referent rows are identical across windows within each pollutant and adjustment specification. Every retained row has complete daily exposure across all windows; only the weather sensitivity additionally requires complete lag-1–7 weather; each matched set has one case, at least one referent, and exposure variation in every window. The 28-day window overlaps heavily between nearby referent dates and may reduce precision. Different windows are correlated; differences in significance are not formal tests of differences in effects.</p>',
  '<img src="duration_sensitivity_forest.png" alt="Exposure window estimates for the six most frequent organisms" style="width:100%;height:auto">',table(duration),audit_html,
  '<h2>Culture selection and clinical sensitivities</h2>',table(clinical),
  '<p>Companion outcomes use all eligible early ICU admissions, any early respiratory culture, and any named organism. They help assess whether the organism signal parallels admission or testing patterns; they do not remove selection bias. Clinical sensitivities use 24/72-hour culture windows, pulmonary/upper-airway categories, and no documented inpatient antibacterial administration before culture. Absence of inpatient documentation does not establish absence of outpatient or referring-hospital treatment.</p>',

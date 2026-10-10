@@ -14,12 +14,12 @@ protocol_id <- if(file.exists(file.path(root,'protocol.json')))unname(tools::md5
 seed <- as.integer(Sys.getenv('MWAS_SIM_SEED','20261005'));set.seed(seed)
 m <- readRDS(file.path(run_dir,'private','matched_exposures.rds'))
 raw <- list();i <- 0L
-for(ex in c('pm25','o3'))for(w in windows)for(n in sizes) {
- available <- mwas_common_windows(m,ex)
+for(adj in mwas_adjustment_labels)for(ex in c('pm25','o3'))for(w in windows)for(n in sizes) {
+ available <- mwas_common_windows(m,ex,weather_adjusted=adj=='weather_adjusted')
  if(uniqueN(available$stratum)<n)next
  ids <- sample(unique(available$stratum),n,replace=FALSE)
  d <- copy(available[stratum %in% ids]);exposure <- paste0(ex,'_lag1_',w)
- design <- tryCatch(mwas_count_design(d,exposure,if(ex=='pm25')5 else 10),error=function(e)NULL)
+ design <- tryCatch(mwas_count_design(d,exposure,if(ex=='pm25')5 else 10,weather_adjusted=adj=='weather_adjusted'),error=function(e)NULL)
  if(is.null(design)){message('Unidentifiable simulation design: ',ex,' ',w,' ',n);next}
  sets <- split(seq_len(nrow(d)),d$stratum)
  dates <- seq(min(d$date),max(d$date),by='day');date_index <- match(d$date,dates)
@@ -41,12 +41,12 @@ for(ex in c('pm25','o3'))for(w in windows)for(n in sizes) {
   for(method in c('patient','quasi','hac')) {
    i <- i+1L;ok <- f$status=='ok';se <- if(ok)unname(f$se[method]) else NA_real_
    beta <- if(ok)f$log_or else NA_real_
-   raw[[i]] <- data.table(pollutant=ex,window_days=w,n_events=n,scenario=scenario,
+   raw[[i]] <- data.table(model_adjustment=adj,pollutant=ex,window_days=w,n_events=n,scenario=scenario,
     target_or=target_or,replicate=rep,inference_method=method,status=f$status,
     log_or=beta,se=se,reject=if(ok)abs(beta/se)>qnorm(.975) else FALSE,
     covered=if(ok)abs(beta-log(target_or))<=qnorm(.975)*se else NA)
   }
-  if(rep==reps)message('Calibrated ',ex,' ',w,'d n=',n,' ',scenario,' OR=',target_or)
+  if(rep==reps)message('Calibrated ',adj,' ',ex,' ',w,'d n=',n,' ',scenario,' OR=',target_or)
  }
  # Checkpoint aggregate simulation records: no IDs, ZIPs or dates.
  fwrite(rbindlist(raw),file.path(root,'simulation_replicates.csv'))
@@ -60,14 +60,14 @@ summary <- r[,{
   rejection_ci_high=if(sum(reject)==.N)1 else qbeta(.975,sum(reject)+1,.N-sum(reject)),
   conditional_coverage=if(any(valid))mean(covered[valid]) else NA_real_,
   mean_bias=if(any(valid))mean(log_or[valid]-log(target_or[1])) else NA_real_)
-},by=.(pollutant,window_days,n_events,scenario,target_or,inference_method)]
+},by=.(model_adjustment,pollutant,window_days,n_events,scenario,target_or,inference_method)]
 fwrite(summary,file.path(root,'simulation_calibration.csv'))
 write_json(list(seed=seed,replicates_per_cell=reps,sizes=sizes,windows=windows,
- truth='Fixed matched sets and actual local exposure/weather. Known exposure and spline nuisance slopes; event dates sampled conditionally.',
+ truth='Fixed matched sets and actual local exposure series. Primary truth includes exposure and holiday slopes; weather-sensitivity truth additionally includes spline nuisance slopes. Event dates sampled conditionally. This does not test bias from omitting a true weather confounder.',
  shared_shock='Unmeasured site-wide daily AR1=.7, innovation SD=.7 on log risk; independent of exposure generation',
  interpretation='OR1 rejection is empirical type-I error; OR1.5 rejection is power. Failures count as nonrejections; coverage is conditional on estimability.',
  limitations='Conditional cohort simulation, not a complete population/DAG model. Not BH discovery power. Shared shock marginalizes a conditional effect; bias under that scenario need not be zero.',
- matched_exposures_md5=input_md5,completed_cells=nrow(summary),expected_cells=length(unique(sizes))*length(unique(windows))*2*2*2*3,
+ matched_exposures_md5=input_md5,completed_cells=nrow(summary),model_adjustments=mwas_adjustment_labels,expected_cells=length(mwas_adjustment_labels)*length(unique(sizes))*length(unique(windows))*2*2*2*3,
  protocol_id=protocol_id),
  file.path(root,'simulation_manifest.json'),auto_unbox=TRUE,pretty=TRUE)
 message('Simulation calibration complete: ',nrow(summary),' cells')

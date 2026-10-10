@@ -53,3 +53,5 @@ Rscript code/28_pool_federated_mwas.R output/mwas/pooled \
 ```
 
 Include approved shared-exposure estimate files as additional arguments to pool those methods. Pooling rejects protocol mismatches and duplicate site/model records. Patient-level records are never coordinator inputs.
+
+Protocol v6: primary models retain matching and holiday adjustment without weather. All families also have separately labeled weather-adjusted sensitivities. Sites must rerun v5 outputs; the coordinator rejects incompatible protocol/schema exports.
